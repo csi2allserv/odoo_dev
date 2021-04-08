@@ -189,17 +189,6 @@ class ActaServicio(models.Model):
             self._cr.execute(query)
             self._cr.commit()
 
-class material_acta(models.Model):
- #clase diseñada para integral el listado de SUBSISTEMA DE ALARMA EN EL QUE TRABAJÓ
-    _name = 'material.acta'
-    _rec_name='Nom_material'
-    Nom_material = fields.Char('prueba', required=True)
-
-class tipo_mantenimiento(models.Model):
-    _name = 'tipo.mantenimiento'
-    _rec_name = 'nombre_proceso'
-    nombre_proceso = fields.Char('prueba', required=True)
-
 class materiales_video_electronicos(models.Model):
     _name = 'video.electronico'
     _rec_name = 'nombre'
