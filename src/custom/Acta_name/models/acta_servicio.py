@@ -108,7 +108,7 @@ class ActaServicio(models.Model):
     campos3_metalmecanico = fields.One2many('suministros_metalmecanicos', 'opuesto', )
 
     # variables para proyectos
-    #Listaactividades = fields.Many2many('project.project', store=True, string='datos')
+    Listaactividades = fields.Many2one('project.task', store=True, string='datos')
 
 
     #funciones
