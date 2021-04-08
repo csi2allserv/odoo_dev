@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+    <record id="hr_expense_multi_tree" model="ir.ui.view">
+        <field name="name">hr_expense_multi_tree</field>
+        <field name="model">hr.expense.multi</field>
+        <field name="arch" type="xml">
+            <tree >
+                    <field name="description"/>
+                    <field name="valor" />
+                
+            </tree>
+        </field>
+    </record>
+
+    
+    <record id="action_entidad" model="ir.actions.act_window">
+		<field name="name">Entidad</field>
+		<field name="res_model">hr.expense.multi</field>
+		<field name="view_mode">tree,form</field>
+		<field name="help" type="html">
+			<p class="o_view_nocontent_smiling_face">
+				Click en Crear, para agregar una nueva entidad.
+			</p>
+		</field>
+	</record>
+
+        
+    <record id="hr_expense_multi_form" model="ir.ui.view">
+        <field name="name">hr_expense_multi_form</field>
+        <field name="model">hr.expense.multi</field>
+        <field name="arch" type="xml">
+            <form string="Expense Products">
+                <sheet>
+                <group string="viaticos" >
+                <field name="description" />
+                <field name="product_id" widget="many2many_tags" placeholder="Seleccione uno o varios"/>
+                <field name="valor" />
+                </group>   
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+        <record id="hr_expense_view__inh_form" model="ir.ui.view">
+            <field name="model">hr.expense</field>
+            <field name="inherit_id" ref="hr_expense.hr_expense_view_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='tax_ids']" position="after">
+                   <button type="object"
+                    name="my_method"
+                    string="Completo?"/>
+                </xpath>
+                
+            </field>
+        </record>
+
+                <menuitem id="sale_product_multi_expense_menu"
+                  name="multi del gasto"
+                  parent="hr_expense.menu_hr_expense_configuration"
+                  action="action_entidad"
+                  sequence="10"/>
+
+   
+</data>
+</odoo>

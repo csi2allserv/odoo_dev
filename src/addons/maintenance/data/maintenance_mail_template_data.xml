@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Sample stage-related template -->
+        <record id="mail_template_data_maintenance_task" model="mail.template">
+            <field name="name">Mantenimiento: Recepcion de Mantenimiento</field>
+            <field name="model_id" ref="maintenance.model_maintenance_request"/>
+            <field name="subject">Reception of ${object.name}</field>
+            <field name="use_default_to" eval="True"/>
+            <field name="body_html" type="html">
+<div>
+    Querido(a) ${object.employee_id.name or 'customer'},<br/>
+    Gracias por su consulta.<br />
+    Si tiene alguna duda, por favor póngase en contacto con nosotros.
+    <br/><br/>
+    Muchas gracias,
+    <br/>
+</div>
+        </field>
+            <field name="auto_delete" eval="True"/>
+            <field name="user_signature" eval="True"/>
+        </record>
+
+    </data>
+</odoo>

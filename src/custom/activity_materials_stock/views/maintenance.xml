@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+
+        <record id="task_type_consume_material" model="ir.ui.view">
+        <field name="name">project.task.type.consume.material</field>
+        <field name="model">maintenance.stage</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_stage_view_tree"/>
+        <field name="arch" type="xml">
+            <field name="fold" position="after">
+                <field name="consume_material"/>
+            </field>
+        </field>
+    </record>
+    <record id="view_project_task_form_material_stock" model="ir.ui.view">
+        <field name="name">maintenance.task.form.material</field>
+        <field name="model">maintenance.request</field>
+        <field name="inherit_id" ref="activiy_materials.view_maintenance_task_form_material"/>
+        <field name="arch" type="xml">
+            <field name="material_ids" position="replace">
+                <field name="stock_state" invisible="1"/>
+                <group string="Ubicacion donde consumir" name="materials" groups="stock.group_stock_multi_locations">
+                    <field name="analytic_account_id" string="Tipo de movimiento"/>
+                    <field name="location_source_id" string="Ubicación de origen"/>
+                    <!--field name="location_dest_id" string="Ubicación destino"/-->
+                    <!--field name="employee_id" string="Asignado a"/-->
+                     <field name="channels" />
+                </group>
+                <!-- codigo agregado por william acosta Web master JR -->
+                <group>
+                    <field name="envios" widget="radio"></field>
+                </group>
+                <group attrs="{'invisible': [('envios', '!=', 'Si')]}">
+                    <label for="street" string="Direccion de envio"/>
+                    <div>
+                        <div class="o_address_format" name="div_address">
+                            <field name="document" placeholder="N° de documento" attrs="{'required' : [('channels', '=', 'servientrega')]}"/>
+                            <field name="street" placeholder="calle..." class="o_address_street" attrs="{'required' : [('channels', '=', 'servientrega')]}"/>
+                            <field name="street2" placeholder="calle 2..." class="o_address_street"/>
+                            <field name="country_id" placeholder="Pais" class="o_address_country" options='{"no_open": True, "no_create": True}' attrs="{'required' : [('channels', '=', 'servientrega')]}"/>
+                            <field name="city" placeholder="Ciudad" class="o_address_city" attrs="{'required' : [('channels', '=', 'servientrega')]}"/>
+                            <field name="state_id" class="o_address_state" placeholder="Departamento" options='{"no_open": True}' context="{'country_id': country_id, 'zip': zip}" attrs="{'required' : [('channels', '=', 'servientrega')]}"/>
+                            <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                            <field name="email" placeholder="Correo" />
+                            <field name="mobile" widget="phone" placeholder="Celular" attrs="{'required' : [('channels', '=', 'servientrega')]}"/>
+                            <field name="phone" widget="phone" placeholder="Telefono"/>
+                            <field name="comment" placeholder="nota interna..."/>
+                        </div>
+                    </div>
+                </group>
+                <group string="Materiales consumidos" name="materials_consumed" groups="project.group_project_user">
+                    <notebook>
+                        <page string="Productos" name="products">
+                            <field name="material_ids">
+                                <tree string="Materials used" editable="top">
+                                    <field name="product_id" string="Producto"/>
+                                    <field name="quantity" string="Cantidad"/>
+                                    <field name="product_uom_id" groups="uom.group_uom" string="Unidad de medida"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Movimientos de stock" name="stock_moves">
+                            <field name="stock_move_ids">
+                                <tree string="Stock Moves">
+                                    <field name="picking_id" string="Referencia de transferencia"/>
+                                    <field name="date_expected" string="Fecha prevista"/>
+                                    <field name="date" string="Fecha"/>
+                                    <field name="origin" string="Documento de origen"/>
+                                    <field name="product_id" string="Producto"/>
+                                    <field name="product_uom_qty" string="Demanda inicial"/>
+                                    <field name="state" string="Estado"/>
+                                    <field name="state" string="channels"/>
+                                    <button name="action_show_details" string="Registrar lote, Paquetes, Ubicacion" type="object" icon="fa-list" options="{&quot;warn&quot;: true}"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </group>
+            </field>
+        </field>
+    </record>
+    </data>
+
+</odoo>

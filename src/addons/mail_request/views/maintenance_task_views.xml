@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="hr_equipment_request_view_form" model="ir.ui.view">
+        <field name="name">equipment.request.form</field>
+        <field name="model">maintenance.request</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_request_view_form" />
+        <field name="arch" type="xml">
+            <field name="stage_id" position="before">
+                <button
+                    name="action_task_send"
+                    type="object"
+                    string="Enviar por correo"
+                    groups="base.group_user"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,52 @@
+<section class="oe_container">
+  <div class="oe_row oe_spaced">
+    <h2 class="oe_slogan" style="color:#875A7B;"><b>Forms | Data API</b></h2>
+    <h3 class="oe_slogan">Python API for Forms data (builder, form/submission)</h3>
+  </div>
+</section>
+
+<section class="oe_container">
+  <div class="oe_row oe_centeralign mb16">
+    <h4>Visit the online Demo (Odoo Community v13)</h4>
+    <p>Click the <strong>Live Preview</strong> button in the top.</p>
+    <p class="mt8"><strong>Users</strong> (email / password)</p>
+    <ul>
+      <li>demo / demo</li>
+      <li>portal / portal</li>
+    </ul>
+  </div>
+</section>
+
+<section class="oe_container oe_dark">
+  <div class="oe_row oe_spaced">
+    <h2 class="oe_slogan" style="color:#875A7B;">Releases</h2>
+    <h4 class="oe_mb16">0.5</h4>
+    <ul>
+      <li>
+        Remove silly model determination by <code>initial_res_model_id</code>.
+        The current model is always stored and present in <code>res_model_id</code>.
+      </li>
+    </ul>
+    </ul>
+    <h4 class="oe_mb16">0.4</h4>
+    <ul>
+      <li>New API feature: ETL the Odoo model name into Forms (API Property Name: <code>OdooModel</code>).</li>
+    </ul>
+    <h4 class="oe_mb16">0.3</h4>
+    <ul>
+      <li>
+        Change ETL Odoo field-data (API): field delimter from "." to "__" (2 underscores).<br/>
+        - A dot "." results in undesired submission data, due to the Form.io Javascript library/API.
+        - A dash is allowed, however causing issues with the ETL module (formio_etl).
+      </li>
+    </ul>
+    <h4 class="oe_mb16">0.2</h4>
+    <ul>
+      <li>New API feature: ETL Odoo field-data into Forms.</li>
+    </ul>
+    <h4 class="oe_mb16">0.1</h4>
+    <ul>
+      <li>Initial version</li>
+    </ul>
+  </div>
+</section>

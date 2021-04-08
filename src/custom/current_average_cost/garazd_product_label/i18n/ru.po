@@ -1,0 +1,173 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* garazd_product_label
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-10-01 13:20+0000\n"
+"PO-Revision-Date: 2019-10-01 13:20+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: garazd_product_label
+#: model:ir.model.fields,field_description:garazd_product_label.field_print_product_label__create_uid
+#: model:ir.model.fields,field_description:garazd_product_label.field_product_label__create_uid
+msgid "Created by"
+msgstr "Создал"
+
+#. module: garazd_product_label
+#: model:ir.model.fields,field_description:garazd_product_label.field_print_product_label__create_date
+#: model:ir.model.fields,field_description:garazd_product_label.field_product_label__create_date
+msgid "Created on"
+msgstr "Создано"
+
+#. module: garazd_product_label
+#: model:ir.actions.act_window,name:garazd_product_label.action_print_label_from_product
+#: model:ir.actions.act_window,name:garazd_product_label.action_print_label_from_template
+msgid "Custom Product Labels (PDF)"
+msgstr "Печать ценников"
+
+#. module: garazd_product_label
+#: model:ir.model.fields,field_description:garazd_product_label.field_print_product_label__display_name
+#: model:ir.model.fields,field_description:garazd_product_label.field_product_label__display_name
+msgid "Display Name"
+msgstr "Отображаемое имя"
+
+#. module: garazd_product_label
+#: model:ir.model.fields,field_description:garazd_product_label.field_print_product_label__id
+#: model:ir.model.fields,field_description:garazd_product_label.field_product_label__id
+msgid "ID"
+msgstr ""
+
+#. module: garazd_product_label
+#: model:ir.model.fields,field_description:garazd_product_label.field_product_label__qty_initial
+msgid "Initial Qty"
+msgstr "Первоначальное количество"
+
+#. module: garazd_product_label
+#: selection:print.product.label,template:0
+msgid "Label 57x35mm (A4: 21 pcs on sheet, 3x7)"
+msgstr "Ценник 57x35мм (A4: 21 шт на листе, 3x7)"
+
+#. module: garazd_product_label
+#: selection:print.product.label,template:0
+msgid "Label 57x65mm (A4: 12 pcs on sheet, 3x4)"
+msgstr "Ценник 57x65мм (A4: 12 шт на листе, 3x4)"
+
+#. module: garazd_product_label
+#: model:ir.model.fields,field_description:garazd_product_label.field_product_label__qty
+msgid "Label Qty"
+msgstr "Кол-во"
+
+#. module: garazd_product_label
+#: model:ir.model.fields,field_description:garazd_product_label.field_print_product_label__qty_per_product
+#: model_terms:ir.ui.view,arch_db:garazd_product_label.print_product_label_view_form
+msgid "Label quantity per product"
+msgstr "Количество ценников для каждого товара"
+
+#. module: garazd_product_label
+#: model:ir.model.fields,field_description:garazd_product_label.field_print_product_label__template
+#: model_terms:ir.ui.view,arch_db:garazd_product_label.print_product_label_view_form
+msgid "Label template"
+msgstr "Шаблон ценника"
+
+#. module: garazd_product_label
+#: model:ir.model.fields,field_description:garazd_product_label.field_print_product_label__label_ids
+msgid "Labels for Products"
+msgstr "Ценники для товаров"
+
+#. module: garazd_product_label
+#: model:ir.model.fields,field_description:garazd_product_label.field_print_product_label____last_update
+#: model:ir.model.fields,field_description:garazd_product_label.field_product_label____last_update
+msgid "Last Modified on"
+msgstr "Последний раз изменено"
+
+#. module: garazd_product_label
+#: model:ir.model.fields,field_description:garazd_product_label.field_print_product_label__write_uid
+#: model:ir.model.fields,field_description:garazd_product_label.field_product_label__write_uid
+msgid "Last Updated by"
+msgstr "Последний раз обновил"
+
+#. module: garazd_product_label
+#: model:ir.model.fields,field_description:garazd_product_label.field_print_product_label__write_date
+#: model:ir.model.fields,field_description:garazd_product_label.field_product_label__write_date
+msgid "Last Updated on"
+msgstr "Последний раз обновлено"
+
+#. module: garazd_product_label
+#: model:ir.model.fields,field_description:garazd_product_label.field_print_product_label__name
+msgid "Name"
+msgstr "Имя"
+
+#. module: garazd_product_label
+#: code:addons/garazd_product_label/wizard/print_product_label.py:55
+#, python-format
+msgid "Nothing to print, set the quantity of labels in the table."
+msgstr "Нет данных для печати, задайте количество ценников в таблице."
+
+#. module: garazd_product_label
+#: model:ir.model.fields,field_description:garazd_product_label.field_product_label__selected
+#: model_terms:ir.ui.view,arch_db:garazd_product_label.print_product_label_view_form
+msgid "Print"
+msgstr "Печать"
+
+#. module: garazd_product_label
+#: model_terms:ir.ui.view,arch_db:garazd_product_label.print_product_label_view_form
+msgid "Print product labels"
+msgstr "Печать ценников"
+
+#. module: garazd_product_label
+#: model:ir.model.fields,field_description:garazd_product_label.field_product_label__wizard_id
+msgid "Print Wizard"
+msgstr "Мастер печати"
+
+#. module: garazd_product_label
+#: model_terms:ir.ui.view,arch_db:garazd_product_label.print_product_label_view_form
+msgid "Print product labels"
+msgstr "Печать ценников"
+
+#. module: garazd_product_label
+#: model:ir.model.fields,field_description:garazd_product_label.field_product_label__product_id
+msgid "Product"
+msgstr "Товар"
+
+#. module: garazd_product_label
+#: model:ir.actions.report,name:garazd_product_label.report_product_label_A4_57x35
+msgid "Product labels 57x35mm"
+msgstr "Ценники 57x35 мм"
+
+#. module: garazd_product_label
+#: model_terms:ir.ui.view,arch_db:garazd_product_label.print_product_label_view_form
+msgid "Restore initial quantity."
+msgstr "Установить исходное количество."
+
+#. module: garazd_product_label
+#: model_terms:ir.ui.view,arch_db:garazd_product_label.print_product_label_view_form
+msgid "Set a certain quantity for each line."
+msgstr "Установить заданное количество для каждой строки."
+
+#. module: garazd_product_label
+#: model_terms:ir.ui.view,arch_db:garazd_product_label.print_product_label_view_form
+msgid "Set quantity"
+msgstr "Установить количество"
+
+#. module: garazd_product_label
+#: model_terms:ir.ui.view,arch_db:garazd_product_label.print_product_label_view_form
+msgid "Total"
+msgstr "Всего"
+
+#. module: garazd_product_label
+#: model:ir.model,name:garazd_product_label.model_print_product_label
+msgid "print.product.label"
+msgstr ""
+
+#. module: garazd_product_label
+#: model:ir.model,name:garazd_product_label.model_product_label
+msgid "product.label"
+msgstr ""

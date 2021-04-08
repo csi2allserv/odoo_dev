@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="paperformat_a4_clear" model="report.paperformat">
+        <field name="name">A4 w/o header</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">5</field>
+        <field name="margin_bottom">3</field>
+        <field name="margin_left">3</field>
+        <field name="margin_right">3</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">0</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <report
+        id="report_product_label_A4_57x35"
+        string="Product labels 57x35mm"
+        model="print.product.label.line"
+        report_type="qweb-pdf"
+        paperformat="garazd_product_label.paperformat_a4_clear"
+        name="garazd_product_label.report_product_label_57x35_template"
+        file="garazd_product_label.report_product_label_57x35_template"
+    />
+
+</odoo>

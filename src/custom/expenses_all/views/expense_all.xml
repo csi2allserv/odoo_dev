@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="hr_expense_view__inh_form" model="ir.ui.view">
+            <field name="model">hr.expense.sheet</field>
+            <field name="inherit_id" ref="hr_expense.view_hr_expense_sheet_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']/../.." position="before">
+                    <strong><field name="default_code" nolabel="1" /></strong>
+                </xpath>
+                <xpath expr="//field[@name='employee_id']" position="before">
+                    <field name="categ_id"/>
+                    <field name="origin" string="
+                    Numero de servicio" placeholder="Numero de servicio" attrs="{'invisible': [('categ_id', '=', 'MANTENIMIENTO')]}"/>
+                    <field name="applicant"/>
+                </xpath>
+                <xpath expr="//group[@name='name']" position="after">
+                    <group> 
+                    <field name="location_id" attrs="{'invisible': [('origin', '=', False)]}"/>
+                    <field name="partner_id"
+                                    widget="res_partner_many2one"
+                                    string="Entidad" domain="[('customer', '=', True)]"
+                                    attrs="{'invisible': [('origin', '=', False)]}"
+                    />
+                    <field name="city_id" string="Ciudad" attrs="{'invisible': [('origin', '=', False)]}"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_expense_template_tree_cate" model="ir.ui.view">
+            <field name="name">expense tree view: add categ</field>
+            <field name="model">hr.expense.sheet</field>
+            <field name="inherit_id" ref="hr_expense.view_hr_expense_sheet_tree" />
+            <field name="arch" type="xml">
+                <field name="name" position="before">
+                    <field name="categ_id"/>
+                    <field name="default_code" string='Identificador'/>
+                    <field name="applicant"/>
+                </field>
+            </field>
+        </record>
+
+
+        <record id="tipo_multi_maintenance_form_view" model="ir.ui.view">
+            <field name="name">expense.all</field>
+            <field name="model">expense.all</field>
+            <field name="arch" type="xml">
+                <form string="Categorias" edit="false" create="false">
+                    <sheet>
+                        <group string="Tipo de Gasto">
+                            <label for="code_prefix"/>
+                            <div>
+                                <field name="name"/>
+                                <field name="code_prefix" style="padding-right: 1.0em" class="oe_inline"/>
+                                <field name="sequence_id" groups="base.group_no_one"/>
+                                <field name="product_id" widget="many2many_tags"/>
+                            </div>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+
+        <record id="product_multi_barcode_action"
+                model="ir.actions.act_window">
+            <field name="name">Categoria</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">expense.all</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="sale_product_multi_barcode_menu"
+                  name="Categoria del gasto"
+                  parent="hr_expense.menu_hr_expense_configuration"
+                  action="product_multi_barcode_action"
+                  sequence="9"/>
+
+
+
+
+    </data>
+</odoo>

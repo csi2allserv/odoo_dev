@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+     <record id="action_view_dota" model="ir.actions.act_window">
+        <field name="res_model">stock.picking</field>
+        <field name="view_type">form</field>
+        <field name="name">dotacion</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p>
+                Dotacion
+            </p>
+        </field>
+    </record>
+
+        <record id="employee_form_view_dota_innh" model="ir.ui.view">
+            <field name="name">employee.lead.form.innh</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form" />
+            <field name="priority" eval="31"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet//div[@name='button_box']" position="inside">
+                    <button name="%(action_view_dota)d"
+                            type="action"
+                            class="oe_stat_button"
+                    icon="fa-list-alt">
+                    <field name="Employee_count" widget="statinfo" string="Dotacion" />
+                    <field name="suma" sum="Total amount" widget="monetary"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</data>
+</odoo>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2017 Eficent Business and IT Consulting Services S.L.
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <template id="maintenance_chatter_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <br />
+                        <br />
+                        <center>
+                            <h2>Mantenimiento: <span t-field="o.name" /></h2>
+                        </center>
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>Mantenimiento</th>
+                                <td>
+                                    <span t-field="o.code" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Assigned to</th>
+                                <td>
+                                    <span t-field="o.user_id.name" />
+                                </td>
+                            </tr>
+                            <tr t-if="o.date_of_assignment">
+                                <th>Deadline</th>
+                                <td>
+                                    <span t-esc="o.date_of_assignment" />
+                                </td>
+                            </tr>
+                            <tr t-if="o.request_date">
+                                <th>Assigning Date</th>
+                                <td>
+                                    <span t-esc="o.request_date" />
+                                </td>
+                            </tr>
+                            <tr t-if="o.end_date">
+                                <th>Last Stage Update</th>
+                                <td>
+                                    <span t-field="o.end_date" />
+                                </td>
+                            </tr>
+                            <tr t-if="o.partner_id">
+                                <th>Partner</th>
+                                <td>
+                                    <span t-field="o.partner_id" />
+                                </td>
+                            </tr>
+                        </table>
+                        <t t-if="o.description">
+                            <center>
+                                <h3>Description</h3>
+                            </center>
+                            <span t-field="o.description" />
+                            <hr />
+                        </t>
+                        <center>
+                            <h3>Chatter</h3>
+                        </center>
+                        <table>
+                            <t t-foreach="o.message_ids" t-as="msg">
+                                <tr>
+                                    <td style="padding-right: 1cm; font-weight:bold;">
+                                        <span t-field="msg.author_id" />
+                                        <br />
+                                        <div style="font-size:75%; padding-left: 3mm;">
+                                            (<span t-field="msg.date" />)
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div t-if="msg.subject"><span
+                                                t-field="msg.subject"
+                                            />: </div>
+                                        <div t-if="msg.message_type == 'notification'">
+                                            <span t-field="msg.subtype_id.name" />
+                                            <t
+                                                t-foreach='msg.sudo().tracking_value_ids'
+                                                t-as='value'
+                                            >
+                                                <li>
+                                                    <t t-esc="value.field_desc" />:
+                                                    <span>
+                                                        <t
+                                                            t-esc="value.new_value_char"
+                                                        />
+                                                    </span>
+                                                </li>
+                                            </t>
+                                        </div>
+                                        <span t-field="msg.body" />
+                                    </td>
+                                </tr>
+                            </t>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+    <report
+        id="report_maintenance_task_chatter_action"
+        model="maintenance.request"
+        name="mail_request_report.maintenance_chatter_report"
+        string="Print Task and Chatter"
+        report_type="qweb-pdf"
+        multi="False"
+    />
+</odoo>

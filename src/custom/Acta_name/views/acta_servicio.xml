@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id='acta_servicio_action' model='ir.actions.act_window'>
+        <field name="name">Acta digital</field>
+        <field name="res_model">acta.servicio</field>
+        <field name="view_mode">tree,kanban,form</field>
+    </record>
+
+    <menuitem name="Acta" id="acta_base_menu" web_icon="Acta_name,static/description/icon.png"/>
+    <menuitem name="Acta digital" id="acta_servicio_menu" parent="acta_base_menu" action="acta_servicio_action"/>
+
+    <!-- este record es el que tiene la vista kanban para que registre al tecnico y el numero de servicio -->
+    <record id="acta_kanba" model="ir.ui.view">
+        <field name="name">Acta digital</field>
+        <field name="model">acta.servicio</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                    <field name="prueba2"/>
+                    <field name="tecnico_acta"/>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click ">
+                            <div class="oe_kanban_details">
+                                <div class="oe_kanban_tags_section">
+                                    <ul class="list-group">
+                                         <li class="list-group-item">Servicio : <field name="prueba2"/> </li>
+                                         <li class="list-group-item">Tecnico : <field name="tecnico_acta"/></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+<!--    este record es de la vista tree-->
+    <record id="acta_servicio_view_tree" model="ir.ui.view">
+        <field name="name">Lista de actas de servicio</field>
+        <field name="model">acta.servicio</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="prueba2"/>
+                <field name="tecnico_acta"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="acta_servicio_view_form" model="ir.ui.view">
+        <field name="name">Acta digital</field>
+        <field name="model">acta.servicio</field>
+        <field name="arch" type="xml">
+            <form>
+                <!-- se utlizo boostrap para darle una relacion de aspecto mas comoda creando 3 campos de row 4 y dejando la informacion en el central-->
+                <h1 class="d-flex justify-content-center my-4 ">ACTA DIGITAL DE PRESTACIÓN DE SERVICIOS Y SUMINISTRO DE REPUESTOS</h1>
+                <div class="row">
+                    <div class="col-md-3">
+                        <p class="p-3 mb-2 bg-primary text-white h3" >¿El trabajo a realizar es un proyectos o mantenimiento?</p>
+                    </div>
+                    <div class="col-md-3">
+                        <field name="current_user" invisible="True" readonly="True" class="h3 p-2 mb-1"/>
+                        <field name="area_pt" widget="radio"/>
+                    </div>
+                     <div class="col-md-3" attrs="{'invisible': [('area_pt', '!=', 'pt2')]}">
+                        <p class="p-3 mb-2 bg-primary text-white h3">Seleccione numero de servicio de mantenimiento</p>
+                    </div>
+                    <div class="col-md-3" attrs="{'invisible': [('area_pt', '!=', 'pt2')]}">
+                        <field name="prueba2"
+                               domain="[('user_id','=',(current_user)),('validador','=',(False))]"
+                               class="h3 p-2 mb-1"  />
+                    </div>
+                    <div class="col-md-3"  attrs="{'invisible': [('area_pt', '!=', 'pt1')]}">
+                        <p class="p-3 mb-2 bg-primary text-white h3">Seleccione numero de servicio de proyectos</p>
+                    </div>
+                    <div class="col-md-3" attrs="{'invisible': [('area_pt', '!=', 'pt1')]}">
+                        <field name="datosproyecto"   domain="[('user_id','=',(current_user))]" class="h3 p-2 mb-1"/>
+
+                    </div>
+                </div>
+                <div class="row" attrs="{'invisible': [('area_pt', '!=', 'pt2')]}">
+                    <div class="col-md-2">
+                        <p class="p-3 mb-2 bg-primary text-white h3">Tipo de unidad</p>
+                    </div>
+                    <div class="col-md-2">
+                        <field name="codigo_acta_tipo" force_save="1" readonly="1" class="h3 p-2 mb-1" ></field>
+                    </div>
+                    <div class="col-md-2">
+                        <p  class="p-3 mb-2 bg-primary text-white h3">Codigo de unidad</p>
+                    </div>
+                    <div class="col-md-2">
+                        <field name="codigo_acta" force_save="1" readonly="1" class="h3 p-2 mb-1" ></field>
+                    </div>
+                    <div class="col-md-2">
+                        <p class="p-3 mb-2 bg-primary text-white h3">Nombre de la unidad</p>
+                    </div>
+                    <div class="col-md-2">
+                        <field name="codigo_acta_nombre" force_save="1" readonly="1" class="h3 p-2 mb-1" ></field>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-2" attrs="{'invisible': [('area_pt', '!=', 'pt2')]}" >
+                        <p class="p-3 mb-2 bg-primary text-white h3">Técnico asignado</p>
+                    </div>
+                    <div class="col-md-2" attrs="{'invisible': [('area_pt', '!=', 'pt2')]}" >
+                        <field name="tecnico_acta" force_save="1" readonly="1" class="h3 p-2 mb-1"></field>
+                    </div>
+                    <div class="col-md-2" attrs="{'invisible': [('area_pt', '!=', 'pt1')]}" >
+                        <p class="p-3 mb-2 bg-primary text-white h3">Entidad</p>
+                    </div>
+                    <div class="col-md-2" attrs="{'invisible': [('area_pt', '!=', 'pt1')]}" >
+                        <field name="tecnico_acta" force_save="1" readonly="1" class="h3 p-2 mb-1"></field>
+                    </div>
+
+                    <div class="col-md-2">
+                        <p class="p-3 mb-2 bg-primary text-white h3">Hora de inicio</p>
+                    </div>
+                    <div class="col-md-2">
+                        <field name="hora_inicio_acta" class="h3 p-2 mb-1" readonly="True" ></field>
+                    </div>
+                    <div class="col-md-2">
+                        <p class="p-3 mb-2 bg-primary text-white h3">Hora final</p>
+                    </div>
+                    <div class="col-md-2">
+                        <field name="hora_final_acta" class="h3 p-2 mb-1" ></field>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="p-3 mb-2 bg-primary text-white d-flex justify-content-center h3">Falla reportada</p>
+                    </div>
+                </div>
+                 <div class="row" attrs="{'invisible': [('area_pt', '!=', 'pt1')]}">
+                    <div class="col-md-12">
+                        <field name="falla_reportada_proyecto" force_save="1" readonly="1" class="h2 form-control" ></field>
+                    </div>
+                </div>
+                <div class="row" attrs="{'invisible': [('area_pt', '!=', 'pt2')]}">
+                    <div class="col-md-12">
+                        <field name="falla_reportada_acta" force_save="1" readonly="1" class="h2 form-control" ></field>
+                    </div>
+                </div>
+                <div class="row" attrs="{'invisible': [('area_pt', '!=', 'pt2')]}">
+                    <div class="col-md-3">
+                        <p class="p-3 mb-2 bg-primary text-white d-flex justify-content-center h3" >¿El servicio se puede realizar inmediatamente?</p>
+                    </div>
+                    <div class="col-md-3">
+                        <field name="Servicio_inmediato" widget="radio" class="d-flex justify-content-center" ></field>
+                    </div>
+                    <!-- esta parte es cuando no se puede realizar el servicio -->
+                    <div class="col-md-3" >
+                        <p class="p-3 mb-2 bg-primary text-white d-flex justify-content-center h3"
+                           attrs="{'invisible': [('Servicio_inmediato', '!=', 'No')]}">Motivo por el cual no se puede realizar:</p>
+                        <p class="p-3 mb-2 bg-primary text-white d-flex justify-content-center h3"
+                           attrs="{'invisible': [('Servicio_inmediato', '!=', 'Si')]}">Tipo de mantenimiento</p>
+                    </div>
+                    <div class="col-md-3">
+                        <field name="Motivos_no" attrs="{'invisible': [('Servicio_inmediato', '!=', 'No')]}" />
+                        <field name="Tipo_mantenimiento" widget="radio"  attrs="{'invisible': [('Servicio_inmediato', '!=', 'Si')]}" />
+                    </div>
+                </div>
+                <!-- observaciones para la firma -->
+                <div class="row" attrs="{'invisible': [('Servicio_inmediato', '!=', 'No')]}">
+                    <div class="col-md-3">
+                        <p class="p-3 mb-2 bg-primary text-white d-flex justify-content-center h3">¿Hay un funcionario que pueda firmar el acta?</p>
+                    </div>
+                    <div class="col-md-3">
+                       <field name="SePuedeFirmar" widget="radio"/>
+                    </div>
+                    <div class="col-md-3">
+                        <p class="p-3 mb-2 bg-primary text-white d-flex justify-content-center h3">Observaciones del proceso</p>
+                    </div>
+                    <div class="col-md-3">
+                        <field name="notes" attrs="{'invisible': [('Servicio_inmediato', '!=', 'No')]}"/>
+                    </div>
+                </div>
+                <!-- esta seccion es de tipo de trabajo -->
+                <div class="row" attrs="{'invisible': [('Servicio_inmediato', '!=', 't1')]}">
+                    <div class="col-md-6">
+                        <p class="p-3 mb-2 bg-primary text-white d-flex justify-content-center h3">En que trabajo</p>
+                    </div>
+                    <div class="col-md-6">
+                    </div>
+                </div>
+<!--                 en esta parte del codigo van las pestañas dependiendo de que tipo de trabajo se esta realizando-->
+                <div attrs="{'invisible': [('area_pt', '!=', 'pt2')]}">
+                    <notebook attrs="{'invisible': ['|',('Servicio_inmediato', '!=', 'Si'),('Tipo_mantenimiento', '!=', 't1')]}">
+                        <page string="Alarma" class="h3">
+                            <field name="campos">
+                                <tree editable="bottom" >
+                                    <field name="nombre" />
+                                    <field name="categoria" />
+                                    <field name="observacion" widget="many2many_tags" />
+                                    <field name="zona"/>
+                                    <field name="cobertura"/>
+                                    <field name="placa" />
+                                    <field name="img" widget="image" class="w-25 mh-25" accept="image/.jpg"/>
+                                    <field name="segunda_placa"/>
+                                    <field name="img2" widget="image" class="w-25 mh-25" accept="image/.jpg"/>
+                                    <field name="appuesto" invisible="True"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Video" class="h3">
+                            <field name="campos3">
+                                <tree editable="bottom" >
+                                    <field name="nombre" />
+                                    <field name="observacion" widget="many2many_tags" />
+                                    <field name="zona"/>
+                                    <field name="cobertura"/>
+                                    <field name="placa" />
+                                    <field name="img" widget="image" class="w-25 mh-25" accept="image/.jpg"/>
+                                    <field name="segunda_placa"/>
+                                    <field name="img2" widget="image" class="w-25 mh-25" accept="image/.jpg"/>
+                                    <field name="opuesto" invisible="True"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Control de acceso" class="h3">
+                            <field name="campos4">
+                                <tree editable="bottom" >
+                                    <field name="nombre" />
+                                    <field name="observacion" widget="many2many_tags" />
+                                    <field name="zona"/>
+                                    <field name="cobertura"/>
+                                    <field name="placa" />
+                                    <field name="img" widget="image" class="w-25 mh-25" accept="image/.jpg"/>
+                                    <field name="segunda_placa"/>
+                                    <field name="img2" widget="image" class="w-25 mh-25" accept="image/.jpg"/>
+                                    <field name="opuesto" invisible="True"/>
+                                </tree>
+                            </field>
+                        </page>
+                         <page string="Suministros" class="h3">
+                            <field name="campos2" >
+                                <tree editable="bottom" >
+                                    <field name="lista_cliente"/>
+                                    <field name="cantidad"/>
+                                    <field name="elementocambiado"/>
+                                    <field name="propiedad_material" />
+                                    <field name="indicaciones_material"/>
+                                    <field name="opuesto" invisible="True"/>
+                                </tree>
+                            </field>
+                         </page>
+                    </notebook>
+                </div>
+
+<!--                datos finales servicios electronicos alarma-->
+                <div attrs="{'invisible': [('area_pt', '!=', 'pt2')]}">
+                    <div class="row" attrs="{'invisible': ['|',('Servicio_inmediato', '!=', 'Si'),('Tipo_mantenimiento', '!=', 't1')]}" >
+                        <div class="col-md-6">
+                            <p class="p-3 mb-2 bg-primary text-white d-flex justify-content-center h3" >En el siguiente recuadro, haga anotaciones concisas que no hayan sido mencionadas</p>
+                        </div>
+                        <div class="col-md-6">
+                            <field name="observaciones_generales"/>
+                        </div>
+                    </div>
+                    <div class="row" attrs="{'invisible': ['|',('Servicio_inmediato', '!=', 'Si'),('Tipo_mantenimiento', '!=', 't1')]}">
+                        <div  class="col-md-6">
+                            <p class="p-3 mb-2 bg-primary text-white d-flex justify-content-center h3">¿El servicio se finalizó totalmente?</p>
+                        </div>
+                        <div class="col-md-6">
+                            <field name="trabajo_fin" widget="radio"></field>
+                        </div>
+                    </div>
+                    <div class="row" attrs="{'invisible': ['|',('Servicio_inmediato', '!=', 'Si'),('Tipo_mantenimiento', '!=', 't1')]}">
+                        <div class="col-md-6">
+                            <p class="p-3 mb-2 bg-primary text-white d-flex justify-content-center h3">Ingrese la firma</p>
+                        </div>
+                        <div class="d-flex justify-content-center col-md-6">
+                            <field name="Firma" widget="signature"/>
+                        </div>
+                    </div>
+                    <!-- esta es la firma -->
+                    <div class="row">
+                        <div class="d-flex justify-content-center col-md-12">
+                            <field name="Firma" widget="signature" attrs="{'invisible': ['|',('SePuedeFirmar', '!=', 'Si'),('Servicio_inmediato', '!=', 'No')]}"/>
+                        </div>
+                    </div>
+                </div>
+
+<!--                esta parte es todo el trabajo de metalmecanica-->
+                <div attrs="{'invisible': [('area_pt', '!=', 'pt2')]}">
+                    <notebook attrs="{'invisible': ['|',('Servicio_inmediato', '!=', 'Si'),('Tipo_mantenimiento', '!=', 't2')]}">
+                        <page string="Equipo liviano de seguridad" class="h3">
+                            <field name="campos1_metalmecanico">
+                                <tree editable="bottom" >
+                                    <field name="nombre" />
+                                    <field name="observacion" widget="many2many_tags" />
+                                    <field name="compartimiento" widget="many2many_tags"/>
+                                    <field name="placa" />
+                                    <field name="img" widget="image" class="w-25 mh-25" accept="image/.jpg"/>
+                                    <field name="segunda_placa"/>
+                                    <field name="img2" widget="image" class="w-25 mh-25" accept="image/.jpg"/>
+                                    <field name="opuesto" invisible="True"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Equipo pesado de seguridad" class="h3">
+                            <field name="campos2_metalmecanico">
+                                <tree editable="bottom" >
+                                   <field name="nombre" />
+                                    <field name="observacion" widget="many2many_tags" />
+                                    <field name="compartimiento" widget="many2many_tags"/>
+                                    <field name="placa" />
+                                    <field name="img" widget="image" class="w-25 mh-25" accept="image/.jpg"/>
+                                    <field name="segunda_placa"/>
+                                    <field name="img2" widget="image" class="w-25 mh-25" accept="image/.jpg"/>
+                                    <field name="opuesto" invisible="True"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Suministros" class="h3">
+                            <field name="campos3_metalmecanico" >
+                                <tree editable="bottom">
+                                    <field name="lista_cliente"/>
+                                    <field name="cantidad"/>
+                                    <field name="elementocambiado"/>
+                                    <field name="propiedad_material" />
+                                    <field name="indicaciones_material"/>
+                                    <field name="serial"/>
+                                    <field name="opuesto" invisible="True"/>
+                                </tree>
+                            </field>
+                         </page>
+                    </notebook>
+                </div>
+
+
+<!--                esta parte del codigo es para proyectpos -->
+                <div attrs="{'invisible': [('area_pt', '!=', 'pt1')]}">
+                    <notebook attrs="{'invisible': [('area_pt', '!=', 'pt1')]}">
+                        <page string="actividades" class="h3">
+
+                        </page>
+                        <page string="materiales" class="h3">
+
+                        </page>
+                    </notebook>
+                </div>
+
+<!--                fin de la seccion -->
+
+<!--                datos finales servicios electronicos alarma-->
+                <div attrs="{'invisible': [('area_pt', '!=', 'pt2')]}">
+                    <div class="row" attrs="{'invisible': ['|',('Servicio_inmediato', '!=', 'Si'),('Tipo_mantenimiento', '!=', 't2')]}" >
+                        <div class="col-md-6">
+                            <p class="p-3 mb-2 bg-primary text-white d-flex justify-content-center h3" >En el siguiente recuadro, haga anotaciones concisas que no hayan sido mencionadas</p>
+                        </div>
+                        <div class="col-md-6">
+                            <field name="observaciones_generales"/>
+                        </div>
+                    </div>
+                    <div class="row" attrs="{'invisible': ['|',('Servicio_inmediato', '!=', 'Si'),('Tipo_mantenimiento', '!=', 't2')]}">
+                        <div  class="col-md-6">
+                            <p class="p-3 mb-2 bg-primary text-white d-flex justify-content-center h3">¿El servicio se finalizó totalmente?</p>
+                        </div>
+                        <div class="col-md-6">
+                            <field name="trabajo_fin" widget="radio"></field>
+                        </div>
+                    </div>
+                    <div class="row" attrs="{'invisible': ['|',('Servicio_inmediato', '!=', 'Si'),('Tipo_mantenimiento', '!=', 't2')]}">
+                        <div class="col-md-6">
+                            <p class="p-3 mb-2 bg-primary text-white d-flex justify-content-center h3">Ingrese la firma</p>
+                        </div>
+                        <div class="d-flex justify-content-center col-md-6">
+                            <field name="Firma" widget="signature"/>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,24 @@
+<odoo>
+    <data>
+        <record id='materiales_alarma_action' model='ir.actions.act_window'>
+            <field name="name">materiales</field>
+            <field name="res_model">materiales.alarma</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+        </record>
+        <record id="materiales_alarma_view_form" model="ir.ui.view">
+            <field name="name">Acta digital</field>
+            <field name="model">materiales.alarma</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <div class="d-flex justify-content-center">
+                            <field name="nombre"/>
+                            <field name="grupo"/>
+                        </div>
+                    </group>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

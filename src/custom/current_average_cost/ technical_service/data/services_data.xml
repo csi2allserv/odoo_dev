@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+
+    <!-- Standard stages for Maintenance Request -->
+    <record id="stage_0" model="services.stage">
+        <field name="name">Asignado</field>
+        <field name="sequence" eval="1" />
+        <field name="fold" eval="False" />
+    </record>
+    <record id="stage_1" model="services.stage">
+        <field name="name">Servicio finalizado</field>
+        <field name="sequence" eval="2" />
+        <field name="fold" eval="False" />
+    </record>
+
+</data>
+</odoo>

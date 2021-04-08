@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_project_task_form_material" model="ir.ui.view">
+        <field name="name">hr.expense.form.material</field>
+        <field name="model">hr.expense</field>
+        <field name="inherit_id" ref="hr_expense.hr_expense_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page name="material_used" string="Gastos" >
+                    <field name="material_ids">
+                        <tree string="Material Used" editable="top">
+                            <field name="product_id"/>
+                            <field name="unit_amount"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

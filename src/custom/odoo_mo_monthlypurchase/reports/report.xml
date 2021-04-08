@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <report
+                id="pdf_reportid11"
+                model="odoo_mo.monthly_purchases"
+                report_type="qweb-pdf"
+                string=" Monthly Purchases "
+                name="odoo_mo_monthlypurchase.template_id11"
+                file="odoo_mo_monthlypurchase.template_id11"
+        />
+
+         <report
+                id="xls_reportid22"
+                model="odoo_mo.monthly_purchases"
+                string=" Monthly Purchases "
+                report_type="xlsx"
+                name="odoo_mo_monthlypurchase.xlsx"
+                file="odoo_mo_monthlypurchase.xlsx"
+                attachment_use="False"
+        />
+
+
+    </data>
+</odoo>

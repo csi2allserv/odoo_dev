@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_users_form_inherit_seq_number" model="ir.ui.view">
+            <field name="name">purchase.request.form.inherit.seq_number</field>
+            <field name="model">purchase.request</field>
+            <field name="inherit_id" ref="purchase_request.view_purchase_request_form" />
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//field[@name='requested_by']" position="before">
+                     <field name="seq_number" class="oe_inline"/>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+
+        <record id="view_users_tree_inherit_seq_number" model="ir.ui.view">
+            <field name="name">purchase.request.tree.inherit.seq_number</field>
+            <field name="model">purchase.request</field>
+            <field name="inherit_id" ref="purchase_request.view_purchase_request_tree" />
+            <field name="arch" type="xml">
+                <data>
+
+                    <xpath expr="//field[@name='requested_by']" position="before">
+                        <field name="seq_number"/>
+                    </xpath>
+
+                </data>
+            </field>
+        </record>
+
+    </data>
+</odoo>

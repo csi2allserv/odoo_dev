@@ -1,0 +1,22 @@
+<?xml version = "1.0" encoding = "utf-8" ?> 
+<odoo>
+  <data>
+        <!-- <record id="view_tree_todo" model="ir.ui.view">
+            <field name="name">view.tree.todo</field>
+            <field name="model">prueba</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name = "name"></field>
+                    <field name = "categ_id"></field>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="action_view_todo" model="ir.actions.act_window">
+            <field name = "name">nombre pruebas</field>
+            <field name = "res_model">prueba</field>
+            <field name = "view_mode">tree</field>
+        </record>
+        <menuitem id="menu" parent="" action="action_view_todo"></menuitem> -->
+    </data>
+</odoo>

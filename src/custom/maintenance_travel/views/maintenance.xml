@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+    <record id="view_maintenance_task_form_material" model="ir.ui.view">
+        <field name="name">maintenance_travels</field>
+        <field name="model">maintenance.request</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_request_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='material_used']" position="after">
+                <page name="travel_used" string="Viaticos" >
+                            <field name="sheet_id2" widget="many2many"  domain="[('state', '=', 'draft')]" options="{'reload_on_button': True}">
+                                <tree >
+                                  <field name="employee_id"/>
+                                  <field name="state"/>
+                                  <field name="origin"/>
+                                  <!--field name="amount_total" nolabel="1"  widget="monetary" options="{'currency_field': 'currency_id'}"/-->
+                                  <!--field name="default_code"/-->
+                                </tree>
+                            </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    
+</data>
+</odoo>

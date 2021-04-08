@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_acta_creacion,access.acta.coordinador,model_acta_servicio,,1,1,1,1
+access_acta_creacion_2,access.acta.lider,model_acta_servicio,,1,1,1,1
+access_acta_creacion_3,access.acta.tecnico,model_acta_servicio,,1,1,1,1
+access_acta_creacion_4,access.acta.coordinador,maintenance.model_crm_customer_location,,1,1,1,1
+access_acta_creacion_5,access.acta.coordinador,maintenance.model_crm_customer_location_type,,1,1,1,1
+access_acta_creacion_6,access.acta.coordinador,model_video_electronico,,1,1,1,1
+access_acta_creacion_7,access.acta.coordinador,model_materiales_alarma,,1,1,1,1
+access_acta_creacion_8,access.acta.coordinador,model_mano_obra,,1,1,1,1
+access_acta_creacion_9,access.acta.coordinador,model_video_mano,,1,1,1,1
+access_acta_creacion_10,access.acta.coordinador,model_materiales_video,,1,1,1,1

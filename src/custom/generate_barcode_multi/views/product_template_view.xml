@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+
+    <act_window id="action_barcode_label_from_template"
+                name="Generate_barcodes"
+                src_model="product.template"
+                res_model="prin_product"
+                view_mode="form"
+                view_type="form"
+                target="current"
+                multi="False"/>
+
+    <record id="product_template_form_generate_add" model="ir.ui.view">
+        <field name="name">product.template.product.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view" />
+        <field name="arch" type="xml">
+            <field name='referencia_inte' position='after'>
+                <field name="generate_serie" widget="radio" />
+                <button name="%(action_barcode_label_from_template)d"
+                        string="Ir a Generar"
+                        type="action"
+                        class="btn-primary mt8 mb8"
+                        attrs="{'invisible': ['|', ('generate_serie', '=', 'Generar secuencia'), ('generate_serie', '=', False)]}"
+                        icon="fa-hand-o-right">
+                </button>
+            </field>
+        </field>
+    </record>
+
+</odoo>

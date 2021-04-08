@@ -1,0 +1,158 @@
+<odoo>
+    <data>
+        <!-- Vista Principal de Formulario para el Siplaft Basico-->
+        <record id="ficha_prospecto_view_form" model="ir.ui.view">
+            <field name="name">ficha.prospecto.view.form</field>
+            <field name="model">crm.prospectus</field>
+            <field name="priority" eval="1"/>
+            <field name="arch" type="xml">
+                <form string="Ficha de Prospecto">
+                <sheet>
+                    <label for="customer_need_id"/>
+                    <field name="customer_need_id" style="width:40%"/>
+                    <br/>
+                    <label for="monitor_system_ids"/>
+                    <field name="monitor_system_ids" widget="many2many_tags"/>
+                    <group>
+                        <group>
+                            <field name="area_protect"/>
+                            <field name="place_implementation"/>
+                            <field name="channel_ucp"/>
+                        </group>
+                        <group>
+                            <field name="lead_id" readonly="1"/>
+                            <!--field name="is_monitor_system"/-->
+                            <field name="qty_access"/>
+                            <field name="attc_file_ch" invisible="1" />
+                            <field name="attc_file" widget="binary" filename="attc_file_ch"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Areas" name="page_areas">
+                            <label for="area_ids"/>
+                            <field name="area_ids">
+                                <tree>
+                                    <field name="name"/>
+                                </tree>
+                                <form>
+                                    <group>
+                                        <group>
+                                        <field name="name"/>
+                                        <field name="sensors_total"/>
+                                        <field name="wall_type"/>
+                                        <field name="door_type"/>
+                                        <field name="entry_room_ids" widget="many2many_tags" />
+                                        <field name="exit_room_ids" widget="many2many_tags" />
+                                        <field name="proximity"/>
+                                        <field name="max_height"/>
+                                        <field name="description"/>
+                                        <field name="photo" widget="image" class="oe_avatar"/>
+                                        <!-- <field name="photo_ids" widget="many2many_binary"/> -->
+                                        <!--field name="muk_ids" widget="many2many_kanban"/-->
+                                        </group>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                         <page string="Equipo Metalmecanico" name="page_me">
+                            <group>
+                                <group>
+                                    <field name="amount_money" widget="monetary"/>
+                                    <!--field name="equipment_type_ids" widget="many2many_tags"/-->
+                                    <field name="other_et"/>
+                                    <field name="value_type_ids" widget="many2many_tags"/>
+                                    <field name="other_vt"/>
+                                    <field name="necessary_el_ids" widget="many2many_tags"/>
+                                    <field name="other_ne"/>
+                                    <field name="is_armor_eqm"/>
+                                    <field name="blind_level"/>
+                                    <field name="color"/>
+                                    <field name="other_color"/>
+                                </group>
+                                <group string="Dimensiones para su equipo">
+                                    <field name="front"/>
+                                    <field name="fund"/>
+                                    <field name="high"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_prospectus_filter" model="ir.ui.view">
+            <field name="name">Prospectus Search</field>
+            <field name="model">crm.prospectus</field>
+            <field name="arch" type="xml">
+                <search string="Prospectus Search">
+                    <field name="lead_id"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="ficha_prospecto_view_tree" model="ir.ui.view">
+            <field name="name">ficha.prospecto.view.tree</field>
+            <field name="model">crm.prospectus</field>
+            <field name="priority" eval="1"/>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="customer_need_id"/>
+                    <field name="area_protect"/>
+                    <field name="channel_ucp"/>
+                    <field name="place_implementation"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Acción que ejecuta el Menú principal -->
+        <record model="ir.actions.act_window" id="action_ficha_prospecto">
+        <field name="name">Ficha de Prospecto</field>
+        <field name="view_type">form</field>
+        <field name="res_model">crm.prospectus</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Registros de la ficha de prospectos que se alimentan
+                    desde la aplicación movil.
+                </p>
+        </field>
+    </record>
+
+     <record id="action_view_prospectus" model="ir.actions.act_window">
+        <field name="res_model">crm.prospectus</field>
+        <field name="view_type">form</field>
+        <field name="name">Prospectus</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p>
+                Prospectus data.
+            </p>
+        </field>
+    </record>
+
+    <record id="crm_case_form_view_oppor" model="ir.ui.view">
+        <field name="name">crm.lead.form</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_form_view_oppor" />
+        <field name="priority" eval="30"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet//div[@name='button_box']" position="inside">
+                <button name="%(action_view_prospectus)d"
+                    context="{'search_default_lead_id': active_id, 'default_lead_id': active_id}"
+                    type="action"
+                    class="oe_stat_button"
+                    icon="fa-tasks">
+                    <field name="prospectus_count" widget="statinfo" string="Prospectos"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Menú principal
+    <menuitem id="ficha_prospecto" parent="base.menu_sales" name="Ficha de Prospectos" sequence="4"
+          groups="group_manager_siplaft" action="action_ficha_prospecto"/-->
+
+    </data>
+</odoo>

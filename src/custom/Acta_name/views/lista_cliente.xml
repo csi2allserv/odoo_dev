@@ -1,0 +1,23 @@
+<odoo>
+    <data>
+        <record id='lista_clientes_action' model='ir.actions.act_window'>
+            <field name="name">materiales</field>
+            <field name="res_model">lista.clientes</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+        </record>
+        <record id="lista_clientes_view_form" model="ir.ui.view">
+            <field name="name">Acta digital</field>
+            <field name="model">lista.clientes</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <div class="d-flex justify-content-center">
+                            <field name="producto_lista"/>
+                        </div>
+                    </group>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

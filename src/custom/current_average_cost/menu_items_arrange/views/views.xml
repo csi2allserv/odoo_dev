@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  Part of 10 Orbits Pvt. Ltd. See LICENSE for full copyright and licensing details. -->
+
+<odoo>
+  <data>
+        <record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.menu.items</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+            <div id="business_documents" position="before">
+                <!-- <xpath expr="//div[hasclass('settings')]" position="inside"> -->
+                <!-- <div class="app_settings_block" data-string="General Settings" string="General Settings" data-key="general_settings"> -->
+                        <div id="menus">
+                            <h2>Menu</h2>
+                            <div class="row mt16 o_settings_container">
+                                <div class="col-12 col-lg-6 o_setting_box" id="mycompany_myname_scriptpath">
+                                    <div class="o_setting_right_pane">
+                                        <span class="o_form_label">Apps Menu Arrange.</span>
+                                        <div class="text-muted">
+                                            Choose the way you want apps menus to be arranged.
+                                        </div>
+                                        <div class="content-group">
+                                            <div class="mt16 row">
+                                                <label for="config_menu" string="Order By:" class="col-3 col-lg-3 o_light_label"/>
+                                                <field name="config_menu"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- </div> -->
+                    </div>
+                </div>
+            </field>
+        </record>
+  </data>
+</odoo>
+
+

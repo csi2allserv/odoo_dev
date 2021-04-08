@@ -1,0 +1,78 @@
+<odoo>
+    <data>
+        <!-- Modelo del Workflow creado pero SIN UTILIZAR, ya que se está trabajando
+        el correo con template y este debe ir con type = object, cuando es correo
+        automático si puede ir con type=Workflow -->
+        <record model="workflow" id="wkf_siplaft">
+            <field name="name">Siplaft workflow</field>
+            <field name="osv">crm.siplaft</field>
+            <field name="on_create">True</field>
+        </record>
+
+        <record model="workflow.activity" id="draft">
+            <field name="name">Borrador</field>
+            <field name="wkf_id" ref="wkf_siplaft"/>
+            <field name="flow_start" eval="True"/>
+       <!-- <field name="action_id" ref="send_automatic_email"/> -->
+            <field name="kind">function</field>
+            <field name="action">action_draft()</field>
+        </record>
+         <record model="workflow.activity" id="pending">
+            <field name="name">Pendiente</field>
+            <field name="wkf_id" ref="wkf_siplaft"/>
+            <field name="kind">function</field>
+            <field name="action">action_mail_custom()</field>
+        </record>vv
+        <record model="workflow.activity" id="confirmed">
+            <field name="name">Aprobado</field>
+            <field name="wkf_id" ref="wkf_siplaft"/>
+            <field name="kind">function</field>
+            <field name="action">action_confirm()</field>
+        </record>
+        <record model="workflow.activity" id="cancel">
+            <field name="name">Cancelado</field>
+            <field name="wkf_id" ref="wkf_siplaft"/>
+            <field name="kind">function</field>
+            <field name="action">action_cancel()</field>
+        </record>
+        <record model="workflow.activity" id="closed">
+            <field name="name">Cerrado</field>
+            <field name="wkf_id" ref="wkf_siplaft"/>
+            <field name="flow_stop" eval="True"/>
+            <field name="kind">function</field>
+            <field name="action">action_close()</field>
+        </record>
+
+        <!-- Transiciones -->
+        <record model="workflow.transition" id="session_pending_to_confirmed">
+            <field name="act_from" ref="pending"/>
+            <field name="act_to" ref="confirmed"/>
+            <field name="signal">confirm</field>
+        </record>
+        <record model="workflow.transition" id="session_pending_to_draft">
+            <field name="act_from" ref="pending"/>
+            <field name="act_to" ref="draft"/>
+            <field name="signal">draft</field>
+        </record>
+        <record model="workflow.transition" id="session_cancel_to_draft">
+            <field name="act_from" ref="cancel"/>
+            <field name="act_to" ref="draft"/>
+            <field name="signal">draft</field>
+        </record>
+        <record model="workflow.transition" id="session_confirmed_to_cancel">
+            <field name="act_from" ref="confirmed"/>
+            <field name="act_to" ref="cancel"/>
+            <field name="signal">cancel</field>
+        </record>
+        <record model="workflow.transition" id="session_confirmed_to_closed">
+            <field name="act_from" ref="confirmed"/>
+            <field name="act_to" ref="closed"/>
+            <field name="signal">closed</field>
+        </record>
+        <record model="workflow.transition" id="session_cancel_to_closed">
+            <field name="act_from" ref="cancel"/>
+            <field name="act_to" ref="closed"/>
+            <field name="signal">closed</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_users_form_inherit_brand" model="ir.ui.view">
+            <field name="name">purchase.request.form.inherit.brand</field>
+            <field name="model">purchase.request.line</field>
+            <field name="inherit_id" ref="purchase_request.purchase_request_line_form" />
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//field[@name='product_id']" position="after">
+                     <field name="product_brand_id" class="oe_inline"/>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+
+    </data>
+</odoo>

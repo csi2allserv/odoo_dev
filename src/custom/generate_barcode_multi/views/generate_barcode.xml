@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+
+
+    <record id="product_multi_barcode_form_view" model="ir.ui.view">
+            <field name="name">product.multi.barcode</field>
+            <field name="model">prin_product</field>
+            <field name="arch" type="xml">
+                <form create="false" string="Print Product Labels">
+                <header>
+                    <button name="action_print" string="Generar"
+                        help="Print product labels"
+                        type="object" icon="fa-magic"
+                        class="btn-primary mt8 mb8"/>
+                </header>
+                    <notebook>
+                    <page string="Barcodes">
+                    <field name="barcode_ids" >
+                       <tree editable="top" >
+                            <field name="name"/>
+                            <field name="active" invisible="1"/>
+                       </tree>
+                    </field>
+                    </page>    
+                    </notebook>
+                </form>
+            </field>
+    </record>
+
+    <!--record id="product_template_form_inherit" model="ir.ui.view">
+        <field name="name">product.multi.barcode</field>
+        <field name="model">prin_product</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+                <page string="Multi Barcode">
+                    <field name="barcode_ids">
+                        <tree string="Multi Barcode" editable="bottom">
+                            <field name="name"/>
+                            <field name="active" invisible="1"/>
+                        </tree>
+                    </field>
+                </page>
+        </field>
+    </record-->
+
+    <record id="product_multi_barcode_tree_view" model="ir.ui.view">
+            <field name="name">product.multi.barcode</field>
+            <field name="model">prin_product</field>
+            <field name="arch" type="xml">
+                <tree string="Product Multi Barcode" create="false">
+                    <field name="name"/>
+                    <field name="product_id" options="{'no_create': True}"/>
+                </tree>
+            </field>
+    </record>
+
+    
+
+	<record id="product_multi_barcode_action"
+		        model="ir.actions.act_window">
+		    <field name="name">Product Multi Barcode</field>
+		    <field name="type">ir.actions.act_window</field>
+		    <field name="res_model">prin_product</field>
+		    <field name="view_mode">tree,form</field>
+	</record>
+
+</odoo>
+

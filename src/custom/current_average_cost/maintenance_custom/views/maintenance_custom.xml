@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--Modificaciones para mantenimiento -->
+
+
+    <record id="maintenances_forms_mod_add" model="ir.ui.view">
+        <field name="name">equipment.request.form</field>
+        <field name="model">maintenance.request</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_request_view_form" />
+        <field name="arch" type="xml">
+            <field name='employee_id' position='after'>
+                <field name="request_type" on_change="name_project_issue_change(request_type,categs_ids,location_type_id,city_id,partner_id,location_id)"/>
+                <field name="contact_id" string="Request By" options="{'no_create': True,'no_open': True}" attrs="{'invisible':[('request_type','not in',('macor', 'mapreven'))]}"/>
+                <field name="partner_id" string="Cliente" on_change="partner_id_change(request_type, categs_ids, location_type_id, city_id, partner_id)"/>
+                <field name="city_id" on_change="name_project_issue_change(request_type,categs_ids,location_type_id,city_id,partner_id,location_id)" />
+                <field name="location_id" on_change="real_location_id_change(location_id)" string="Codigo" />
+                <field name="location_type_id" widget="seletion" on_change="name_project_issue_change(request_type,categs_ids,location_type_id,city_id,partner_id,location_id)"/>
+            </field>
+        </field>
+    </record>
+</odoo>

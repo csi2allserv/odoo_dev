@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <template id="template_id11">
+            <t t-call="web.html_container">
+                <t t-call="web.internal_layout">
+                    <div class="page">
+                         <table class="table table-bordered" style="border: 1px solid #000;">
+                      <t t-set="counter" t-value="0"/>
+                               <tbody>
+                        <tr>
+                            <th style="text-align: center;color: #000;text-color: #000;">Product</th>
+                            <th style="text-align: center;color: #000;text-color: #000;">Quantity</th>
+                            <th style="text-align: center;color: #000;text-color: #000;">Amount</th>
+                            <th style="text-align: center;color: #000;text-color: #000;">Order Date</th>
+                        </tr>
+                              <tr t-foreach="lines" t-as="value">
+                              <td style="height:5px;text-align: center;color: #000;text-color: #000"><t t-esc="request.env['product.product'].search([('id','=',value['pro_name'])]).name"/></td>
+                              <td style="height:5x;text-align: center;color: #000;text-color: #000;"><t t-esc="value['unit_quantity']"/></td>
+                              <td style="height:5x;text-align: center;color: #000;text-color: #000;"><t t-esc="value['unit_quantity']*request.env['product.product'].search([('id','=',value['pro_name'])]).list_price"/></td>
+                              <td style="height:5x;text-align: center;color: #000;text-color: #000;"><t t-esc="str((value['odate']))"/></td>
+                           </tr>
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                </t>
+            </t>
+        </template>
+
+
+
+    </data>
+</odoo>

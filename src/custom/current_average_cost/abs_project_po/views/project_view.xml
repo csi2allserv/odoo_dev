@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="edit_project" model="ir.ui.view">
+        <field name="name">project.project.form</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='settings']" position="after">
+                <page string="Purchase Orders">
+                    <field name="purchase_order_ids" readonly='True'>
+                        <tree editable='bottom'>
+                            <field name='name'/>
+                            <field name='date_order'/>
+                            <field name='partner_id'/>
+                            <field name='date_planned'/>
+                            <field name='user_id'/>
+                            <field name='origin'/>
+                            <field name='amount_untaxed' sum="Total Untaxed amount" string="Untaxed" widget="monetary"/>
+                            <field name='amount_total' sum="Total amount" widget="monetary"/>
+                            <field name='state'/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>    
+</odoo>

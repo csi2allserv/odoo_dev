@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<odoo>
+
+<!--################
+    # Product Code #
+    ################-->
+
+<!--## Tree ##-->
+    <record id="prt_product_code_tree" model="ir.ui.view">
+      <field name="name">prt.product.code.tree</field>
+      <field name="model">prt.product.code</field>
+      <field name="arch" type="xml">
+        <tree string="Internal References">
+          <field name="name"/>
+          <field name="product_id"/>
+        </tree>
+      </field>
+    </record>
+
+<!--## Form ##-->
+    <record id="prt_product_code_form" model="ir.ui.view">
+      <field name="name">prt.product.code.form</field>
+      <field name="model">prt.product.code</field>
+      <field name="arch" type="xml">
+        <form string="Internal Reference">
+          <header>
+            <button name="set_default" class="btn-primary" type="object" string="Set as Default"
+              attrs="{'invisible':[('is_default','=',True)]}"/>
+          </header>
+          <sheet>
+            <field name="is_default" invisible="1"/>
+            <group name="main">
+              <field name="name"/>
+              <field name="product_id"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+<!--####################
+    # Product Template #
+    ####################-->
+
+<!--## Form ##-->
+    <record id="prt_product_template_form" model="ir.ui.view">
+      <field name="name">prt.product.template.form</field>
+      <field name="model">product.template</field>
+      <field name="inherit_id" ref="product.product_template_only_form_view"/>
+      <field name="arch" type="xml">
+        <field name="default_code" position="replace">
+          <label for="default_code" attrs="{'invisible': [('product_variant_count', '&gt;', 1)]}"/>
+          <div class="o_row" attrs="{'invisible': [('product_variant_count', '&gt;', 1)]}">
+            <span style="display:contents!important"><field name="default_code"/></span>
+            <button type="object" name="show_codes" class="btn-xs btn-link mb4 fa fa-edit" title="Manage Other References"/>
+            <field name="default_code_tag_count" invisible="1"/>
+          </div>
+          <field name="default_code_tags" widget="many2many_tags" attrs="{'invisible': ['|',('default_code_tag_count', '&lt;', 1),('product_variant_count', '&gt;', 1)]}"/>
+        </field>
+      </field>
+    </record>
+
+<!--## Search ##-->
+    <record id="prt_product_template_search" model="ir.ui.view">
+      <field name="name">prt.product.template.search</field>
+      <field name="model">product.template</field>
+      <field name="inherit_id" ref="product.product_template_search_view"/>
+      <field name="arch" type="xml">
+        <field name="name" position="replace">
+          <field name="name" string="Product" filter_domain="['|','|','|',('default_code','ilike',self),('name','ilike',self),('barcode','ilike',self),('default_codes','ilike',self)]"/>
+          <field name="default_codes"/>
+        </field>
+      </field>
+    </record>
+
+<!--###################
+    # Product Product #
+    ###################-->
+
+<!--## Form ##-->
+    <record id="prt_product_product_form" model="ir.ui.view">
+      <field name="name">prt.product.product.form</field>
+      <field name="model">product.product</field>
+      <field name="inherit_id" ref="product.product_normal_form_view"/>
+      <field name="arch" type="xml">
+        <field name="default_code" position="replace">
+          <label for="default_code"/>
+          <div class="o_row">
+            <span style="display:contents!important"><field name="default_code"/></span>
+            <button type="object" name="show_codes" class="btn-xs btn-link mb4 fa fa-edit" title="Manage Other References"/>
+            <field name="default_code_tag_count" invisible="1"/>
+          </div>
+          <field name="default_code_tags" widget="many2many_tags" attrs="{'invisible': [('default_code_tag_count', '&lt;', 1)]}"/>
+        </field>
+      </field>
+    </record>
+
+<!--## Variant Form ##-->
+    <record id="prt_product_product_variant_form" model="ir.ui.view">
+      <field name="name">prt.product.product.variant.form</field>
+      <field name="model">product.product</field>
+      <field name="inherit_id" ref="product.product_variant_easy_edit_view"/>
+      <field name="arch" type="xml">
+        <field name="default_code" position="replace">
+          <label for="default_code"/>
+          <div class="o_row">
+            <span style="display:contents!important"><field name="default_code"/></span>
+            <button type="object" name="show_codes" class="btn-xs btn-link mb4 fa fa-edit" title="Manage Other References"/>
+            <field name="default_code_tag_count" invisible="1"/>
+          </div>
+          <field name="default_code_tags" widget="many2many_tags" attrs="{'invisible': [('default_code_tag_count', '&lt;', 1)]}"/>
+        </field>
+      </field>
+    </record>
+
+</odoo>

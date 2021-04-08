@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <record id="odoo_mo_monthly_purchases_form" model="ir.ui.view">
+            <field name="name">Monthly Purchases </field>
+            <field name="model">odoo_mo.monthly_purchases</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="use_pdf"/>
+                                <field name="date_from"    attrs="{'required':[('use_pdf','=',True)],'invisible':[('use_pdf','!=',True)]}"/>
+                                <field name="date_to"  attrs="{'required':[('use_pdf','=',True)],'invisible':[('use_pdf','!=',True)]}" />
+                                <field name="categ_id" widget="many2many_tags" options="{'no_open': True, 'no_create': True}"  attrs="{'invisible':[('use_pdf','!=',True)]}"/>
+                                <field name="year_for_xls"  attrs="{'required':[('use_pdf','!=',True)],'invisible':[('use_pdf','=',True)]}" />
+                            </group>
+                        </group>
+                        <notebook attrs="{'invisible':[('use_pdf','!=',True)]}">
+                            <page string="Data">
+                                <field name="lines">
+                                    <tree>
+                                        <field name="categ"/>
+                                        <field name="product_name"/>
+                                        <field name="qty"/>
+                                        <field name="odate"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <footer>
+                        <button name="preview" attrs="{'invisible':[('use_pdf','!=',True)]}" type="object" string="Preview" class="oe_highlight"/>
+
+                         <button name="print_pdf" attrs="{'invisible':[('use_pdf','!=',True)]}" type="object" string="Print Pdf" class="oe_highlight"/>
+
+                        <button name="print_excel" attrs="{'invisible':[('use_pdf','=',True)]}" type="object" string="Print Excel" class="oe_highlight"/>
+
+                        <button special="cancel" string="Cancel" class="oe_highlight"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="pdf_action11"
+                    name="Monthly Purchases"
+                    res_model="odoo_mo.monthly_purchases"
+                    view_mode="form"
+                    target="new"
+                    />
+
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="odoo_mo_monthly_purchases_menu" name="Monthly Purchase Report "    parent="purchase.menu_purchase_root" action="pdf_action11" sequence="5"/>
+
+
+    </data>
+</odoo>

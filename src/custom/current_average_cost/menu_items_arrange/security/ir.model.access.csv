@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_menu_items_arrange_menu_items_arrange,menu_items_arrange.menu_items_arrange,model_menu_items_arrange_menu_items_arrange,,1,0,0,0

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="label_57x35">
+        <table class="table table-bordered col-xs-4">
+            <tr height="155px" style="border:0;margin:0;padding:0;">
+                <td class="col-xs-4 text-center" style="border:0;margin:0;padding:0;">
+                    <div style="overflow:hidden; height:69px !important; width: 252px !important; padding: 5px 5px 0; line-height: 1.3;">
+                        <span t-field="label.product_id.name"/>
+                        <span t-if="label.product_id.attribute_value_ids" t-esc="u', '.join(map(lambda x: x.attribute_id.name + u': ' + x.name, label.product_id.attribute_value_ids))"/>
+                    </div>
+                    <div style="width: 100%; padding: 0; margin: 0; font-size: 25px; font-weight: bold;">
+                        <span t-field="label.product_id.currency_id.symbol"/>
+                        <span t-field="label.product_id.lst_price"/>
+                    </div>
+                    <div t-if="label.product_id.default_code" style="width: 100%; padding: 0; margin: 0; font-size: 12px;">
+                        <span t-field="label.product_id.default_code"/>
+                    </div>
+                    <div t-if="label.product_id.barcode" class="text-center align-middle" style="margin: 0; padding: 0 3px; height: 20px;">
+                        <t t-if="label.wizard_id.humanreadable" t-set="show_code" t-value="1"/>
+                        <t t-else="" t-set="show_code" t-value="0" />
+                        <img alt="barcode"
+                             t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s&amp;humanreadable=%s' % ('Code128', label.product_id.barcode, 600, 100, show_code)"
+                             style="overflow: hidden; width: 100%; height: 100%;"/>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </template>
+
+    <template id="report_product_label_57x35_template">
+        <t t-call="web.html_container">
+            <t t-call="web.basic_layout">
+                <t t-set="count" t-value="0" />
+                <div class="page">
+                    <div class="oe_structure"/>
+                    <t t-foreach="docs" t-as="label">
+                        <t t-set="qty" t-value="1" />
+                        <t t-if="label.qty">
+                            <t t-set="qty" t-value="label.qty" />
+                        </t>
+                        <t t-foreach="list(range(qty))" t-as="index_qty">
+                            <div t-if="count % 21 == 0" style="page-break-after:always;"/>
+                            <div t-if="count % 3 == 0" style="clear:both;"/>
+                            <div style="width: 30%; float: left; height: 180px; margin: 0 10px;">
+                                <t t-call="garazd_product_label.label_57x35"/>
+                            </div>
+                            <t t-set="count" t-value="count+1" />
+                        </t>
+                    </t>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

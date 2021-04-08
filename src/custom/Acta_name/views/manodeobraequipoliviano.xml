@@ -1,0 +1,23 @@
+<odoo>
+    <data>
+        <record id='materiales_video_action' model='ir.actions.act_window'>
+            <field name="name">materiales</field>
+            <field name="res_model">observacion.equipo.liviano</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+        </record>
+        <record id="materiales_video_view_form" model="ir.ui.view">
+            <field name="name">Acta digital</field>
+            <field name="model">observacion.equipo.liviano</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <div class="d-flex justify-content-center">
+                            <field name="nombre"/>
+                        </div>
+                    </group>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>
