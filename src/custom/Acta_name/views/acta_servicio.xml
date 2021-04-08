@@ -336,7 +336,7 @@
                 <div attrs="{'invisible': [('area_pt', '!=', 'pt1')]}">
                     <notebook attrs="{'invisible': [('area_pt', '!=', 'pt1')]}">
                         <page string="actividades" class="h3">
-
+                            <h2>Mensaje de prueba</h2>
                         </page>
                         <page string="materiales" class="h3">
 
