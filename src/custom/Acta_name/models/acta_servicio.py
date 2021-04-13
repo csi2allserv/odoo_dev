@@ -21,7 +21,7 @@ class ActaServicio(models.Model):
 
     #author_ids = fields.Many2one('res.partner', string='técnico', required=True)
     name = fields.Char('Numero de acta', required=False)  #
-    #el orden de las variables va por el desarollo del formulario
+    #el orden de las variables va por el desarrollo del formulario
 
     #datos arrastrados
     tecnico_acta = fields.Char('Tecnico asignado', required=False)
@@ -78,8 +78,8 @@ class ActaServicio(models.Model):
         'en el que trabajó')
     #campo relacionado con la clase de abajo
     Field_many2one = fields.Many2many('material.acta','materiales',required=False)
-    prueba2 =fields.Many2one('maintenance.request', 'Selecciones el numero de servicio')
-    datosproyecto = fields.Many2one('project.project', string='Selecciones el numero de servicio')
+    prueba2 =fields.Many2one('maintenance.request', 'Seleccione el número de servicio')
+    datosproyecto = fields.Many2one('project.project', string='Seleccione el número de servicio')
 
     #Alarma
     materiales_video = fields.Many2one('video.electronico')
@@ -88,6 +88,7 @@ class ActaServicio(models.Model):
     trabajo_fin = fields.Selection([('Si', 'Si'), ('No', 'No')],
                                      string='¿Hay un funcionario que pueda firmar el acta?')
 
+    # tabla para suministros de video electrónico
     campos = fields.One2many('video.electronico', 'appuesto')
     # tabla para suministros de alarma
     campos2 = fields.One2many('suministros.alarma','opuesto',)
@@ -98,21 +99,21 @@ class ActaServicio(models.Model):
     #Campo para la firma
     Firma = fields.Binary('')
 
-    # datos de finalizacion
+    # datos de finalización
     observaciones_generales = fields.Text(default=" ")
 
-    #variables para equipo metalmecanico
+    #variables para equipo metalmecánico
 
     campos1_metalmecanico = fields.One2many('equipo.liviano', 'opuesto', )
     campos2_metalmecanico = fields.One2many('equipo.pesado', 'opuesto', )
     campos3_metalmecanico = fields.One2many('suministros_metalmecanicos', 'opuesto', )
 
     # variables para proyectos
+    #Listaactividades = fields.Many2many('project.project', store=True, string='datos')
     Listaactividades = fields.Many2one('project.task', store=True, string='datos')
 
-
     #funciones
-    # codigo de limpiesa
+    # codigo de limpieza
     @api.onchange('area_pt')
     def _funcion_limpiar(self):
         if self.area_pt:
@@ -138,13 +139,13 @@ class ActaServicio(models.Model):
 
     @api.constrains('observaciones_generales')
     @api.one
-    def _ob_gemerales(self):
+    def _ob_generales(self):
         if len(self.observaciones_generales) > 1200:
             raise ValidationError('El número de caracteres no puede exceder los 1200')
     #Codigo de opcion en caso dado que odoo no permita interacciones con la bd
     # @api.constrains('trabajo_fin')
     # @api.one
-    # def _ob_gemerales(self):
+    # def _ob_generales(self):
     #     if self.trabajo_fin == 'Si':
     #         # x = self.prueba2.id
     #         # x = str(x)
@@ -188,7 +189,18 @@ class ActaServicio(models.Model):
             query = "UPDATE maintenance_request SET validador='TRUE' WHERE id='"+str(self.prueba2.id)+"'"
             self._cr.execute(query)
             self._cr.commit()
+###########################no se puede eliminar##########################->
+class material_acta(models.Model):
+ #clase diseñada para integral el listado de SUBSISTEMA DE ALARMA EN EL QUE TRABAJÓ
+    _name = 'material.acta'
+    _rec_name='Nom_material'
+    Nom_material = fields.Char('prueba', required=True)
 
+class tipo_mantenimiento(models.Model):
+    _name = 'tipo.mantenimiento'
+    _rec_name = 'nombre_proceso'
+    nombre_proceso = fields.Char('prueba', required=True)
+###########################no se puede eliminar##########################<-
 class materiales_video_electronicos(models.Model):
     _name = 'video.electronico'
     _rec_name = 'nombre'

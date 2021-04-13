@@ -8,9 +8,9 @@
     'version': '12.0.1',
     'depends': ['base'],
     'data': [
+        'views/acta_servicio.xml',
         'security/groups.xml',
         'security/ir.model.access.csv',
-        'views/acta_servicio.xml',
     ],
     #'demo': ['demo.xml'],
 }
