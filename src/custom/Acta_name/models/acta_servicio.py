@@ -261,7 +261,6 @@ class lista_clientes(models.Model):
 class mano_obra(models.Model):
     _name = 'mano.obra'
     _rec_name = 'nombre'
-
     nombre = fields.Char('Actividad de mano de obra', required=True)
 
 class mano_obra_video(models.Model):
@@ -314,7 +313,7 @@ class equipo_liviado(models.Model):
     _name = 'equipo.liviano'
     _rec_name = 'nombre'
     #la informacion del nombre quedo cruzada
-    nombre = fields.Many2one('material.equipo.pesado', required=True, string='Selecciones el elemento sobre el que trabajo')
+    nombre = fields.Many2one('material.equipo.liviano', required=True, string='Selecciones el elemento sobre el que trabajo')
     observacion = fields.Many2many('observacion.equipo.liviano', string='Mano de obra')
     compartimiento = fields.Many2many('compartimiento.equipo.liviano',string='Seleccione el compartimiento sobre el que trabajó')
     placa = fields.Char('Placa')
@@ -341,7 +340,7 @@ class compartimiento_equipo_liviano(models.Model):
 class equipo_pesado(models.Model):
     _name = 'equipo.pesado'
     _rec_name = 'nombre'
-    nombre = fields.Many2one('material.equipo.liviano', required=True, string='Selecciones el elemento sobre el que trabajo')
+    nombre = fields.Many2one('material.equipo.pesado', required=True, string='Selecciones el elemento sobre el que trabajo')
     observacion = fields.Many2many('observacion.equipo.pesado', string='Mano de obra')
     compartimiento = fields.Many2many('compartimiento.equipo.pesado',string='Seleccione el compartimiento sobre el que trabajó')
     placa = fields.Char('Placa')
