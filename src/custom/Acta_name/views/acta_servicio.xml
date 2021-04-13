@@ -102,12 +102,19 @@
 
 
                 <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-md-2" attrs="{'invisible': [('area_pt', '!=', 'pt2')]}" >
                         <p class="p-3 mb-2 bg-primary text-white h3">Técnico asignado</p>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-2" attrs="{'invisible': [('area_pt', '!=', 'pt2')]}" >
                         <field name="tecnico_acta" force_save="1" readonly="1" class="h3 p-2 mb-1"></field>
                     </div>
+                    <div class="col-md-2" attrs="{'invisible': [('area_pt', '!=', 'pt1')]}" >
+                        <p class="p-3 mb-2 bg-primary text-white h3">Entidad</p>
+                    </div>
+                    <div class="col-md-2" attrs="{'invisible': [('area_pt', '!=', 'pt1')]}" >
+                        <field name="tecnico_acta" force_save="1" readonly="1" class="h3 p-2 mb-1"></field>
+                    </div>
+
                     <div class="col-md-2">
                         <p class="p-3 mb-2 bg-primary text-white h3">Hora de inicio</p>
                     </div>
@@ -177,7 +184,6 @@
                         <p class="p-3 mb-2 bg-primary text-white d-flex justify-content-center h3">En que trabajo</p>
                     </div>
                     <div class="col-md-6">
-
                     </div>
                 </div>
 <!--                 en esta parte del codigo van las pestañas dependiendo de que tipo de trabajo se esta realizando-->
@@ -330,7 +336,7 @@
                 <div attrs="{'invisible': [('area_pt', '!=', 'pt1')]}">
                     <notebook attrs="{'invisible': [('area_pt', '!=', 'pt1')]}">
                         <page string="actividades" class="h3">
-
+                            <field name="Listaactividades"></field>
                         </page>
                         <page string="materiales" class="h3">
 
