@@ -68,14 +68,18 @@
                     </div>
                     <div class="col-md-3" attrs="{'invisible': [('area_pt', '!=', 'pt2')]}">
                         <field name="prueba2"
+                               options="{'no_create_edit': True, 'no_create': True, 'no_open': True}"
                                domain="[('user_id','=',(current_user)),('validador','=',(False))]"
                                class="h3 p-2 mb-1"  />
                     </div>
                     <div class="col-md-3"  attrs="{'invisible': [('area_pt', '!=', 'pt1')]}">
-                        <p class="p-3 mb-2 bg-primary text-white h3">Seleccione numero de servicio de proyectos</p>
+                        <p class="p-3 mb-2 bg-primary text-white h3">Seleccione número de servicio de proyectos</p>
                     </div>
                     <div class="col-md-3" attrs="{'invisible': [('area_pt', '!=', 'pt1')]}">
-                        <field name="datosproyecto"   domain="[('user_id','=',(current_user))]" class="h3 p-2 mb-1"/>
+                        <field name="datosproyecto"
+                               options="{'no_create_edit': True, 'no_create': True, 'no_open': True}"
+                               domain="[('user_id','=',(current_user))]"
+                               class="h3 p-2 mb-1"/>
 
                     </div>
                 </div>

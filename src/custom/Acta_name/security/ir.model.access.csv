@@ -1,7 +1,7 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_acta_creacion_01,access.acta.coordinador,model_acta_servicio,group_acta_coordinador,1,1,1,1
 access_acta_creacion_02,access.acta.lider,model_acta_servicio,group_acta_lider,1,1,1,1
-access_acta_creacion_03,access.acta.tecnico,model_acta_servicio,group_acta_tecnico,1,1,1,0
+access_acta_creacion_03,access.acta.tecnico,model_acta_servicio,group_acta_tecnico,1,1,1,1
 access_acta_creacion_04,access.acta.coordinador,maintenance.model_crm_customer_location,group_acta_coordinador,1,1,1,1
 access_acta_creacion_05,access.acta.coordinador,maintenance.model_crm_customer_location_type,group_acta_coordinador,1,1,1,1
 access_acta_creacion_06,access.acta.coordinador,model_video_electronico,group_acta_coordinador,1,1,1,1
@@ -50,14 +50,3 @@ access_acta_creacion_48,access.acta.tecnico,model_observacion_equipo_pesado,grou
 access_acta_creacion_49,access.acta.tecnico,model_compartimiento_equipo_pesado,group_acta_tecnico,1,1,0,0
 access_acta_creacion_50,access.acta.tecnico,model_suministros_metalmecanicos,group_acta_tecnico,1,1,0,0
 access_acta_creacion_51,access.acta.tecnico,model_suministro_metalmecanicos,group_acta_tecnico,1,1,0,0
-
-
-
-
-
-
-
-
-
-
-
