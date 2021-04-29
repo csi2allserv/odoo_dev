@@ -340,10 +340,14 @@
                 <div attrs="{'invisible': [('area_pt', '!=', 'pt1')]}">
                     <notebook attrs="{'invisible': [('area_pt', '!=', 'pt1')]}">
                         <page string="actividades" class="h3">
-                            <field name="Listaactividades"></field>
+                            <field name="actividadesproyecto1">
+                                <tree editable="bottom" >
+                                   <field name="Listaactividades" />
+                                </tree>
+                            </field>
                         </page>
                         <page string="materiales" class="h3">
-
+                            <field name = "actividadesproyecto1" ></field>
                         </page>
                     </notebook>
                 </div>

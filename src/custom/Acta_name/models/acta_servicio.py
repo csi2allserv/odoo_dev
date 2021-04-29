@@ -96,6 +96,8 @@ class ActaServicio(models.Model):
     campos3 = fields.One2many('video.mano','opuesto',)
     #tabla para suministros de control de acceso
     campos4 = fields.One2many('control.acceso','opuesto',)
+    #tabla de seleccion de actividades
+    actividadesproyecto1 = fields.One2many('actividades.proyectos', 'appuesto')
     #Campo para la firma
     Firma = fields.Binary('')
 
@@ -110,7 +112,7 @@ class ActaServicio(models.Model):
 
     # variables para proyectos
     #Listaactividades = fields.Many2many('project.project', store=True, string='datos')
-    Listaactividades = fields.Many2one('project.task', store=True, string='datos')
+
 
     #funciones
     # codigo de limpieza
@@ -149,14 +151,15 @@ class ActaServicio(models.Model):
     #     if self.trabajo_fin == 'Si':
     #         # x = self.prueba2.id
     #         # x = str(x)
+    #         En esta parte toca ingresa el nombre de la base da datos en caso que se use y la base de datos sea cambiada
     #         conexion1 = psycopg2.connect(database="odoo_prueba", user="odoo", password="admin")
     #         cursor1 = conexion1.cursor()
     #         # comando = str("update maintenance_request set validador='TRUE' where id='"+x+"'")
     #         cursor1.execute("update maintenance_request set validador='TRUE' where id='"+str(self.prueba2.id)+"'")
     #         conexion1.commit()
     #         print(cursor1)
-
     # funcion para traer datos de proyectos
+
     @api.onchange('datosproyecto')
     def _onchange_proyecto(self):
         if self.datosproyecto:
@@ -224,6 +227,15 @@ class materiales_video_electronicos(models.Model):
                 self.categoria = 'ELEMENTOS DE ENTRADA'
             elif self.nombre.grupo == 't3':
                 self.categoria = 'N/A'
+
+  #clase para el funcionamiento de las actividades
+class actividades_proyectos(models.Model):
+    _name = 'actividades.proyectos'
+    Listaactividades = fields.Many2one('project.task', store=True, string='Actividad a realizar')
+    Diaactividad = fields.Char('Dia al que pertenece la actividad')
+
+    appuesto = fields.Many2one('acta.servicio', string="", readonly="True")
+
 
 class materiales_alarma(models.Model):
     _name = 'materiales.alarma'
