@@ -64,7 +64,7 @@
                         <field name="area_pt" widget="radio"/>
                     </div>
                      <div class="col-md-3" attrs="{'invisible': [('area_pt', '!=', 'pt2')]}">
-                        <p class="p-3 mb-2 bg-primary text-white h3">Seleccione numero de servicio de mantenimiento</p>
+                        <p class="p-3 mb-2 bg-primary text-white h3">Seleccione número de servicio de mantenimiento</p>
                     </div>
                     <div class="col-md-3" attrs="{'invisible': [('area_pt', '!=', 'pt2')]}">
                         <field name="prueba2"
@@ -91,7 +91,7 @@
                         <field name="codigo_acta_tipo" force_save="1" readonly="1" class="h3 p-2 mb-1" ></field>
                     </div>
                     <div class="col-md-2">
-                        <p  class="p-3 mb-2 bg-primary text-white h3">Codigo de unidad</p>
+                        <p  class="p-3 mb-2 bg-primary text-white h3">Código de unidad</p>
                     </div>
                     <div class="col-md-2">
                         <field name="codigo_acta" force_save="1" readonly="1" class="h3 p-2 mb-1" ></field>

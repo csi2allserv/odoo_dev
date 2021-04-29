@@ -14,7 +14,7 @@ class ActaServicio(models.Model):
     current_user = fields.Integer('acta.servicio', default=lambda self: self.env.user.id)
 
     #validar que tipo de trabajo es.
-    area_pt= fields.Selection([('pt1', 'Proyectos'), ('pt2', 'Manteniemiento')],
+    area_pt= fields.Selection([('pt1', 'Proyectos'), ('pt2', 'Mantenimiento')],
                                           string='¿El trabajo a realizar es un proyectos o mantenimiento?',
                                           required=True)
 

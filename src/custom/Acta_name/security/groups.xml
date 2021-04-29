@@ -16,16 +16,17 @@
     <record id="group_acta_lider" model="res.groups">
         <field name="name">Líder</field>
         <field name="category_id" ref="module_category_acta_servicio" />
-<!--        <field name="users" eval="[(4, ref('base.user_admin'))]"/>-->
+        <field name="users" eval="[(4, ref('base.user_admin'))]"/>
     </record>
     <record id="ver_su_propia acta y servicio" model="ir.rule">
-        <field name="name">Ver su solo su propia acta y servicio pero no eliminar</field>
+        <field name="name">Ver solo su propia acta y servicio pero no eliminar</field>
         <field name="model_id" ref="model_acta_servicio"/>
+        <field name="domain_force">[(user,'=', user.id)]</field>
         <field name="domain_force">[('tecnico_acta','=','user.id')]</field>
         <field name="groups" eval="[(4, ref('group_acta_tecnico'))]"/>
         <field name="perm_create" eval="1"/>
         <field name="perm_write" eval="1"/>
-        <field name="perm_unlink" eval="0"/>
+        <field name="perm_unlink" eval="1"/>
         <field name="perm_read" eval="1"/>
     </record>
 
