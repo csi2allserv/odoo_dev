@@ -233,8 +233,8 @@ class actividades_proyectos(models.Model):
     _name = 'actividades.proyectos'
     Listaactividades = fields.Many2one('project.task', store=True, string='Actividad a realizar')
     Diaactividad = fields.Char('Dia al que pertenece la actividad')
-
     appuesto = fields.Many2one('acta.servicio', string="", readonly="True")
+
 
 
 class materiales_alarma(models.Model):
