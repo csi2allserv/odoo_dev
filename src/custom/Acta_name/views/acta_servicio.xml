@@ -56,6 +56,7 @@
                 <!-- se utlizo boostrap para darle una relacion de aspecto mas comoda creando 3 campos de row 4 y dejando la informacion en el central-->
                 <h1 class="d-flex justify-content-center my-4 ">ACTA DIGITAL DE PRESTACIÓN DE SERVICIOS Y SUMINISTRO DE REPUESTOS</h1>
                 <div class="row">
+                <div class="row">
                     <div class="col-md-3">
                         <p class="p-3 mb-2 bg-primary text-white h3" >¿El trabajo a realizar es un proyectos o mantenimiento?</p>
                     </div>
@@ -339,24 +340,21 @@
 <!--                esta parte del codigo es para proyectpos -->
                 <div attrs="{'invisible': [('area_pt', '!=', 'pt1')]}">
                     <notebook attrs="{'invisible': [('area_pt', '!=', 'pt1')]}">
-                        <page string="actividades" class="h3">
-                            <field name="actividadesproyecto1">
-                                <tree editable="bottom" >
-                                   <field name="Listaactividades" />
-                                </tree>
-                            </field>
-                        </page>
-                         <page string="Suministros" class="h3">
+                         <page string="Actividades" class="h3">
                             <field name="actividadesproyecto1" >
                                 <tree editable="bottom">
-                                    <field name="Listaactividades" />
+                                    <field name="Listaactividades" domain="[('project.project.id','=',(project.task.project_id))]"  />
                                     <field name="Diaactividad" />
+                                    <field name="observacion" />
                                 </tree>
                             </field>
                          </page>
-                    </notebook>
-                </div>
+                        <page string="Materiales" class="h3">
 
+                         </page>
+                    </notebook>
+
+                </div>
 <!--                fin de la seccion -->
 
 <!--                datos finales servicios electronicos alarma-->

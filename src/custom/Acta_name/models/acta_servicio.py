@@ -233,9 +233,14 @@ class actividades_proyectos(models.Model):
     _name = 'actividades_proyectos'
     Listaactividades = fields.Many2one('project.task', store=True, string='Actividad a realizar')
     Diaactividad = fields.Char('Dia al que pertenece la actividad')
+    observacion = fields.Text('Comentarios')
+
     opuesto = fields.Many2one('acta.servicio', string="", readonly="True")
 
-
+    @api.onchange('Listaactividades')
+    def _onchange_city_id(self):
+        if self.Listaactividades:
+           self.Diaactividad = self.Listaactividades.stage_id.name
 
 class materiales_alarma(models.Model):
     _name = 'materiales.alarma'
