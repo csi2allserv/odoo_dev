@@ -97,7 +97,7 @@ class ActaServicio(models.Model):
     #tabla para suministros de control de acceso
     campos4 = fields.One2many('control.acceso','opuesto',)
     #tabla de seleccion de actividades
-    actividadesproyecto1 = fields.One2many('actividades.proyectos', 'appuesto')
+    actividadesproyecto1 = fields.One2many('actividades_proyectos', 'opuesto')
     #Campo para la firma
     Firma = fields.Binary('')
 
@@ -230,10 +230,10 @@ class materiales_video_electronicos(models.Model):
 
   #clase para el funcionamiento de las actividades
 class actividades_proyectos(models.Model):
-    _name = 'actividades.proyectos'
+    _name = 'actividades_proyectos'
     Listaactividades = fields.Many2one('project.task', store=True, string='Actividad a realizar')
     Diaactividad = fields.Char('Dia al que pertenece la actividad')
-    appuesto = fields.Many2one('acta.servicio', string="", readonly="True")
+    opuesto = fields.Many2one('acta.servicio', string="", readonly="True")
 
 
 
