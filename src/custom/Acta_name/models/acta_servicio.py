@@ -5,7 +5,6 @@ import psycopg2
 
 
 class ActaServicio(models.Model):
-
     _name = 'acta.servicio'
     _description = 'Acta de servicio'
     #_order = 'desc, name'
@@ -110,6 +109,7 @@ class ActaServicio(models.Model):
     campos2_metalmecanico = fields.One2many('equipo.pesado', 'opuesto', )
     campos3_metalmecanico = fields.One2many('suministros_metalmecanicos', 'opuesto', )
 
+    xentero = fields.Integer()
     # variables para proyectos
     #Listaactividades = fields.Many2many('project.project', store=True, string='datos')
 
@@ -165,6 +165,9 @@ class ActaServicio(models.Model):
         if self.datosproyecto:
             self.tecnico_acta = self.datosproyecto.enidadproyecto.name
             self.falla_reportada_proyecto = self.datosproyecto.informacion
+            self.xentero = self.datosproyecto.id
+            print(str(self.xentero))
+
 
 
     # esta funcion es la que arrastra los datos seleccionados en prueba2 que es igual a llamar el numero de servicio
@@ -234,8 +237,13 @@ class actividades_proyectos(models.Model):
     Listaactividades = fields.Many2one('project.task', store=True, string='Actividad a realizar')
     Diaactividad = fields.Char('Dia al que pertenece la actividad')
     observacion = fields.Text('Comentarios')
-
+    img = fields.Binary('Soporte visual')
     opuesto = fields.Many2one('acta.servicio', string="", readonly="True")
+    xent = fields.Integer()
+
+    def ejecutar(self):
+        self.xent = self.opuesto.xentero
+        print(str(self.xent))
 
     @api.onchange('Listaactividades')
     def _onchange_city_id(self):
