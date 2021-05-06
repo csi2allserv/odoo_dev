@@ -23,7 +23,8 @@
                             <div class="oe_kanban_details">
                                 <div class="oe_kanban_tags_section">
                                     <ul class="list-group">
-                                         <li class="list-group-item">Servicio : <field name="prueba2"/> </li>
+                                         <li class="list-group-item">Serial mantenimiento : <field name="prueba2"/> </li>
+                                         <li class="list-group-item">Serial mantenimiento : <field name="datosproyecto"/> </li>
                                          <li class="list-group-item">Tecnico : <field name="tecnico_acta"/></li>
                                     </ul>
                                 </div>
@@ -41,8 +42,9 @@
         <field name="model">acta.servicio</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="prueba2"/>
-                <field name="tecnico_acta"/>
+                <field name="prueba2" string="Serial mantenimiento"/>
+                <field name="datosproyecto" string="Serial proyectos"/>
+                <field name="tecnico_acta" string="Tecnico"/>
             </tree>
         </field>
     </record>
@@ -117,7 +119,7 @@
                         <p class="p-3 mb-2 bg-primary text-white h3">Entidad</p>
                     </div>
                     <div class="col-md-2" attrs="{'invisible': [('area_pt', '!=', 'pt1')]}" >
-                        <field name="tecnico_acta" force_save="1" readonly="1" class="h3 p-2 mb-1"></field>
+                        <field name="entidadproyecto" force_save="1" readonly="1" class="h3 p-2 mb-1"></field>
                     </div>
 
                     <div class="col-md-2">

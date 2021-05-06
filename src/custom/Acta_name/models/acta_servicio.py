@@ -24,6 +24,7 @@ class ActaServicio(models.Model):
 
     #datos arrastrados
     tecnico_acta = fields.Char('Tecnico asignado', required=False)
+    entidadproyecto = fields.Char('Entidad')
     entidad_acta = fields.Char('Cliente', required=False)
     ciudad_acta = fields.Char('Ciudad', required=False)
     falla_reportada_acta = fields.Text('Falla reportada', required=False)
@@ -123,6 +124,7 @@ class ActaServicio(models.Model):
                 if self.area_pt == 'pt1':
                     print('Limpiar')
                     self.tecnico_acta = ''
+                    self.entidadproyecto = ''
                     self.entidad_acta = ''
                     self.ciudad_acta = ''
                     self.falla_reportada_acta = ''
@@ -163,7 +165,8 @@ class ActaServicio(models.Model):
     @api.onchange('datosproyecto')
     def _onchange_proyecto(self):
         if self.datosproyecto:
-            self.tecnico_acta = self.datosproyecto.enidadproyecto.name
+            self.entidadproyecto = self.datosproyecto.enidadproyecto.name
+            self.tecnico_acta = self.env.user.name
             self.falla_reportada_proyecto = self.datosproyecto.informacion
             self.xentero = self.datosproyecto.id
             print(str(self.xentero))
@@ -234,6 +237,7 @@ class materiales_video_electronicos(models.Model):
   #clase para el funcionamiento de las actividades
 class actividades_proyectos(models.Model):
     _name = 'actividades_proyectos'
+    _rec_name = 'Listaactividades'
     datosproyectoA = fields.Many2one('project.project', string='Seleccione el número de servicio')
     Listaactividades = fields.Many2one('project.task', store=True, string='Actividad a realizar', domain="[('project_id', '=', xent)]")
     Diaactividad = fields.Char('Dia al que pertenece la actividad')
@@ -247,6 +251,13 @@ class actividades_proyectos(models.Model):
         if self.datosproyectoA:
             self.xent = self.datosproyectoA.id
 
+    @api.constrains('Listaactividades')
+    @api.one
+    def _validador(self):
+        if self.Listaactividades:
+            query = "UPDATE project_task SET color='3' WHERE id='" + str(self.Listaactividades.id) + "'"
+            self._cr.execute(query)
+            self._cr.commit()
 
     @api.onchange('Listaactividades')
     def _onchange_city_id(self):
