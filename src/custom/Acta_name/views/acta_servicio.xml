@@ -341,11 +341,12 @@
                         <page string="Actividades" class="h3">
                            <field name="actividadesproyecto1" >
                                <tree editable="bottom">
+                                   <field name="datosproyectoA"/>
                                    <field name="Listaactividades" domain="[('project_id', '=', xent)]" />
                                    <field name="Diaactividad" />
                                    <field name="observacion" />
                                    <field name="img" widget="image" class="w-25 mh-25" accept=".jpg" />
-                                   <field name="xent"/>
+                                   <field name="xent"  invisible="True"/>
                                </tree>
                            </field>
                         </page>

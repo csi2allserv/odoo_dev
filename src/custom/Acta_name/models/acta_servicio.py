@@ -234,16 +234,19 @@ class materiales_video_electronicos(models.Model):
   #clase para el funcionamiento de las actividades
 class actividades_proyectos(models.Model):
     _name = 'actividades_proyectos'
-    Listaactividades = fields.Many2one('project.task', store=True, string='Actividad a realizar')
+    datosproyectoA = fields.Many2one('project.project', string='Seleccione el número de servicio')
+    Listaactividades = fields.Many2one('project.task', store=True, string='Actividad a realizar', domain="[('project_id', '=', xent)]")
     Diaactividad = fields.Char('Dia al que pertenece la actividad')
     observacion = fields.Text('Comentarios')
     img = fields.Binary('Soporte visual')
     opuesto = fields.Many2one('acta.servicio', string="", readonly="True")
-    xent = fields.Integer()
-
+    xent = fields.Integer(string='valor defecto', readonly="True", invisible="True")
+    enteroxent = int()
+    @api.onchange('datosproyectoA')
     def ejecutar(self):
-        self.xent = self.opuesto.xentero
-        print(str(self.xent))
+        if self.datosproyectoA:
+            self.xent = self.datosproyectoA.id
+
 
     @api.onchange('Listaactividades')
     def _onchange_city_id(self):
