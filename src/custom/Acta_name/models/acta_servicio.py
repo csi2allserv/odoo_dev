@@ -239,7 +239,7 @@ class actividades_proyectos(models.Model):
     _name = 'actividades_proyectos'
     _rec_name = 'Listaactividades'
     datosproyectoA = fields.Many2one('project.project', string='Seleccione el número de servicio')
-    Listaactividades = fields.Many2one('project.task', store=True, string='Actividad a realizar', domain="[('project_id', '=', xent)]")
+    Listaactividades = fields.Many2one('project.task', store=True, string='Actividad a realizar', domain="[('project_id', '=', xent),('kanban_state', '!=','done')]")
     Diaactividad = fields.Char('Dia al que pertenece la actividad')
     observacion = fields.Text('Comentarios')
     img = fields.Binary('Soporte visual')
@@ -255,7 +255,7 @@ class actividades_proyectos(models.Model):
     @api.one
     def _validador(self):
         if self.Listaactividades:
-            query = "UPDATE project_task SET color='3' WHERE id='" + str(self.Listaactividades.id) + "'"
+            query = "UPDATE project_task SET kanban_state='done' WHERE id='" + str(self.Listaactividades.id) + "'"
             self._cr.execute(query)
             self._cr.commit()
 

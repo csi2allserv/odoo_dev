@@ -344,7 +344,7 @@
                            <field name="actividadesproyecto1" >
                                <tree editable="bottom">
                                    <field name="datosproyectoA"/>
-                                   <field name="Listaactividades" domain="[('project_id', '=', xent)]" />
+                                   <field name="Listaactividades" domain="[('project_id', '=', xent),('kanban_state', '!=','done')]" />
                                    <field name="Diaactividad" />
                                    <field name="observacion" />
                                    <field name="img" widget="image" class="w-25 mh-25" accept=".jpg" />
