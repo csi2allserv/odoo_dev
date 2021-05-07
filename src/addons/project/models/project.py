@@ -237,6 +237,10 @@ class Project(models.Model):
     # codigo realizado por william acosta mosquera web master jr
     #esta es para la ventana de creacion
     tecnico = fields.Many2one('res.users')
+    tecnico1 = fields.Many2one('res.users')
+    tecnico2 = fields.Many2one('res.users')
+    tecnico3 = fields.Many2one('res.users')
+    tecnico4 = fields.Many2one('res.users')
     informacion = fields.Html()
     tiposervicio = fields.Selection([
         ('s1', 'servicio a'),

@@ -238,7 +238,7 @@ class materiales_video_electronicos(models.Model):
 class actividades_proyectos(models.Model):
     _name = 'actividades_proyectos'
     _rec_name = 'Listaactividades'
-    datosproyectoA = fields.Many2one('project.project', string='Seleccione el número de servicio')
+    datosproyectoA = fields.Many2one('project.project', string='Seleccione el número de servicio', domain="[('user_id', '=',(current_user))]")
     Listaactividades = fields.Many2one('project.task', store=True, string='Actividad a realizar', domain="[('project_id', '=', xent),('kanban_state', '!=','done')]")
     Diaactividad = fields.Char('Dia al que pertenece la actividad')
     observacion = fields.Text('Comentarios')

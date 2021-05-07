@@ -174,7 +174,23 @@
                         <page name="datos" string="Informacion adicional">
                             <div>
                                 <label for="tecnico"  class="oe_inline"  string="tecnico asignado :"/>
-                                <field name="tecnico" class="oe_inline oe_input_align" force_save="1" readonly="1"/>
+                                <field name="tecnico"  class="oe_inline oe_input_align" force_save="1" readonly="1"/>
+                            </div>
+                            <div attrs="{'invisible': [('tecnico1', '=', False)]}">
+                                <label for="tecnico1"  class="oe_inline"  string="tecnico asignado :"/>
+                                <field name="tecnico1" class="oe_inline oe_input_align" force_save="1" readonly="1"/>
+                            </div>
+                            <div attrs="{'invisible': [('tecnico2', '=', False)]}">
+                                <label for="tecnico2"  class="oe_inline"  string="tecnico asignado :"/>
+                                <field name="tecnico2" class="oe_inline oe_input_align" force_save="1" readonly="1"/>
+                            </div>
+                            <div attrs="{'invisible': [('tecnico3', '=', False)]}">
+                                <label for="tecnico3"  class="oe_inline"  string="tecnico asignado :"/>
+                                <field name="tecnico3" class="oe_inline oe_input_align" force_save="1" readonly="1"/>
+                            </div>
+                            <div attrs="{'invisible': [('tecnico4', '=', False)]}">
+                                <label for="tecnico4"  class="oe_inline"  string="tecnico asignado :"/>
+                                <field name="tecnico4" class="oe_inline oe_input_align" force_save="1" readonly="1"/>
                             </div>
                             <div>
                                 <label for="tiposervicio"  class="oe_inline" string="Servisio asignado :"/>
@@ -285,6 +301,14 @@
                             <field name="enidadproyecto" class="o_project_name oe_inline"
                                 string="Entindad"/>
                             <field name="tecnico" class="o_project_name oe_inline"
+                                string="Tecnico asignado"/>
+                            <field name="tecnico1"  class="o_project_name oe_inline"
+                                string="Tecnico asignado"/>
+                            <field name="tecnico2" class="o_project_name oe_inline"
+                                string="Tecnico asignado"/>
+                            <field name="tecnico3" class="o_project_name oe_inline"
+                                string="Tecnico asignado"/>
+                            <field name="tecnico4" class="o_project_name oe_inline"
                                 string="Tecnico asignado"/>
                             <field name="tiposervicio" class="o_project_name oe_inline"
                                 string="Tipo de servicio que se va a realizar"/>
