@@ -343,12 +343,13 @@
                         <page string="Actividades" class="h3">
                            <field name="actividadesproyecto1" >
                                <tree editable="bottom">
-                                   <field name="datosproyectoA"/>
+                                   <field name="datosproyectoA" domain="[('user_id','=',(current_user))]" />
                                    <field name="Listaactividades" domain="[('project_id', '=', xent),('kanban_state', '!=','done')]" />
                                    <field name="Diaactividad" />
                                    <field name="observacion" />
                                    <field name="img" widget="image" class="w-25 mh-25" accept=".jpg" />
                                    <field name="xent"  invisible="True"/>
+                                    <field name="current_user" invisible="True" readonly="True" class="h3 p-2 mb-1"/>
                                </tree>
                            </field>
                         </page>

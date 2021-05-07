@@ -238,7 +238,7 @@ class materiales_video_electronicos(models.Model):
 class actividades_proyectos(models.Model):
     _name = 'actividades_proyectos'
     _rec_name = 'Listaactividades'
-    datosproyectoA = fields.Many2one('project.project', string='Seleccione el número de servicio', domain="[('user_id', '=',(current_user))]")
+    datosproyectoA = fields.Many2one('project.project', string='Seleccione el número de servicio', domain="[('user_id', '=','current_user')]")
     Listaactividades = fields.Many2one('project.task', store=True, string='Actividad a realizar', domain="[('project_id', '=', xent),('kanban_state', '!=','done')]")
     Diaactividad = fields.Char('Dia al que pertenece la actividad')
     observacion = fields.Text('Comentarios')
@@ -246,10 +246,12 @@ class actividades_proyectos(models.Model):
     opuesto = fields.Many2one('acta.servicio', string="", readonly="True")
     xent = fields.Integer(string='valor defecto', readonly="True", invisible="True")
     enteroxent = int()
+    current_user = fields.Integer('acta.servicio', default=lambda self: self.env.user.id)
     @api.onchange('datosproyectoA')
     def ejecutar(self):
         if self.datosproyectoA:
             self.xent = self.datosproyectoA.id
+            print(str(self.current_user))
 
     @api.constrains('Listaactividades')
     @api.one
