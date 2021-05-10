@@ -117,6 +117,14 @@ class ActaServicio(models.Model):
     #Listaactividades = fields.Many2many('project.project', store=True, string='datos')
 
 
+    #Encuenta bancolombia
+    pregunta1 = fields.Selection([('s1', 'si'),('s2', 'no')])
+    pregunta2 = fields.Selection([('s1', 'si'), ('s2', 'no')])
+    pregunta3 = fields.Selection([('s1', 'si'), ('s2', 'no')])
+    pregunta4 = fields.Selection([('s1', 'si'), ('s2', 'no')])
+    pregunta5 = fields.Selection([('s1', 'si'), ('s2', 'no')])
+    pregunta6 = fields.Selection([('s1', 'si'), ('s2', 'no')])
+    pregunta7 = fields.Selection([('s1', 'si'), ('s2', 'no')])
     #funciones
     # codigo de limpieza
     @api.onchange('area_pt')
