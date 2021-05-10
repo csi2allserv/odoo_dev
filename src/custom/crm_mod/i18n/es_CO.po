@@ -1,0 +1,111 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* crm_mod
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c-20180808\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-11-21 00:26+0000\n"
+"PO-Revision-Date: 2018-11-20 19:27-0500\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: es_CO\n"
+"X-Generator: Poedit 1.8.7.1\n"
+
+#. module: crm_mod
+#: selection:sale.order.line,currency:0
+msgid "Colombian Peso"
+msgstr "Peso Colombiano"
+
+#. module: crm_mod
+#: model:ir.ui.view,arch_db:crm_mod.crm_mod_sale
+msgid "Costo"
+msgstr "Costo"
+
+#. module: crm_mod
+#: model:ir.model.fields,help:crm_mod.field_sale_order_line_standard_price
+msgid "Costo del producto"
+msgstr "Costo del producto"
+
+#. module: crm_mod
+#: model:ir.model.fields,field_description:crm_mod.field_sale_order_line_currency
+msgid "Currency"
+msgstr "Moneda"
+
+#. module: crm_mod
+#: selection:sale.order.line,currency:0
+msgid "Dollar"
+msgstr "Dólar"
+
+#. module: crm_mod
+#: selection:sale.order.line,currency:0
+msgid "Euro"
+msgstr "Euro"
+
+#. module: crm_mod
+#: model:ir.ui.view,arch_db:crm_mod.crm_mod_sale
+msgid "Import %"
+msgstr "Porc de Importación"
+
+#. module: crm_mod
+#: model:ir.model.fields,field_description:crm_mod.field_sale_order_line_import_percentage
+msgid "Import Percentage"
+msgstr "Porcentaje de Importación"
+
+#. module: crm_mod
+#: model:ir.model.fields,field_description:crm_mod.field_sale_order_line_list_price
+#: model:ir.ui.view,arch_db:crm_mod.crm_mod_sale
+msgid "List Price"
+msgstr "Precio de Lista"
+
+#. module: crm_mod
+#: model:ir.model.fields,help:crm_mod.field_sale_order_line_tmp_price_unit
+msgid "Precio del producto unitario y sin IVA"
+msgstr "Precio del producto unitario y sin IVA"
+
+#. module: crm_mod
+#: model:ir.model.fields,field_description:crm_mod.field_sale_order_line_tmp_price_unit
+msgid "Price Unit"
+msgstr "Precio Unitario"
+
+#. module: crm_mod
+#: model:ir.ui.view,arch_db:crm_mod.crm_mod_sale
+msgid "Profit %"
+msgstr "Porc de Ganancia"
+
+#. module: crm_mod
+#: model:ir.model.fields,field_description:crm_mod.field_sale_order_line_profit_percentage
+msgid "Profit Percentage"
+msgstr "Porcentaje de Ganancia"
+
+#. module: crm_mod
+#: model:ir.model,name:crm_mod.model_sale_order
+msgid "Sales Order"
+msgstr "Orden de Venta"
+
+#. module: crm_mod
+#: model:ir.model,name:crm_mod.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea Orden de Venta"
+
+#. module: crm_mod
+#: model:ir.model.fields,field_description:crm_mod.field_sale_order_line_standard_price
+msgid "Standard Price"
+msgstr "Precio de Costo/Compra"
+
+#. module: crm_mod
+#: model:ir.model.fields,field_description:crm_mod.field_sale_order_line_order_trm
+#: model:ir.model.fields,field_description:crm_mod.field_sale_order_trm
+#: model:ir.ui.view,arch_db:crm_mod.crm_mod_sale
+msgid "TRM"
+msgstr "TRM"
+
+#. module: crm_mod
+#: model:ir.model.fields,help:crm_mod.field_sale_order_line_order_trm
+msgid "TRM usada el dia de la cotización"
+msgstr "TRM usada el dia de la cotización"

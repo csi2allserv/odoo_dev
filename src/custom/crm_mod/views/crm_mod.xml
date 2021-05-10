@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="crm_mod_sale">
+    <field name="name">sale.order.line.custom.fields</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form"></field>
+    <field name="arch" type="xml">
+        <xpath expr="//field[@name='order_line']" position="before" >
+            <field name="is_default_pricelist" invisible="1"/>
+        </xpath>
+        <xpath expr="//field[@name='order_line']//form/group/group/field[1]" position="before" >
+            <field name="pricelist_default" invisible="1"/>
+            <field name="product_brand_id" />
+        </xpath>
+        <xpath expr="//field[@name='order_line']"  position="attributes">
+            <attribute name="context">{'default_pricelist_default': is_default_pricelist}</attribute>
+        </xpath>
+        <xpath expr="//field[@name='order_line']//form//field[@name='price_subtotal']" position="replace"/>
+
+        <xpath expr="//field[@name='order_line']/form//field[@name='invoice_status']" position="before" >
+            <!-- <field name="product_id" /> -->
+            <field name="currency" />
+        </xpath>
+
+        <xpath expr="//field[@name='order_line']//tree"  position="attributes">
+            <attribute name="editable"></attribute>
+        </xpath>
+
+        <xpath expr="//field[@name='order_line']//form//field[@name='invoice_lines']"  position="attributes">
+            <attribute name="invisible">1</attribute>
+        </xpath>
+
+        <xpath expr="//field[@name='order_line']//form//label[@for='invoice_lines']"  position="attributes">
+            <attribute name="invisible">1</attribute>
+        </xpath>
+
+        <xpath expr="//field[@name='order_line']//form//label[@for='customer_lead']"  position="attributes">
+            <attribute name="invisible">1</attribute>
+        </xpath>
+
+        <xpath expr="//field[@name='order_line']//form//field[@name='customer_lead']/.."  position="attributes">
+            <attribute name="invisible">1</attribute>
+        </xpath>
+
+        <xpath expr="//field[@name='order_line']//form//field[@name='price_unit']" position="attributes" >
+            <attribute name="invisible">1</attribute>
+        </xpath>
+
+        <xpath expr="//field[@name='order_line']//form/group/group" position="inside" >
+            <field name="list_price" string="List Price"/>
+            <field name="import_percentage" string="Import %" attrs="{'invisible': ['|',('currency','!=','usd'),('pricelist_default','=',False)]}"/>
+            <field name="profit_percentage" string="Profit %" attrs="{'invisible':[('pricelist_default','=',False)]}"/>
+            <field name="order_trm" string="TRM" attrs="{'invisible': [('currency','!=','usd')]}"/>
+            <!--field name="standard_price" string="Costo" readonly="1"/-->
+            <field name="tmp_price_unit" readonly="1"
+                   widget='monetary' options="{'currency_field': 'currency_id'}"/>
+            <field name="price_subtotal" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+        </xpath>
+
+    </field>
+    </record>
+
+    <!-- REQ #20 -->
+    <record id="crm_mod_crm_lead_alls_view_form" model="ir.ui.view">
+        <field name="name">crm.lead.alls.view.form</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_form_view_oppor"/>
+        <field name="arch" type="xml">
+            <xpath expr="/form/sheet//div[4]//field[@name='name']" position="attributes">
+                <attribute name="class">oe_read_only</attribute>
+            </xpath>
+        </field>
+    </record>
+    <!-- FIN REQ #20 -->
+
+</odoo>
