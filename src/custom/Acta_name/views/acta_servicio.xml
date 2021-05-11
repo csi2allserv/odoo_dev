@@ -254,6 +254,64 @@
                                 </tree>
                             </field>
                          </page>
+                         <page string="Encuesta" class="h3">
+                             <div class="row">
+                                 <div class="col-md-6">
+                                     <p class="p-3 mb-2 bg-primary text-white d-flex justify-content-center h3">El reporte entregado por el técnico fue conciso y claro</p>
+                                 </div>
+                                 <div class="col-md-6">
+                                     <field name="pregunta1" widget="radio" options="{'horizontal': true}"/>
+                                 </div>
+                             </div>
+                             <div class="row">
+                                 <div class="col-md-6">
+                                     <p class="p-3 mb-2 bg-primary text-white d-flex justify-content-center h3">Detecto usted que el técnico tuvo conocimiento en el tema que trataba?</p>
+                                 </div>
+                                 <div class="col-md-6">
+                                     <field name="pregunta2" widget="radio" options="{'horizontal': true}"/>
+                                 </div>
+                             </div>
+                             <div class="row">
+                                 <div class="col-md-6">
+                                     <p class="p-3 mb-2 bg-primary text-white d-flex justify-content-center h3">El técnico fue receptivo a las instrucciones que usted dio?</p>
+                                 </div>
+                                 <div class="col-md-6">
+                                     <field name="pregunta3" widget="radio" options="{'horizontal': true}"/>
+                                 </div>
+                             </div>
+                             <div class="row">
+                                 <div class="col-md-6">
+                                     <p class="p-3 mb-2 bg-primary text-white d-flex justify-content-center h3">La comunicación con el técnico fue rápida?</p>
+                                 </div>
+                                 <div class="col-md-6">
+                                     <field name="pregunta4" widget="radio" options="{'horizontal': true}"/>
+                                 </div>
+                             </div>
+                             <div class="row">
+                                 <div class="col-md-6">
+                                     <p class="p-3 mb-2 bg-primary text-white d-flex justify-content-center h3">La respuesta (solución) del evento fue oportuno?</p>
+                                 </div>
+                                 <div class="col-md-6">
+                                     <field name="pregunta5" widget="radio" options="{'horizontal': true}"/>
+                                 </div>
+                             </div>
+                             <div class="row">
+                                 <div class="col-md-6">
+                                     <p class="p-3 mb-2 bg-primary text-white d-flex justify-content-center h3">La actitud del técnico para prestar la asesoría fue la adecuada?</p>
+                                 </div>
+                                 <div class="col-md-6">
+                                     <field name="pregunta6" widget="radio" options="{'horizontal': true}"/>
+                                 </div>
+                             </div>
+                             <div class="row">
+                                 <div class="col-md-6">
+                                     <p class="p-3 mb-2 bg-primary text-white d-flex justify-content-center h3">Las palabras utilizadas por el técnico en la conversación fue adecuada?</p>
+                                 </div>
+                                 <div class="col-md-6">
+                                     <field name="pregunta7" widget="radio" options="{'horizontal': true}"/>
+                                 </div>
+                             </div>
+                         </page>
                     </notebook>
                 </div>
 
@@ -354,10 +412,37 @@
                            </field>
                         </page>
                         <page string="Materiales" class="h3">
-
+                            <field name="proyectomaterial">
+                                <tree editable="bottom">
+                                    <field name="material_proyecto"/>
+                                    <field name="serial" min="1"/>
+                                    <field name="cantidad" min="1" max="5"/>
+                                    <field name="unidadmedida"/>
+                                    <field name="fotosoporte" widget="image" class="w-25 mh-25" accept=".jpg"/>
+                                </tree>
+                            </field>
                         </page>
                     </notebook>
                 </div>
+                <div attrs="{'invisible': [('area_pt', '!=', 'pt1')]}">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="p-3 mb-2 bg-primary text-white d-flex justify-content-center h3" >En el siguiente recuadro, haga anotaciones concisas que no hayan sido mencionadas</p>
+                        </div>
+                        <div class="col-md-6">
+                            <field name="observaciones_generales"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="p-3 mb-2 bg-primary text-white d-flex justify-content-center h3">Ingrese la firma</p>
+                        </div>
+                        <div class="d-flex justify-content-center col-md-6">
+                            <field name="Firma" widget="signature"/>
+                        </div>
+                    </div>
+                </div>
+
 <!--                fin de la seccion -->
 
 <!--                datos finales servicios electronicos alarma-->

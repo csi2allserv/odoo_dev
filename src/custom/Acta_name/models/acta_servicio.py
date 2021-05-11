@@ -98,6 +98,8 @@ class ActaServicio(models.Model):
     campos4 = fields.One2many('control.acceso','opuesto',)
     #tabla de seleccion de actividades
     actividadesproyecto1 = fields.One2many('actividades_proyectos', 'opuesto')
+    #tabla para los materiales proyecto
+    proyectomaterial = fields.One2many('materiales_proyecto','opuesto')
     #Campo para la firma
     Firma = fields.Binary('')
 
@@ -115,6 +117,14 @@ class ActaServicio(models.Model):
     #Listaactividades = fields.Many2many('project.project', store=True, string='datos')
 
 
+    #Encuenta bancolombia
+    pregunta1 = fields.Selection([('s1', 'si'),('s2', 'no')])
+    pregunta2 = fields.Selection([('s1', 'si'), ('s2', 'no')])
+    pregunta3 = fields.Selection([('s1', 'si'), ('s2', 'no')])
+    pregunta4 = fields.Selection([('s1', 'si'), ('s2', 'no')])
+    pregunta5 = fields.Selection([('s1', 'si'), ('s2', 'no')])
+    pregunta6 = fields.Selection([('s1', 'si'), ('s2', 'no')])
+    pregunta7 = fields.Selection([('s1', 'si'), ('s2', 'no')])
     #funciones
     # codigo de limpieza
     @api.onchange('area_pt')
@@ -265,6 +275,25 @@ class actividades_proyectos(models.Model):
     def _onchange_city_id(self):
         if self.Listaactividades:
            self.Diaactividad = self.Listaactividades.stage_id.name
+
+class materiales_proyecto(models.Model):
+    _name = 'materiales_proyecto'
+    _rec_name = 'material_proyecto'
+    material_proyecto = fields.Many2one('nombres_materiales_proyecti', required=True)
+    serial = fields.Integer()
+    cantidad = fields.Integer()
+    fotosoporte = fields.Binary(string='soporte fotografico')
+    unidadmedida = fields.Selection([('t1', 'unidades'),
+                            ('t2', 'metros'),
+                              ('t3','N/A')],
+                            required=True, string='Unidad de medida')
+    opuesto = fields.Many2one('acta.servicio', string="", readonly="True")
+
+#esta clase quedaria momentania mientras se hace la coneccion con almacen
+class nombres_materiales_proyecti(models.Model):
+    _name = 'nombres_materiales_proyecti'
+    _rec_name = 'nombre'
+    nombre = fields.Char('Nombre del material', required=True)
 
 class materiales_alarma(models.Model):
     _name = 'materiales.alarma'
