@@ -9,7 +9,7 @@
                 <field name="name"/>
                 <field name="sequence"/>
                 <field name="probability"/>
-                <field name="team_id"/>
+                <field name="team_id" invisible="True"/>
             </search>
         </field>
     </record>
@@ -22,7 +22,7 @@
                 <field name="sequence" widget="handle"/>
                 <field name="name"/>
                 <field name="probability"/>
-                <field name="team_id"/>
+                <field name="team_id" invisible="True"/>
             </tree>
         </field>
     </record>
@@ -37,7 +37,7 @@
                     <field name="team_count" invisible="1"/>
                     <group>
                         <field name="name"/>
-                        <field name="team_id" options='{"no_open": True, "no_create": True}' attrs="{'invisible': [('team_count', '&lt;=', 1)]}"/>
+                        <field name="team_id" options='{"no_open": True, "no_create": True}' invisible="True"/>
                         <field name="fold"/>
                     </group>
                     <group>
