@@ -315,7 +315,7 @@ class MaintenanceRequest(models.Model):
     location_type_id = fields.Many2one('crm.customer.location.type', default=_default_location_type, \
                                        string='Tipo de Ubicacion')
     location_id = fields.Many2one('crm.customer.location', \
-                                  string='Codigo', required=True)
+                                  string='Codigo', required=False)
     city_id = fields.Many2one('res.city', string='Ciudad', readonly=True)
     partner_id = fields.Many2one('res.partner', string='Customer', track_visibility='onchange', track_sequence=1, index=True,
         help="Linked partner (optional). Usually created when converting the lead. You can find a partner by its Name, TIN, Email or Internal Reference.")

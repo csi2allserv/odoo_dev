@@ -11,7 +11,8 @@ from odoo.tools import email_re, email_split
 from odoo.exceptions import UserError, AccessError
 
 from . import crm_stage
-
+from datetime import date
+from datetime import datetime
 _logger = logging.getLogger(__name__)
 
 CRM_LEAD_FIELDS_TO_MERGE = [
@@ -144,6 +145,7 @@ class Lead(models.Model):
     company_id = fields.Many2one('res.company', string='Company', index=True, default=lambda self: self.env.user.company_id.id)
     meeting_count = fields.Integer('# Meetings', compute='_compute_meeting_count')
     lost_reason = fields.Many2one('crm.lost.reason', string='Lost Reason', index=True, track_visibility='onchange')
+    fecha = fields.Datetime
 
     _sql_constraints = [
         ('check_probability', 'check(probability >= 0 and probability <= 100)', 'The probability of closing the deal should be between 0% and 100%!')
@@ -395,6 +397,23 @@ class Lead(models.Model):
             lead.write({'stage_id': stage_id.id, 'probability': 100})
 
         return True
+    #codigo realizado por william acosta mosquera
+    @api.multi
+    def action_create_proyect(self):
+        print("Hola mundo proyectos")
+        query = "UPDATE crm_lead SET color='4' WHERE id='" + str(self.id) + "'"
+        self._cr.execute(query)
+        self._cr.commit()
+    @api.multi
+    def action_create_mantenimiento(self):
+        print("Hola mundo mantenimiento")
+        query = "UPDATE crm_lead SET color='10' WHERE id='" + str(self.id) + "'"
+        self._cr.execute(query)
+        self._cr.commit()
+        self.fecha = datetime.now()
+        query = "INSERT INTO public.maintenance_request(name,kanban_state,company_id,stage_id,archive,maintenance_type,maintenance_team_id,duration,location_type_id,create_uid,create_date,write_uid,write_date,employee_id,validador,code)VALUES ('"+str(self.name)+"','normal',1,1,'FALSE','corrective',1,8,2,2,'"+str(self.fecha)+"',2,'"+str(self.fecha)+"',1,'FALSE','MMS-20"+str(self.fecha)+"');"
+        self._cr.execute(query)
+        self._cr.commit()
 
     @api.multi
     def action_set_won_rainbowman(self):
