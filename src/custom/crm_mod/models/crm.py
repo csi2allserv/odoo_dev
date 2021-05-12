@@ -30,15 +30,12 @@ class CrmLead(models.Model):
     #REQ #20
     @api.model
     def create(self, vals):
-        lead_type = dict(self._fields['tipo_opor'].selection).\
-            get(vals.get('tipo_opor'))
+        lead_type = dict(self._fields['tipo_opor'].selection).get(vals.get('tipo_opor'))
         if vals.get('categs_ids', False):
             categs_ids = vals.get('categs_ids', False)
             try:
                 ids = categs_ids[0][2]
-                cat_names = [cat.name for cat in \
-                    self.env['product.category'].\
-                    search([('id','in',ids)])]
+                cat_names = [cat.name for cat in self.env['product.category'].search([('id','in',ids)])]
             except Exception as e:
                 _logger.critical('Error: %e'%e)
                 cat_names = []
