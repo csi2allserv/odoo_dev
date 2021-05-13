@@ -415,17 +415,6 @@ class Lead(models.Model):
         print(x[0])
         x = int(x[0])
         x = x + 1
-        query = "SELECT subtask_project_id FROM public.project_project ORDER BY subtask_project_id DESC LIMIT 1;"
-        self._cr.execute(query)
-        self._cr.commit()
-        data = self._cr.dictfetchall()
-        txt = str(data)
-        a = txt.split(": ")
-        print(a[1])
-        a = a[1].split("}")
-        print(a[0])
-        a = int(a[0])
-        a = a + 1
         self.fecha = datetime.now()
         query = "INSERT INTO public.project_project(name,active,sequence,company_id,alias_id,privacy_visibility,percentage_satisfaction_task,percentage_satisfaction_project,rating_request_deadline,rating_status,portal_show_rating,create_uid,create_date,write_uid,write_date,label_tasks) VALUES ('"+str(self.name)+"','TRUE',10,1,'"+str(x)+"','portal',-1,-1,'"+str(self.fecha)+"','no',FALSE,1,'"+str(self.fecha)+"',1,'"+str(self.fecha)+"','Tareas');"
         self._cr.execute(query)
@@ -437,7 +426,19 @@ class Lead(models.Model):
         self._cr.execute(query)
         self._cr.commit()
         self.fecha = datetime.now()
-        query = "INSERT INTO public.maintenance_request(name,kanban_state,company_id,stage_id,archive,maintenance_type,maintenance_team_id,duration,location_type_id,create_uid,create_date,write_uid,write_date,employee_id,validador,code)VALUES ('"+str(self.name)+"','normal',1,1,'FALSE','corrective',1,8,2,2,'"+str(self.fecha)+"',2,'"+str(self.fecha)+"',1,'FALSE','MMS-20"+str(self.fecha)+"');"
+        query = "SELECT code FROM public.maintenance_request ORDER BY code DESC LIMIT 1;"
+        self._cr.execute(query)
+        self._cr.commit()
+        data = self._cr.dictfetchall()
+        txt = str(data)
+        x = txt.split("-")
+        print(x[1])
+        x = x[1].split("'")
+        print(x[0])
+        x = int(x[0])
+        x = x + 1
+        print(str(x))
+        query = "INSERT INTO public.maintenance_request(name,kanban_state,company_id,stage_id,archive,maintenance_type,maintenance_team_id,duration,location_type_id,create_uid,create_date,write_uid,write_date,employee_id,validador,code)VALUES ('"+str(self.name)+"','normal',1,1,'FALSE','corrective',1,8,2,2,'"+str(self.fecha)+"',2,'"+str(self.fecha)+"',1,'FALSE','MMS-"+str(x)+"');"
         self._cr.execute(query)
         self._cr.commit()
 
