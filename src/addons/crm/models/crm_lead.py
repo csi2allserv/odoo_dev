@@ -404,6 +404,32 @@ class Lead(models.Model):
         query = "UPDATE crm_lead SET color='4' WHERE id='" + str(self.id) + "'"
         self._cr.execute(query)
         self._cr.commit()
+        query = "SELECT alias_id FROM public.project_project ORDER BY alias_id DESC LIMIT 1;"
+        self._cr.execute(query)
+        self._cr.commit()
+        data = self._cr.dictfetchall()
+        txt = str(data)
+        x = txt.split(": ")
+        print(x[1])
+        x = x[1].split("}")
+        print(x[0])
+        x = int(x[0])
+        x = x + 1
+        query = "SELECT subtask_project_id FROM public.project_project ORDER BY subtask_project_id DESC LIMIT 1;"
+        self._cr.execute(query)
+        self._cr.commit()
+        data = self._cr.dictfetchall()
+        txt = str(data)
+        a = txt.split(": ")
+        print(a[1])
+        a = a[1].split("}")
+        print(a[0])
+        a = int(a[0])
+        a = a + 1
+        self.fecha = datetime.now()
+        query = "INSERT INTO public.project_project(name,active,sequence,company_id,alias_id,privacy_visibility,percentage_satisfaction_task,percentage_satisfaction_project,rating_request_deadline,rating_status,portal_show_rating,create_uid,create_date,write_uid,write_date,label_tasks) VALUES ('"+str(self.name)+"','TRUE',10,1,'"+str(x)+"','portal',-1,-1,'"+str(self.fecha)+"','no',FALSE,1,'"+str(self.fecha)+"',1,'"+str(self.fecha)+"','Tareas');"
+        self._cr.execute(query)
+        self._cr.commit()
     @api.multi
     def action_create_mantenimiento(self):
         print("Hola mundo mantenimiento")
