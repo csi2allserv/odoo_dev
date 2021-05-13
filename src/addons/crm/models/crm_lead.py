@@ -415,7 +415,11 @@ class Lead(models.Model):
         print(x[0])
         x = int(x[0])
         x = x + 1
+        print(str(x))
         self.fecha = datetime.now()
+        query = "INSERT INTO public.mail_alias(alias_model_id,alias_parent_model_id,alias_contact, create_uid, create_date, write_uid, write_date,alias_defaults) VALUES (148,148,'everyone',1,'2021-05-13 13:50',1,'2021-05-13 13:50','{}');"
+        self._cr.execute(query)
+        self._cr.commit()
         query = "INSERT INTO public.project_project(name,active,sequence,company_id,alias_id,privacy_visibility,percentage_satisfaction_task,percentage_satisfaction_project,rating_request_deadline,rating_status,portal_show_rating,create_uid,create_date,write_uid,write_date,label_tasks) VALUES ('"+str(self.name)+"','TRUE',10,1,'"+str(x)+"','portal',-1,-1,'"+str(self.fecha)+"','no',FALSE,1,'"+str(self.fecha)+"',1,'"+str(self.fecha)+"','Tareas');"
         self._cr.execute(query)
         self._cr.commit()
