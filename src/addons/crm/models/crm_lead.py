@@ -445,7 +445,7 @@ class Lead(models.Model):
         query = "INSERT INTO public.maintenance_request(name,kanban_state,company_id,stage_id,archive,maintenance_type,maintenance_team_id,duration,location_type_id,create_uid,create_date,write_uid,write_date,employee_id,validador,code)VALUES ('"+str(self.name)+"','normal',1,1,'FALSE','corrective',1,8,2,2,'"+str(self.fecha)+"',2,'"+str(self.fecha)+"',1,'FALSE','MMS-"+str(x)+"');"
         self._cr.execute(query)
         self._cr.commit()
-
+    # fin del codigo
     @api.multi
     def action_set_won_rainbowman(self):
         self.ensure_one()
