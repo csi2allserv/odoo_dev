@@ -213,6 +213,11 @@
                                 <field name="informacion" class="oe_inline oe_input_align"/>
                             </div>
                         </page>
+                        <page name="Material" string="Materiales">
+                                <field name="matex" attrs="{'invisible': True}"/>
+                                <field name="MaterialesSolicitados"></field>
+                                <field name="codigomateriales"></field>
+                        </page>
                     </notebook>
                 </sheet>
                 <div class="oe_chatter">
