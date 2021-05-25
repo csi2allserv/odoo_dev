@@ -414,11 +414,13 @@
                         <page string="Materiales" class="h3">
                             <field name="proyectomaterial">
                                 <tree editable="bottom">
+                                    <field name="option"/>
                                     <field name="material_proyecto"/>
                                     <field name="serial" min="1"/>
                                     <field name="cantidad" min="1" max="5"/>
                                     <field name="unidadmedida"/>
                                     <field name="fotosoporte" widget="image" class="w-25 mh-25" accept=".jpg"/>
+                                    <field name="name" invisible="True"/>
                                 </tree>
                             </field>
                         </page>

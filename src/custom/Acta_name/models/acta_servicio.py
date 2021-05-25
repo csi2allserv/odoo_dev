@@ -142,9 +142,6 @@ class ActaServicio(models.Model):
                     self.codigo_acta_nombre = ''
                     self.codigo_acta_tipo = ''
                     self.falla_reportada_proyecto = ''
-
-
-
     @api.constrains('notes')
     @api.one
     def _check_your_field(self):
@@ -277,7 +274,8 @@ class actividades_proyectos(models.Model):
 class materiales_proyecto(models.Model):
     _name = 'materiales_proyecto'
     _rec_name = 'material_proyecto'
-    material_proyecto = fields.Many2one('nombres_materiales_proyecti', required=True)
+    option = fields.Many2one('palomita')
+    material_proyecto = fields.Many2one('materialesdelcrm_tabla', domain="[('name','=',(name))]", required=True)
     serial = fields.Integer()
     cantidad = fields.Integer()
     fotosoporte = fields.Binary(string='soporte fotografico')
@@ -286,6 +284,13 @@ class materiales_proyecto(models.Model):
                               ('t3','N/A')],
                             required=True, string='Unidad de medida')
     opuesto = fields.Many2one('acta.servicio', string="", readonly="True")
+    name = fields.Char()
+
+    @api.onchange('option')
+    def _opciones(self):
+        if self.option:
+            print('hola')
+            self.name = self.opuesto.datosproyecto
 
 #esta clase quedaria momentania mientras se hace la coneccion con almacen
 class nombres_materiales_proyecti(models.Model):
@@ -455,3 +460,9 @@ class suministro_metalmecanicos(models.Model):
     _name = 'suministro.metalmecanicos'
     _rec_name = 'nombre'
     nombre = fields.Char('Nombre del compartimiento', required=True)
+
+    #codigo para ingrar la palomita de seleccion
+class palomita(models.Model):
+    _name = 'palomita'
+    _rec_name = 'nombre'
+    nombre = fields.Char('palomita', required=True)

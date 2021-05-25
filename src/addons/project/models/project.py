@@ -1033,13 +1033,9 @@ class ProjectTags(models.Model):
         ('name_uniq', 'unique (name)', "Tag name already exists!"),
     ]
 
-
-
-
-
 class materialesdelcrm_tabla(models.Model):
     _name = 'materialesdelcrm_tabla'
-    _rec_name = 'name'
+    _rec_name = 'codigomateriales'
     MaterialesSolicitados = fields.Many2one('sale.order',  domain="[('origin','=',(name))]")  # este trae el codigo
     codigomateriales = fields.Many2one('sale.order.line',  domain="[('order_id','=',(matex))]")  # este trae el nombre del material
     matex = fields.Integer()
