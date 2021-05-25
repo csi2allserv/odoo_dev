@@ -213,10 +213,18 @@
                                 <field name="informacion" class="oe_inline oe_input_align"/>
                             </div>
                         </page>
-                        <page name="Material" string="Materiales">
-                                <field name="matex" attrs="{'invisible': True}"/>
-                                <field name="MaterialesSolicitados"></field>
-                                <field name="codigomateriales"></field>
+                        <page name="Material" string="Materiales Vendidas">
+                            <field name="tablamaterial">
+                                <tree editable="bottom" >
+                                    <field name="option" string="Seleccione"/>
+                                    <field name="MaterialesSolicitados" string="Codigo de la factura" />
+                                    <field name="codigomateriales" string=" Producto " />
+                                    <field name="cantidad" string="Cantidad vendida" />
+                                    <field name="matex" invisible="True" />
+                                    <field name="name" invisible="True" />
+                                    <field name="opuesto" invisible="True"/>
+                                </tree>
+                            </field>
                         </page>
                     </notebook>
                 </sheet>

@@ -17,6 +17,7 @@
         'web',
         'web_tour',
         'digest',
+        'sale',
     ],
     'description': "",
     'data': [

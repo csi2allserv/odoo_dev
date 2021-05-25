@@ -181,8 +181,6 @@ class ActaServicio(models.Model):
             self.xentero = self.datosproyecto.id
             print(str(self.xentero))
 
-
-
     # esta funcion es la que arrastra los datos seleccionados en prueba2 que es igual a llamar el numero de servicio
     @api.onchange('prueba2')
     def _onchange_city_id(self):

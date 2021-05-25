@@ -263,16 +263,7 @@ class Project(models.Model):
     codigodeproyectos = fields.Char()
     locacionNombre = fields.Char()
     enidadproyecto = fields.Many2one('res.partner')
-    matex = fields.Integer()
-    MaterialesSolicitados = fields.Many2one('sale.order', domain="[('origin','=',(name))]")
-    codigomateriales = fields.Many2one('sale.order.line', domain="[('order_id','=',(matex))]")
-    @api.onchange('MaterialesSolicitados')
-    def _validador(self):
-        if self.MaterialesSolicitados:
-            self.matex = self.MaterialesSolicitados.id
-            print(str(self.matex))
-
-
+    tablamaterial = fields.One2many('materialesdelcrm_tabla', 'opuesto')
 
     # fin del codigo
 
@@ -1041,3 +1032,43 @@ class ProjectTags(models.Model):
     _sql_constraints = [
         ('name_uniq', 'unique (name)', "Tag name already exists!"),
     ]
+
+
+
+
+
+class materialesdelcrm_tabla(models.Model):
+    _name = 'materialesdelcrm_tabla'
+    _rec_name = 'name'
+    MaterialesSolicitados = fields.Many2one('sale.order',  domain="[('origin','=',(name))]")  # este trae el codigo
+    codigomateriales = fields.Many2one('sale.order.line',  domain="[('order_id','=',(matex))]")  # este trae el nombre del material
+    matex = fields.Integer()
+    name = fields.Char()
+    cantidad = fields.Integer()
+    opuesto = fields.Many2one('project.project', string="", readonly="True")
+    option = fields.Many2one('palomita')
+
+    @api.onchange('codigomateriales')
+    def _cantidad(self):
+        if self.codigomateriales:
+            print('hola')
+            self.cantidad = self.codigomateriales.product_uom_qty
+            print(str(self.cantidad))
+
+    @api.onchange('option')
+    def _opciones(self):
+        if self.option:
+            print('hola')
+            self.name = self.opuesto.name
+
+    @api.onchange('MaterialesSolicitados')
+    def _validador(self):
+        if self.MaterialesSolicitados:
+            self.matex = self.MaterialesSolicitados.id
+            print(str(self.matex))
+            print(str(self.opuesto))
+
+class palomita(models.Model):
+    _name = 'palomita'
+    _rec_name = 'nombre'
+    nombre = fields.Char('palomita', required=True)
