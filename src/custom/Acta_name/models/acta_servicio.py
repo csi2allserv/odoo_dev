@@ -277,20 +277,26 @@ class materiales_proyecto(models.Model):
     option = fields.Many2one('palomita')
     material_proyecto = fields.Many2one('materialesdelcrm_tabla', domain="[('name','=',(name))]", required=True)
     serial = fields.Integer()
-    cantidad = fields.Integer()
+    cantidad = fields.Integer(string="", readonly="True")
     fotosoporte = fields.Binary(string='soporte fotografico')
-    unidadmedida = fields.Selection([('t1', 'unidades'),
-                            ('t2', 'metros'),
-                              ('t3','N/A')],
-                            required=True, string='Unidad de medida')
+    # unidadmedida = fields.Selection([('t1', 'unidades'),
+    #                         ('t2', 'metros'),
+    #                           ('t3','N/A')],
+    #                         required=True, string='Unidad de medida')
     opuesto = fields.Many2one('acta.servicio', string="", readonly="True")
-    name = fields.Char()
+    name = fields.Char(string="", readonly="True", invisible="True")
 
     @api.onchange('option')
     def _opciones(self):
         if self.option:
             print('hola')
-            self.name = self.opuesto.datosproyecto
+            self.name = self.opuesto.datosproyecto.name
+            print(str(self.name))
+
+    @api.onchange('material_proyecto')
+    def _cantidad(self):
+        if self.material_proyecto:
+            self.cantidad = self.material_proyecto.cantidad
 
 #esta clase quedaria momentania mientras se hace la coneccion con almacen
 class nombres_materiales_proyecti(models.Model):
