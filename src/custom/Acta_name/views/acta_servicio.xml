@@ -23,9 +23,10 @@
                             <div class="oe_kanban_details">
                                 <div class="oe_kanban_tags_section">
                                     <ul class="list-group">
-                                         <li class="list-group-item">Serial mantenimiento : <field name="prueba2"/> </li>
-                                         <li class="list-group-item">Serial mantenimiento : <field name="datosproyecto"/> </li>
-                                         <li class="list-group-item">Tecnico : <field name="tecnico_acta"/></li>
+                                        <li class="list-group-item">Serial mantenimiento : <field name="prueba2"/> </li>
+                                        <li class="list-group-item">Serial mantenimiento : <field name="datosproyecto"/> </li>
+                                        <li class="list-group-item">Tecnico : <field name="tecnico_acta"/></li>
+                                        <li class="list-group-item">Calificacion : <field name="sumencuesta"/></li>
                                     </ul>
                                 </div>
                             </div>
@@ -45,6 +46,7 @@
                 <field name="prueba2" string="Serial mantenimiento"/>
                 <field name="datosproyecto" string="Serial proyectos"/>
                 <field name="tecnico_acta" string="Tecnico"/>
+                <field name="sumencuesta" string="Calificacion servicio"/>
             </tree>
         </field>
     </record>
@@ -637,7 +639,7 @@
                             <field name="observaciones_generales" invisible="True"/>
                         </div>
                     </div>
-                    <div><field name="entidadmantenimiento" /></div>
+                    <div><field name="entidadmantenimiento" invisible="True" /></div>
                     <div class="row">
                         <div class="col-md-6">
                             <p class="p-3 mb-2 bg-primary text-white d-flex justify-content-center h3">Ingrese la firma</p>

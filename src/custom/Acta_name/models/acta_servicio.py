@@ -1,8 +1,6 @@
 import time
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError, UserError
-import psycopg2
-
 
 class ActaServicio(models.Model):
     _name = 'acta.servicio'
@@ -116,7 +114,8 @@ class ActaServicio(models.Model):
     # variables para proyectos
     #Listaactividades = fields.Many2many('project.project', store=True, string='datos')
 
-
+    #suma de valores
+    sumencuesta = fields.Integer()
     #Encuenta bancolombia
     pregunta1 = fields.Selection([('s1', 'si'),('s2', 'no')])
     pregunta2 = fields.Selection([('s1', 'si'), ('s2', 'no')])
@@ -127,7 +126,7 @@ class ActaServicio(models.Model):
     pregunta7 = fields.Selection([('s1', 'si'), ('s2', 'no')])
 
     #Encuesta BBVA
-    entidadmantenimiento = fields.Char()
+    entidadmantenimiento = fields.Char(invisible="True")
     pregunta8 = fields.Selection([('s1','Excelente'),('s2','Bueno'),('s3','Regular'),('s4','Malo'),('s5','No responde')])
     pregunta9 = fields.Selection([('s1','Excelente'),('s2','Bueno'),('s3','Regular'),('s4','Malo'),('s5','No responde')])
     pregunta10 = fields.Selection([('s1','Excelente'),('s2','Bueno'),('s3','Regular'),('s4','Malo'),('s5','No responde')])
@@ -165,6 +164,66 @@ class ActaServicio(models.Model):
                     self.codigo_acta_tipo = ''
                     self.falla_reportada_proyecto = ''
                     self.entidadmantenimiento = ''
+    #se asigna el resultado de la encuesta
+    @api.constrains('entidadmantenimiento')
+    @api.one
+    def _check_your_field(self):
+        if self.entidadmantenimiento == '1':
+            resultadovec = []
+            for x in range(5):
+                if len(resultadovec) == 0:
+                    resultadovec.extend([f"{self.pregunta8}"])
+                elif len(resultadovec) == 1:
+                    resultadovec.extend([f"{self.pregunta9}"])
+                elif len(resultadovec) == 2:
+                    resultadovec.extend([f"{self.pregunta10}"])
+                elif len(resultadovec) == 3:
+                    resultadovec.extend([f"{self.pregunta11}"])
+                elif len(resultadovec) == 4:
+                    resultadovec.extend([f"{self.pregunta12}"])
+            print(resultadovec)
+            for x in range(len(resultadovec)):
+                if resultadovec[x] == 's1':
+                    y = y + 10
+                elif resultadovec[x] == 's2':
+                    y = y + 8
+                elif resultadovec[x] == 's3':
+                    y = y + 6
+                elif resultadovec[x] == 's4':
+                    y = y + 4
+                elif resultadovec[x] == 's5':
+                    y = y + 2
+            self.sumencuesta = y * 5 / 5
+            round(self.sumencuesta)
+            print(self.sumencuesta)
+        elif self.entidadmantenimiento == '2':
+            resultadovec1 = []
+            for x in range(7):
+                if len(resultadovec1) == 0:
+                    resultadovec1.extend([f"{self.pregunta1}"])
+                elif len(resultadovec1) == 1:
+                    resultadovec1.extend([f"{self.pregunta2}"])
+                elif len(resultadovec1) == 2:
+                    resultadovec1.extend([f"{self.pregunta3}"])
+                elif len(resultadovec1) == 3:
+                    resultadovec1.extend([f"{self.pregunta4}"])
+                elif len(resultadovec1) == 4:
+                    resultadovec1.extend([f"{self.pregunta5}"])
+                elif len(resultadovec1) == 5:
+                    resultadovec1.extend([f"{self.pregunta6}"])
+                elif len(resultadovec1) == 6:
+                    resultadovec1.extend([f"{self.pregunta7}"])
+            print(len(resultadovec1))
+            print(f'este es el resultado{resultadovec1}')
+            y = int(0)
+            for x in range(len(resultadovec1)):
+                if resultadovec1[x] == 's':
+                    y = y + 7.1
+                elif resultadovec1[x] == 'n':
+                    y = y + 2
+            self.sumencuesta = y * 5 / 5
+            round(self.sumencuesta)
+            print(f'esta es la encuesta{self.sumencuesta}')
     @api.constrains('notes')
     @api.one
     def _check_your_field(self):
