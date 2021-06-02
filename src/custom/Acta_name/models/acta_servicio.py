@@ -125,7 +125,17 @@ class ActaServicio(models.Model):
     pregunta5 = fields.Selection([('s1', 'si'), ('s2', 'no')])
     pregunta6 = fields.Selection([('s1', 'si'), ('s2', 'no')])
     pregunta7 = fields.Selection([('s1', 'si'), ('s2', 'no')])
+
+    #Encuesta BBVA
+    entidadmantenimiento = fields.Char()
+    pregunta8 = fields.Selection([('s1','Excelente'),('s2','Bueno'),('s3','Regular'),('s4','Malo'),('s5','No responde')])
+    pregunta9 = fields.Selection([('s1','Excelente'),('s2','Bueno'),('s3','Regular'),('s4','Malo'),('s5','No responde')])
+    pregunta10 = fields.Selection([('s1','Excelente'),('s2','Bueno'),('s3','Regular'),('s4','Malo'),('s5','No responde')])
+    pregunta11 = fields.Selection([('s1','Excelente'),('s2','Bueno'),('s3','Regular'),('s4','Malo'),('s5','No responde')])
+    pregunta12 = fields.Selection([('s1','Excelente'),('s2','Bueno'),('s3','Regular'),('s4','Malo'),('s5','No responde')])
+
     #funciones
+
     # codigo de limpieza
     @api.onchange('area_pt')
     def _funcion_limpiar(self):
@@ -142,6 +152,19 @@ class ActaServicio(models.Model):
                     self.codigo_acta_nombre = ''
                     self.codigo_acta_tipo = ''
                     self.falla_reportada_proyecto = ''
+                    self.entidadmantenimiento = ''
+                elif self.area_pt == 'pt2':
+                    print('Limpiar')
+                    self.tecnico_acta = ''
+                    self.entidadproyecto = ''
+                    self.entidad_acta = ''
+                    self.ciudad_acta = ''
+                    self.falla_reportada_acta = ''
+                    self.codigo_acta = ''
+                    self.codigo_acta_nombre = ''
+                    self.codigo_acta_tipo = ''
+                    self.falla_reportada_proyecto = ''
+                    self.entidadmantenimiento = ''
     @api.constrains('notes')
     @api.one
     def _check_your_field(self):
@@ -176,6 +199,12 @@ class ActaServicio(models.Model):
             self.tecnico_acta = self.env.user.name
             self.falla_reportada_proyecto = self.datosproyecto.informacion
             self.xentero = self.datosproyecto.id
+            self.entidadmantenimiento = self.entidadproyecto
+            if self.entidadmantenimiento == 'Banco BBVA':
+                self.entidadmantenimiento = '1'
+            elif self.entidadmantenimiento == 'Bancolombia':
+                self.entidadmantenimiento = '2'
+            print(str(self.entidadmantenimiento))
             print(str(self.xentero))
 
     # esta funcion es la que arrastra los datos seleccionados en prueba2 que es igual a llamar el numero de servicio
@@ -191,7 +220,13 @@ class ActaServicio(models.Model):
             self.codigo_acta_nombre = self.prueba2.location_id.name
             self.codigo_acta_tipo = self.prueba2.location_id.location_type_id.name
             self.prueba2.validador = True
+            self.entidadmantenimiento = self.prueba2.partner_id.name
             print(self.prueba2.validador)
+            if self.entidadmantenimiento == 'Banco BBVA':
+                self.entidadmantenimiento = '1'
+            elif self.entidadmantenimiento == 'Bancolombia':
+                self.entidadmantenimiento = '2'
+            print(str(self.entidadmantenimiento))
 
 
 
