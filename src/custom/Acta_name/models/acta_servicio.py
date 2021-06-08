@@ -167,7 +167,9 @@ class ActaServicio(models.Model):
     #se asigna el resultado de la encuesta
     @api.constrains('entidadmantenimiento')
     @api.one
-    def _check_your_field(self):
+    def calificarnotas(self):
+        print('ingreso a calificar')
+        y = int(0)
         if self.entidadmantenimiento == '1':
             resultadovec = []
             for x in range(5):
@@ -197,6 +199,7 @@ class ActaServicio(models.Model):
             round(self.sumencuesta)
             print(self.sumencuesta)
         elif self.entidadmantenimiento == '2':
+            print('Ingreso a las notas')
             resultadovec1 = []
             for x in range(7):
                 if len(resultadovec1) == 0:
@@ -215,15 +218,15 @@ class ActaServicio(models.Model):
                     resultadovec1.extend([f"{self.pregunta7}"])
             print(len(resultadovec1))
             print(f'este es el resultado{resultadovec1}')
-            y = int(0)
             for x in range(len(resultadovec1)):
-                if resultadovec1[x] == 's':
+                print(str(resultadovec1[x]))
+                if resultadovec1[x] == 's1':
                     y = y + 7.1
-                elif resultadovec1[x] == 'n':
+                elif resultadovec1[x] == 's2':
                     y = y + 2
             self.sumencuesta = y * 5 / 5
             round(self.sumencuesta)
-            print(f'esta es la encuesta{self.sumencuesta}')
+            print(f'esta es la encuesta {self.sumencuesta}')
     @api.constrains('notes')
     @api.one
     def _check_your_field(self):
