@@ -636,7 +636,7 @@
                             <p class="p-3 mb-2 bg-primary text-white d-flex justify-content-center h3" >En el siguiente recuadro, haga anotaciones concisas que no hayan sido mencionadas</p>
                         </div>
                         <div class="col-md-6">
-                            <field name="observaciones_generales" invisible="True"/>
+                            <field name="observaciones_generales"/>
                         </div>
                     </div>
                     <div><field name="entidadmantenimiento" invisible="True" /></div>
