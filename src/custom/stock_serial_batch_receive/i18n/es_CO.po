@@ -1,0 +1,143 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* stock_serial_batch_receive
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: <>\n"
+"Language-Team: Spanish (Colombia)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es_CO\n"
+"Plural-Forms: \n"
+
+#. module: stock_serial_batch_receive
+#: model:ir.model,name:stock_serial_batch_receive.model_stock_move_line_serial_generator
+msgid "Auto generate serial numbers"
+msgstr "Generar números seriales"
+
+#. module: stock_serial_batch_receive
+#: model_terms:ir.ui.view,arch_db:stock_serial_batch_receive.view_stock_move_line_serial_generator
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: stock_serial_batch_receive
+#: model:ir.model.fields,field_description:stock_serial_batch_receive.field_stock_move__picking_type_create_lots
+#: model:ir.model.fields,field_description:stock_serial_batch_receive.field_stock_move_line_serial_generator__picking_type_create_lots
+msgid "Create New Lots/Serial Numbers"
+msgstr "Crear nuevos lotes o números seriales"
+
+#. module: stock_serial_batch_receive
+#: model:ir.model.fields,field_description:stock_serial_batch_receive.field_stock_move_line_serial_generator__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: stock_serial_batch_receive
+#: model:ir.model.fields,field_description:stock_serial_batch_receive.field_stock_move_line_serial_generator__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: stock_serial_batch_receive
+#: model:ir.model.fields,help:stock_serial_batch_receive.field_stock_move_line_serial_generator__qty_to_process
+msgid "Defines how many serial numbers will be generated on stock move lines without a serial number yet."
+msgstr "Define cuantos números seriales sean generados en las lineas de stock sin número serial."
+
+#. module: stock_serial_batch_receive
+#: model:ir.model.fields,field_description:stock_serial_batch_receive.field_stock_move_line_serial_generator__display_name
+msgid "Display Name"
+msgstr "Mostrar Nombre"
+
+#. module: stock_serial_batch_receive
+#: model:ir.model.fields,field_description:stock_serial_batch_receive.field_stock_move_line_serial_generator__first_number
+msgid "First Number"
+msgstr "Primer Número"
+
+#. module: stock_serial_batch_receive
+#: model:ir.actions.act_window,name:stock_serial_batch_receive.act_stock_move_line_serial_generator
+#: model_terms:ir.ui.view,arch_db:stock_serial_batch_receive.view_stock_move_operations
+msgid "Generate serial numbers"
+msgstr "Generar números seriales"
+
+#. module: stock_serial_batch_receive
+#: model_terms:ir.ui.view,arch_db:stock_serial_batch_receive.view_stock_move_line_serial_generator
+msgid "Generate serials"
+msgstr "Generar seriales"
+
+#. module: stock_serial_batch_receive
+#: model:ir.model.fields,field_description:stock_serial_batch_receive.field_stock_move_line_serial_generator__id
+msgid "ID"
+msgstr "ID"
+
+#. module: stock_serial_batch_receive
+#: model:ir.model.fields,help:stock_serial_batch_receive.field_stock_move__picking_type_create_lots
+#: model:ir.model.fields,help:stock_serial_batch_receive.field_stock_move_line_serial_generator__picking_type_create_lots
+msgid "If this is checked only, it will suppose you want to create new Lots/Serial Numbers, so you can provide them in a text field. "
+msgstr "Si solo está marcado, supondrá que desea crear nuevos lotes / números de serie, para que pueda proporcionarlos en un campo de texto. "
+
+#. module: stock_serial_batch_receive
+#: model:ir.model.fields,field_description:stock_serial_batch_receive.field_stock_move_line_serial_generator____last_update
+msgid "Last Modified on"
+msgstr "Última modificación"
+
+#. module: stock_serial_batch_receive
+#: model:ir.model.fields,field_description:stock_serial_batch_receive.field_stock_move_line_serial_generator__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: stock_serial_batch_receive
+#: model:ir.model.fields,field_description:stock_serial_batch_receive.field_stock_move_line_serial_generator__write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: stock_serial_batch_receive
+#: code:addons/stock_serial_batch_receive/wizard/stock_move_line_serial_generator.py:107
+#, python-format
+msgid "Only numbers are allowed"
+msgstr "Solo números son permitidos"
+
+#. module: stock_serial_batch_receive
+#: model:ir.model.fields,field_description:stock_serial_batch_receive.field_stock_move_line_serial_generator__product_id
+msgid "Product"
+msgstr "Producto"
+
+#. module: stock_serial_batch_receive
+#: model:ir.model.fields,field_description:stock_serial_batch_receive.field_stock_move_line_serial_generator__qty_to_process
+msgid "Qty To Process"
+msgstr "Cantidad a procesar"
+
+#. module: stock_serial_batch_receive
+#: code:addons/stock_serial_batch_receive/wizard/stock_move_line_serial_generator.py:124
+#, python-format
+msgid "Quantity to process is not equal to quantity of generated serial numbers"
+msgstr "La cantidad a procesar no es igual a la cantidad de números seriales generados"
+
+#. module: stock_serial_batch_receive
+#: model:ir.model,name:stock_serial_batch_receive.model_stock_move
+#: model:ir.model.fields,field_description:stock_serial_batch_receive.field_stock_move_line_serial_generator__stock_move_id
+msgid "Stock Move"
+msgstr "Movimiento de inventario"
+
+#. module: stock_serial_batch_receive
+#: code:addons/stock_serial_batch_receive/wizard/stock_move_line_serial_generator.py:61
+#, python-format
+msgid "The following serial numbers are already in use:\n"
+"%s"
+msgstr "Los siguientes número seriales ya estan en uso:\n"
+"%s"
+#. module: stock_serial_batch_receive
+#: code:addons/stock_serial_batch_receive/wizard/stock_move_line_serial_generator.py:66
+#, python-format
+msgid "The following serial numbers don't exist:\n"
+"%s"
+msgstr "Los siguientes número seriales no existen:\n"
+"%s"
+
+#. module: stock_serial_batch_receive
+#: code:addons/stock_serial_batch_receive/wizard/stock_move_line_serial_generator.py:81
+#, python-format
+msgid "The qty received cannot exceed the number of move lines not having a serial number yet. (%s)"
+msgstr "La cantidad recibida no puede exceder la cantidad de líneas de movimiento que aún no tienen un número de serie. (%s)"
+
