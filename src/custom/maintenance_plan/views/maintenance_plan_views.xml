@@ -35,7 +35,9 @@
                     </div>
                     <group>
                         <field name="equipment_id" invisible="context.get('hide_equipment_id', 0)"/>
-                        <field name="maintenance_kind_id"/>
+<!--                        william acosta-->
+                        <field name="maintenance_kind_id" invisible="True"/>
+<!--                        william acosta-->
                         <field name="maintenance_team_id" attrs="{'required': [('equipment_id', '=', False)]}"/>
                     </group>
                     <group>
@@ -73,7 +75,9 @@
         <field name="arch" type="xml">
             <tree string="Maintenance Plans" decoration-muted="active == False">
                 <field name="equipment_id"/>
-                <field name="maintenance_kind_id"/>
+<!--                william acosta-->
+                <field name="maintenance_kind_id" invisible="True"/>
+<!--                william acosta-->
                 <field name="maintenance_team_id"/>
                 <field name="name"/>
                 <field name="start_maintenance_date"/>
@@ -94,7 +98,9 @@
         <field name="arch" type="xml">
             <search string="Maintenance Plans">
                 <field name="equipment_id"/>
-                <field name="maintenance_kind_id"/>
+<!--                william acosta-->
+                <field name="maintenance_kind_id" invisible="True"/>
+<!--                william acosta-->
                 <field name="maintenance_team_id"/>
                 <field name="name"/>
                 <field name="start_maintenance_date"/>

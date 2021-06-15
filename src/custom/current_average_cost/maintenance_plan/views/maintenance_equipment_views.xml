@@ -19,7 +19,9 @@
                 <group name="maintenance">
                     <field name="maintenance_plan_ids" nolabel="1" context="{'default_equipment_id': active_id, 'hide_equipment_id': 1}">
                         <tree string="Plans">
-                            <field name="maintenance_kind_id"/>
+<!--                            william acosta-->
+                            <field name="maintenance_kind_id" invisible="True"/>
+<!--                            william acosta-->
                             <field name="maintenance_team_id"/>
                             <field name="name"/>
                             <field name="start_maintenance_date"/>
@@ -49,7 +51,9 @@
         <field name="inherit_id" ref="maintenance.hr_equipment_request_view_form" />
         <field name="arch" type="xml">
             <field name="maintenance_type" position="after">
-                <field name="maintenance_kind_id" />
+<!--                william acosta-->
+                <field name="maintenance_kind_id"  invisible="True"/>
+<!--                william acosta-->
             </field>
             <field name="description" position="replace">
                 <notebook>

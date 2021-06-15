@@ -14,7 +14,9 @@
         <!--  Maintenance plans -->
         <record id="maintenance_plan_monthly_monitor1" model="maintenance.plan">
             <field name="equipment_id" ref="maintenance.equipment_monitor1" />
-            <field name="maintenance_kind_id" ref="maintenance_kind_monthly" />
+<!--            william acosta mosquera-->
+            <field name="maintenance_kind_id" ref="maintenance_kind_monthly" invisible="True" />
+<!--            william acosta mosquera-->
             <field name="interval">1</field>
             <field name="interval_step">month</field>
             <field name="duration">2</field>
@@ -24,7 +26,9 @@
 
         <record id="maintenance_plan_monthly_monitor4" model="maintenance.plan">
             <field name="equipment_id" ref="maintenance.equipment_monitor4" />
-            <field name="maintenance_kind_id" ref="maintenance_kind_monthly" />
+<!--            modificacion por william acosta-->
+            <field name="maintenance_kind_id" ref="maintenance_kind_monthly" invisible="True" />
+<!--            modificacion por william acosta-->
             <field name="interval">1</field>
             <field name="interval_step">month</field>
             <field name="duration">2</field>
@@ -34,7 +38,9 @@
 
         <record id="maintenance_plan_monthly_monitor6" model="maintenance.plan">
             <field name="equipment_id" ref="maintenance.equipment_monitor6" />
-            <field name="maintenance_kind_id" ref="maintenance_kind_monthly" />
+<!--            william acosta mosquera-->
+            <field name="maintenance_kind_id" ref="maintenance_kind_monthly" invisible="True" />
+<!--            william acosta mosquera-->
             <field name="interval">1</field>
             <field name="interval_step">month</field>
             <field name="duration">2</field>
@@ -44,7 +50,9 @@
 
         <record id="maintenance_plan_monthly_printer1" model="maintenance.plan">
             <field name="equipment_id" ref="maintenance.equipment_printer1" />
-            <field name="maintenance_kind_id" ref="maintenance_kind_monthly" />
+<!--            william acosta mosquera-->
+            <field name="maintenance_kind_id" ref="maintenance_kind_monthly"  invisible="True"/>
+<!--            william acosta mosquera-->
             <field name="interval">1</field>
             <field name="interval_step">month</field>
             <field name="duration">4</field>
@@ -54,7 +62,9 @@
 
         <record id="maintenance_plan_weekly_printer1" model="maintenance.plan">
             <field name="equipment_id" ref="maintenance.equipment_printer1" />
-            <field name="maintenance_kind_id" ref="maintenance_kind_weekly" />
+<!--            william acosta mosquera-->
+            <field name="maintenance_kind_id" ref="maintenance_kind_weekly" invisible="True" />
+<!--            william acosta mosquera-->
             <field name="interval">7</field>
             <field name="duration">2</field>
             <field name="maintenance_plan_horizon">1</field>
