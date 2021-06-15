@@ -93,10 +93,8 @@
                             <field name="owner_user_id" string="Requested By"/>
                             
                             <!--field name="maintenance_team_id" options="{'no_create': True, 'no_open': True}" string="Proceso"/-->
-                            
-                            <field name="date_of_assignment" string="Fecha de Asignacion"/>
-                            <field name="request_date" string="Fecha de Inicio"/>
-                            <field name="end_date" string="Fecha Fin"/>
+                            <field name="user_id" string="Tecnico" attrs="{'readonly': [('location_id', '=', True)]}"/>
+                            <field name="planificador" string="Planificador"/>
                             <field name="duration" invisible="1" />
                             <field name="priority" widget="priority"/>
                         </group>
@@ -104,6 +102,36 @@
                     <notebook>
                         <page string="Falla Reportada" name="whiteboard">
                             <field name='description' placeholder="Falla Reportada ......."/>
+                        </page>
+                        <page string="Fechas" name="fehc">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h3>Fecha de Asignacion</h3>
+                                </div>
+                                <div class="col-md-3">
+                                    <field name="date_of_assignment" string="Fecha de Asignacion"/>
+                                </div>
+                                <div class="col-md-3">
+                                    <h3>Fecha vencimiento</h3>
+                                </div>
+                                <div class="col-md-3">
+                                     <field name="schedule_date" string="Fecha vencimiento"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h3>Fecha de Inicio</h3>
+                                </div>
+                                <div class="col-md-3">
+                                    <field name="request_date" string="Fecha de Inicio"/>
+                                </div>
+                                <div class="col-md-3">
+                                    <h3>Fecha Fin</h3>
+                                </div>
+                                <div class="col-md-3">
+                                     <field name="end_date" string="Fecha Fin"/>
+                                </div>
+                            </div>
                         </page>
                     </notebook>
                 </sheet>

@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 import time
+from calendar import calendar
+from calendar import day_name
 from datetime import date, datetime, timedelta
 
 from odoo import api, fields, models, SUPERUSER_ID, _
@@ -7,6 +9,9 @@ from odoo.exceptions import UserError
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT
 
 from odoo.exceptions import UserError, ValidationError
+from datetime import datetime
+from datetime import timedelta
+
 
 
 class MaintenanceStage(models.Model):
@@ -255,6 +260,62 @@ class MaintenanceEquipment(models.Model):
             if not next_requests:
                 equipment._create_new_request(equipment.next_action_date)
 
+#funcion creada por william acosta y efrain rojas
+#tener presente que una vez se cambie el año toca cambiar los dias festivos
+def day_habil():
+    dia = datetime.now()
+    cont = 1
+    for x in range(4):
+        cont = cont + 1
+        tomorrow = dia + timedelta(cont)
+        wek = day_name[tomorrow.weekday()]
+        d1 = tomorrow.strftime("%d/%m")
+        print(str(wek))
+        if wek == "sábado":
+            cont = cont + 1
+            print(str(wek))
+        elif wek == "domingo":
+            cont = cont + 1
+            print(str(wek))
+        elif d1 == "01/01":
+            cont = cont + 1
+        elif d1 == "11/01":
+            cont = cont + 1
+        elif d1 == "22/03":
+            cont = cont + 1
+        elif d1 == "01/04":
+            cont = cont + 1
+        elif d1 == "02/04":
+            cont = cont + 1
+        elif d1 == "01/05":
+            cont = cont + 1
+        elif d1 == "17/05":
+            cont = cont + 1
+        elif d1 == "07/06":
+            cont = cont + 1
+        elif d1 == "14/06":
+            cont = cont + 1
+        elif d1 == "05/07":
+            cont = cont + 1
+        elif d1 == "20/07":
+            cont = cont + 1
+        elif d1 == "07/08":
+            cont = cont + 1
+        elif d1 == "16/08":
+            cont = cont + 1
+        elif d1 == "18/10":
+            cont = cont + 1
+        elif d1 == "01/11":
+            cont = cont + 1
+        elif d1 == "15/11":
+            cont = cont + 1
+        elif d1 == "08/12":
+            cont = cont + 1
+        elif d1 == "25/12":
+            cont = cont + 1
+    return tomorrow
+
+
 class MaintenanceRequest(models.Model):
     _name = 'maintenance.request'
     _inherit = ['mail.thread', 'mail.activity.mixin']
@@ -292,8 +353,7 @@ class MaintenanceRequest(models.Model):
     request_date = fields.Datetime('Request Date', help="Fecha de inicio sodexo")
     end_date = fields.Datetime('Fecha fin', track_visibility='onchange',
                                help="Fecha fin sodexo")
-    date_of_assignment = fields.Datetime('Fecha de Asignacion', track_visibility='onchange',
-                               help="Fecha fin sodexo")
+    date_of_assignment = fields.Datetime('Fecha de Asignacion', track_visibility='onchange',  help="Fecha fin sodexo" , default=lambda self: fields.datetime.now())
     owner_user_id = fields.Many2one('res.users', string='Created by User', default=lambda s: s.env.uid)
     category_id = fields.Many2one('maintenance.equipment.category', related='equipment_id.category_id', string='Category', store=True, readonly=True)
     equipment_id = fields.Many2one('maintenance.equipment', string='Tipo de Sistema',
@@ -309,7 +369,7 @@ class MaintenanceRequest(models.Model):
     # active = fields.Boolean(default=True, help="Set active to false to hide the maintenance request without deleting it.")
     archive = fields.Boolean(default=False, help="Set archive to true to hide the maintenance request without deleting it.")
     maintenance_type = fields.Selection([('corrective', 'Corrective'), ('preventive', 'Preventive'),('proyecto', 'Proyectos')], string='Maintenance Type', default="corrective")
-    schedule_date = fields.Datetime('Scheduled Date', help="Date the maintenance team plans the maintenance.  It should not differ much from the Request Date. ")
+    schedule_date = fields.Datetime('Scheduled Date', help="Date the maintenance team plans the maintenance.  It should not differ much from the Request Date. " , default=lambda self: day_habil())
     maintenance_team_id = fields.Many2one('maintenance.team', string='Proceso', required=False, default=_get_default_team_id)
     duration = fields.Float(help="Duration in hours and minutes.", default='8')
     location_type_id = fields.Many2one('crm.customer.location.type', default=_default_location_type, \
@@ -319,8 +379,8 @@ class MaintenanceRequest(models.Model):
     city_id = fields.Many2one('res.city', string='Ciudad', readonly=True)
     partner_id = fields.Many2one('res.partner', string='Customer', track_visibility='onchange', track_sequence=1, index=True,
         help="Linked partner (optional). Usually created when converting the lead. You can find a partner by its Name, TIN, Email or Internal Reference.")
-
     #codigo realizado por william acosta
+    planificador = fields.Selection([('p1', 'personal 1'), ('p2', 'personal 2'), ('p3', 'personal 3'), ('p4', 'personal 4'), ('p5', 'personal 5')],)
     location = fields.Char()
     validador = fields.Boolean(default=False)
     @api.model
@@ -347,6 +407,8 @@ class MaintenanceRequest(models.Model):
             name = '[%s] %s' % (location.partner_id.name, location.name)
             result.append((location.id, name))
         return result
+
+
     #fin del codigo
 
 

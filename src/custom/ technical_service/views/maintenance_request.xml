@@ -34,15 +34,14 @@
                         </button>
                     </div>
                 </xpath>
-                <xpath expr="//notebook//page[@name='whiteboard']" position="after">
-                        <page string="Asignar" >
-                        <group>
-                            <field name="schedule_date"/>
-                            <field name="user_id" string="Tecnico" attrs="{'readonly': [('location_id', '=', True)]}"/>
-                        </group>
-                         <!--field name="line_ids" mode="tree"/-->
-                        </page>
-                </xpath>
+<!--                <xpath expr="//notebook//page[@name='whiteboard']" position="after">-->
+<!--                        <page string="Asignar" >-->
+<!--                        <group>-->
+
+<!--                        </group>-->
+<!--                         &lt;!&ndash;field name="line_ids" mode="tree"/&ndash;&gt;-->
+<!--                        </page>-->
+<!--                </xpath>-->
                 <xpath expr="//header//button[@name='reset_equipment_request']" position="after">
                <!-- a qui hae falta un button con name hr_maintenance_asing_wizard_action -->
                 </xpath>
