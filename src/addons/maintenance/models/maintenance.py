@@ -398,8 +398,6 @@ class MaintenanceRequest(models.Model):
         else:
             locations = self.search(args, limit=limit)
         return locations.name_get()
-
-
     @api.multi
     def name_get(self):
         result = []
@@ -407,8 +405,6 @@ class MaintenanceRequest(models.Model):
             name = '[%s] %s' % (location.partner_id.name, location.name)
             result.append((location.id, name))
         return result
-
-
     #fin del codigo
 
 
