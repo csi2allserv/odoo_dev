@@ -405,6 +405,15 @@ class MaintenanceRequest(models.Model):
             name = '[%s] %s' % (location.partner_id.name, location.name)
             result.append((location.id, name))
         return result
+    # @api.constrains('name')
+    # @api.one
+    # def validarexistencia(self):
+    #     if self.name:
+    #         query = f"SELECT  name  FROM public.maintenance_request WHERE name = '{self.name}';"
+    #         self._cr.execute(query)
+    #         resul = self._cr.commit()
+    #         if resul == self.name:
+    #             raise ValidationError('El numero de servicio ya existe')
     #fin del codigo
 
 
