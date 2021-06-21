@@ -5,6 +5,7 @@
         <field name="description">Category For Mantenimiento</field>
         <field name="sequence">23</field>
     </record>
+
     <!-- This group is only allowed to deal with equipment registration and maintenance -->
     <record id="group_equipment_manager" model="res.groups">
         <field name="name">Equipment Manager</field>
