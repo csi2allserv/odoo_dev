@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+     <record id="module_category_maintenance" model="ir.module.category">
+        <field name="name">Mantenimiento</field>
+        <field name="description">Category For Mantenimiento</field>
+        <field name="sequence">23</field>
+    </record>
     <!-- This group is only allowed to deal with equipment registration and maintenance -->
     <record id="group_equipment_manager" model="res.groups">
         <field name="name">Equipment Manager</field>
-        <field name="category_id" ref="base.module_category_human_resources"/>
+        <field name="category_id" ref="module_category_maintenance"/>
         <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
         <field name="comment">The user will be able to manage equipments.</field>
     </record>
