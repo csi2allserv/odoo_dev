@@ -3,7 +3,7 @@ access_acta_creacion_01,access.acta.coordinador,model_acta_servicio,group_acta_c
 access_acta_creacion_02,access.acta.lider,model_acta_servicio,group_acta_lider,1,1,1,1
 access_acta_creacion_03,access.acta.coordinador,maintenance.model_crm_customer_location,group_acta_coordinador,1,1,1,1
 access_acta_creacion_04,access.acta.coordinador,maintenance.model_crm_customer_location_type,group_acta_coordinador,1,1,1,1
-access_acta_creacion_05,access.acta.coordinador,model_video_electronico,group_acta_coordinador,1,1,1,1
+access_acta_creacion_05,access.acta.coordinador,model_video_electronico,group_acta_coordin	ador,1,1,1,1
 access_acta_creacion_06,access.acta.coordinador,model_materiales_alarma,group_acta_coordinador,1,1,1,1
 access_acta_creacion_07,access.acta.coordinador,model_mano_obra,group_acta_coordinador,1,1,1,1
 access_acta_creacion_08,access.acta.coordinador,model_mano_video,group_acta_coordinador,1,1,1,1

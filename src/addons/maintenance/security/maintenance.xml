@@ -13,6 +13,18 @@
         <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
         <field name="comment">The user will be able to manage equipments.</field>
     </record>
+    <record id="group_equipment_usuario_base" model="res.groups">
+        <field name="name">Usuario base</field>
+        <field name="category_id" ref="module_category_maintenance"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="comment">Este usuario podra maneja equipos.</field>
+    </record>
+     <record id="group_equipment_usuario_base" model="res.groups">
+        <field name="name">Usuario base</field>
+        <field name="category_id" ref="module_category_maintenance"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="comment">Este usuario podra maneja equipos.</field>
+    </record>
 
     <!-- Rules -->
     <record id="equipment_request_rule_user" model="ir.rule">
