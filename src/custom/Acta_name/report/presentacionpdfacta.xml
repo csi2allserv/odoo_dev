@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="reporteactaenpdf">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <div class="page" style="font-size: 18px">
+                    <div class="row">
+                        <div class="col-md-12" align="center" style="font-size: 16px">
+                            <h1>ACTA DIGITAL DE PRESTACIÓN DE SERVICIOS</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 mt-3">
+                            <p>Se realizaron las actividades de un
+                                <t t-if="o.area_pt=='pt2'">
+                                    mantenimiento
+                                </t>
+                                <t t-if="o.area_pt=='pt1'">
+                                    proyecto
+                                </t>,
+                                acargo de <t t-esc="o.tecnico_acta"/>
+                            </p>
+                        </div>
+                        <t t-if="o.area_pt=='pt2'">
+                            <div>
+                                <table style="width:100%; border: 1px solid black;" >
+                                  <tr>
+                                    <th style="border: 1px solid black;">Tipo de unidad</th>
+                                    <th style="border: 1px solid black;">Codigo unidad</th>
+                                    <th style="border: 1px solid black;">Nombre de la unidad</th>
+                                    <th style="border: 1px solid black;">Hora/fecha inicio </th>
+                                    <th style="border: 1px solid black;">Hora/fecha fin</th>
+                                  </tr>
+                                  <tr>
+                                    <td style="border: 1px solid black;"><t t-esc="o.codigo_acta_tipo"/></td>
+                                    <td style="border: 1px solid black;"><t t-esc="o.codigo_acta"/></td>
+                                    <td style="border: 1px solid black;"><t t-esc="o.codigo_acta_nombre"/></td>
+                                    <td style="border: 1px solid black;"><t t-esc="o.hora_inicio_acta"/></td>
+                                    <td style="border: 1px solid black;"><t t-esc="o.hora_final_acta"/></td>
+                                  </tr>
+                                </table>
+                            </div>
+                            <div class="row">
+                            <div class="col-md-12" align="center">
+                                    <h3>falla reportada</h3>
+                                </div>
+                            </div>
+                             <t t-esc="o.falla_reportada_acta"/>
+                        </t>
+
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
