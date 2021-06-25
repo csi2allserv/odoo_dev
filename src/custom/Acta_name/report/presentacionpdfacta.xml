@@ -119,6 +119,16 @@
                             </t>
                             <h2 style="margin-top: 25px;">Observaciones técnico</h2>
                             <t style="margin-top: 25px;" t-esc="o.observaciones_generales"/>
+                            <div class="row">
+                                <div class="col-md-12" align="center" >
+                                    <table style="border: 1px solid black; margin-top: 25px;">
+                                        <tr style="border: 1px solid black;">
+                                            <td style="border: 1px solid black;">Calificación final de la encuesta</td>
+                                            <td style="border: 1px solid black;"> <t t-esc="o.sumencuesta"/> </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
                         </t>
                     </div>
                 </div>

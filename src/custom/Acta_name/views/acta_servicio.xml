@@ -422,7 +422,6 @@
                         </div>
                     </div>
                 </div>
-
 <!--                esta parte es todo el trabajo de metalmecanica-->
                 <div attrs="{'invisible': [('area_pt', '!=', 'pt2')]}">
                     <notebook attrs="{'invisible': ['|',('Servicio_inmediato', '!=', 'Si'),('Tipo_mantenimiento', '!=', 't2')]}">
@@ -649,9 +648,7 @@
                         </div>
                     </div>
                 </div>
-
 <!--                fin de la seccion -->
-
 <!--                datos finales servicios electronicos alarma-->
                 <div attrs="{'invisible': [('area_pt', '!=', 'pt2')]}">
                     <div class="row" attrs="{'invisible': ['|',('Servicio_inmediato', '!=', 'Si'),('Tipo_mantenimiento', '!=', 't2')]}" >
