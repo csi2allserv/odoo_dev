@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
+
     <template id="reporteactaenpdf">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
                 <div class="page" style="font-size: 18px">
 <!--                    titulo-->
                     <div class="row">
-                        <div class="col-md-12" align="center" style="font-size: 16px">
+                        <div class="col-md-12" align="center" style="font-size: 12px">
                             <h1>ACTA DIGITAL DE PRESTACIÓN DE SERVICIOS</h1>
                         </div>
                     </div>
@@ -143,8 +144,6 @@
                             </table>
                         </div>
                     </div>
-
-
                 </div>
             </t>
         </t>
