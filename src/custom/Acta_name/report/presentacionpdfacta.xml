@@ -131,6 +131,20 @@
                             </div>
                         </t>
                     </div>
+                    <div class="row">
+                        <div class="col-md-12" align="center" >
+                            <table style=" margin-top: 25px;">
+                                <tr>
+                                    <td> <t t-esc="o.Firma" t-options="{'widget':'image'}"/> </td>
+                                </tr>
+                                <tr>
+                                    <td align="center"> <t  t-esc="o.quienfirma"/></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+
                 </div>
             </t>
         </t>

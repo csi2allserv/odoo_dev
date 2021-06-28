@@ -100,6 +100,7 @@ class ActaServicio(models.Model):
     proyectomaterial = fields.One2many('materiales_proyecto','opuesto')
     #Campo para la firma
     Firma = fields.Binary('')
+    quienfirma = fields.Char()
 
     # datos de finalización
     observaciones_generales = fields.Text(default=" ")
