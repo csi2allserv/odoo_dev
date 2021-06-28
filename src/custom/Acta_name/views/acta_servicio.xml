@@ -128,7 +128,7 @@
                         <p class="p-3 mb-2 bg-primary text-white h3">Hora de inicio</p>
                     </div>
                     <div class="col-md-2">
-                        <field name="hora_inicio_acta" class="h3 p-2 mb-1" readonly="True" ></field>
+                        <field name="hora_inicio_acta" class="h3 p-2 mb-1"></field>
                     </div>
                     <div class="col-md-2">
                         <p class="p-3 mb-2 bg-primary text-white h3">Hora final</p>

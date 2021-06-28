@@ -30,7 +30,7 @@ class ActaServicio(models.Model):
     codigo_acta = fields.Char('Codigo', required=False)
     codigo_acta_tipo = fields.Char('Codigo', required=False)
     codigo_acta_nombre = fields.Char('Codigo', required=False)
-    hora_inicio_acta = fields.Datetime('Date current action', required=False, readonly=False, select=True, default=lambda self: fields.datetime.now())
+    hora_inicio_acta = fields.Datetime('Date current action', required=True, readonly=False, select=True, default=lambda self: fields.datetime.now())
     hora_final_acta = fields.Datetime('Date current action', required=True, readonly=False, select=True)
     #paso 1
     Servicio_inmediato = fields.Selection([('Si', 'Si se puede realizar'), ('No', 'No se puede realizar')],
