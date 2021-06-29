@@ -7,15 +7,8 @@
                     <div class="page" style="font-size: 18px">
     <!--                    titulo-->
                         <div class="row">
-                            <div class="col-md-12"  style="font-size: 10px">
-                                <t t-foreach="res_company" t-as="x" >
-                                    <table style=" margin-top: 25px;">
-                                        <tr>
-                                            <td><t t-esc="x.logo" t-options="{'widget':'image'}" /></td>
-                                            <td><h1>ACTA DIGITAL DE PRESTACIÓN DE SERVICIOS</h1></td>
-                                        </tr>
-                                    </table>
-                                </t>
+                            <div class="col-md-12"  style="font-size: 12px">
+                                <h1>ACTA DIGITAL DE PRESTACIÓN DE SERVICIOS</h1>
                             </div>
                         </div>
     <!--                    fin titulo-->
