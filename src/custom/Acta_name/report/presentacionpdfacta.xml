@@ -1,57 +1,83 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <template id="reporteactaenpdf">
-        <t t-call="web.html_container">
+        <t t-call="web.html_container" >
             <t t-foreach="docs" t-as="o">
-                <div class="page" style="font-size: 18px">
-<!--                    titulo-->
-                    <div class="row">
-                        <div class="col-md-12" align="center" style="font-size: 12px">
-                            <h1>ACTA DIGITAL DE PRESTACIÓN DE SERVICIOS</h1>
-                        </div>
-                    </div>
-<!--                    fin titulo-->
-                    <div class="row">
-                        <div class="col-md-12 mt-3">
-                            <p>Se realizaron las actividades de un
-                                <t t-if="o.area_pt=='pt2'">
-                                    mantenimiento
+                <t t-call="web.external_layout">
+                    <div class="page" style="font-size: 18px">
+    <!--                    titulo-->
+                        <div class="row">
+                            <div class="col-md-12"  style="font-size: 10px">
+                                <t t-foreach="res_company" t-as="x" >
+                                    <table style=" margin-top: 25px;">
+                                        <tr>
+                                            <td><t t-esc="x.logo" t-options="{'widget':'image'}" /></td>
+                                            <td><h1>ACTA DIGITAL DE PRESTACIÓN DE SERVICIOS</h1></td>
+                                        </tr>
+                                    </table>
                                 </t>
-                                <t t-if="o.area_pt=='pt1'">
-                                    proyecto
-                                </t>,
-                                acargo de <t t-esc="o.tecnico_acta"/>
-                            </p>
+                            </div>
                         </div>
-                        <t t-if="o.area_pt=='pt2'">
-                            <div>
-                                <table style="width:100%; border: 1px solid black;" >
-                                  <tr>
-                                    <th style="border: 1px solid black;">Tipo de unidad</th>
-                                    <th style="border: 1px solid black;">Codigo unidad</th>
-                                    <th style="border: 1px solid black;">Nombre de la unidad</th>
-                                    <th style="border: 1px solid black;">Hora/fecha inicio </th>
-                                    <th style="border: 1px solid black;">Hora/fecha fin</th>
-                                  </tr>
-                                  <tr>
-                                    <td style="border: 1px solid black;"><t t-esc="o.codigo_acta_tipo"/></td>
-                                    <td style="border: 1px solid black;"><t t-esc="o.codigo_acta"/></td>
-                                    <td style="border: 1px solid black;"><t t-esc="o.codigo_acta_nombre"/></td>
-                                    <td style="border: 1px solid black;"><t t-esc="o.hora_inicio_acta"/></td>
-                                    <td style="border: 1px solid black;"><t t-esc="o.hora_final_acta"/></td>
-                                  </tr>
-                                </table>
+    <!--                    fin titulo-->
+                        <div class="row">
+                            <div class="col-md-12 mt-3">
+                                <p>Se realizaron las actividades a cargo de <t t-esc="o.tecnico_acta"/></p>
                             </div>
-                            <div class="row">
-                            <div class="col-md-12" >
-                                    <h2>Falla reportada</h2>
+                            <t>
+                                <t t-if="o.area_pt=='pt2'">
+                                    <table style="width:100%; border: 1px solid black;" >
+                                      <tr>
+                                        <th style="border: 1px solid black;">Tipo de unidad</th>
+                                        <th style="border: 1px solid black;">Codigo unidad</th>
+                                        <th style="border: 1px solid black;">Nombre de la unidad</th>
+                                        <th style="border: 1px solid black;">Hora/fecha inicio </th>
+                                        <th style="border: 1px solid black;">Hora/fecha fin</th>
+                                      </tr>
+                                      <tr>
+                                        <td style="border: 1px solid black;"><t t-esc="o.codigo_acta_tipo"/></td>
+                                        <td style="border: 1px solid black;"><t t-esc="o.codigo_acta"/></td>
+                                        <td style="border: 1px solid black;"><t t-esc="o.codigo_acta_nombre"/></td>
+                                        <td style="border: 1px solid black;"><t t-esc="o.hora_inicio_acta"/></td>
+                                        <td style="border: 1px solid black;"><t t-esc="o.hora_final_acta"/></td>
+                                      </tr>
+                                    </table>
+                                </t>
+                                <t  t-if="o.area_pt=='pt1'">
+                                    <table style="width:100%; border: 1px solid black;" >
+                                      <tr>
+                                        <th style="border: 1px solid black;">Nombre de la unidad</th>
+                                        <th style="border: 1px solid black;">Hora/fecha inicio </th>
+                                        <th style="border: 1px solid black;">Hora/fecha fin</th>
+                                      </tr>
+                                      <tr>
+                                        <td style="border: 1px solid black;"><t t-esc="o.entidadproyecto"/></td>
+                                        <td style="border: 1px solid black;"><t t-esc="o.hora_inicio_acta"/></td>
+                                        <td style="border: 1px solid black;"><t t-esc="o.hora_final_acta"/></td>
+                                      </tr>
+                                    </table>
+                                </t>
+                                <div class="row">
+                                <div class="col-md-12" >
+                                        <h2>Información general</h2>
+                                    </div>
                                 </div>
-                            </div>
-                            <t t-esc="o.falla_reportada_acta"/>
-                            <t t-if="o.Servicio_inmediato=='Si'">
-                                <t t-if="o.Tipo_mantenimiento=='t1'">
-                                    <h2>Elementos utilizados o suminisrados</h2>
+                                <field t-field="o.falla_reportada_proyecto"/>
+                                <t t-esc="o.falla_reportada_acta"/>
+                                <t t-if="o.Servicio_inmediato=='No'">
+                                   <h2>El servicio no se pudo realizar</h2>
+                                   <table style="width:100%; border: 1px solid black; margin-top: 25px;">
+                                       <tr>
+                                           <th style="width:100%; border: 1px solid black; margin-top: 25px;">Motivo</th>
+                                           <th style="width:100%; border: 1px solid black; margin-top: 25px;">Observación</th>
+                                       </tr>
+                                       <tr>
+                                           <th style="width:100%; border: 1px solid black; margin-top: 25px;"><field t-field="o.Motivos_no"/></th>
+                                           <th style="width:100%; border: 1px solid black; margin-top: 25px;"><t t-esc="o.notes"/></th>
+                                       </tr>
+                                   </table>
+                                </t>
+                                <t t-else="">
+                                    <h2>Elementos utilizados o suministrados</h2>
                                     <table style="width:100%; border: 1px solid black; margin-top: 25px;">
                                         <tr>
                                             <th style="border: 1px solid black;">Nombre</th>
@@ -60,91 +86,168 @@
                                             <th style="border: 1px solid black;">Placa desmontada </th>
                                         </tr>
                                         <tr t-foreach="o.campos" t-as="l">
-                                           <th style="border: 1px solid black;">
-                                               <span t-field="l.nombre"/>
-                                           </th>
-                                           <th style="border: 1px solid black;">
-                                               <span t-field="l.categoria"/>
-                                           </th>
-                                           <th style="border: 1px solid black;">
-                                               <span t-field="l.placa"/>
-                                           </th>
-                                           <th style="border: 1px solid black;">
-                                               <span t-field="l.segunda_placa"/>
-                                           </th>
+                                            <th style="border: 1px solid black;">
+                                                <span t-field="l.nombre"/>
+                                            </th>
+                                            <th style="border: 1px solid black;">
+                                                <span t-field="l.categoria"/>
+                                            </th>
+                                            <th style="border: 1px solid black;">
+                                                <span t-field="l.placa"/>
+                                            </th>
+                                            <th style="border: 1px solid black;">
+                                                <span t-field="l.segunda_placa"/>
+                                            </th>
                                         </tr>
                                         <tr t-foreach="o.campos3" t-as="l">
-                                           <th style="border: 1px solid black;">
-                                               <span t-field="l.nombre"/>
-                                           </th>
-                                           <th style="border: 1px solid black;">
-                                               <p>N/A</p>
-                                           </th>
-                                           <th style="border: 1px solid black;">
-                                               <span t-field="l.placa"/>
-                                           </th>
-                                           <th style="border: 1px solid black;">
-                                               <span t-field="l.segunda_placa"/>
-                                           </th>
+                                            <th style="border: 1px solid black;">
+                                                <span t-field="l.nombre"/>
+                                            </th>
+                                            <th style="border: 1px solid black;">
+                                                <p>N/A</p>
+                                            </th>
+                                            <th style="border: 1px solid black;">
+                                                <span t-field="l.placa"/>
+                                            </th>
+                                            <th style="border: 1px solid black;">
+                                                <span t-field="l.segunda_placa"/>
+                                            </th>
                                         </tr>
-                                         <tr t-foreach="o.campos4" t-as="l">
-                                           <th style="border: 1px solid black;">
-                                               <span t-field="l.nombre"/>
-                                           </th>
-                                           <th style="border: 1px solid black;">
-                                               <p>N/A</p>
-                                           </th>
-                                           <th style="border: 1px solid black;">
-                                               <span t-field="l.placa"/>
-                                           </th>
-                                           <th style="border: 1px solid black;">
-                                               <span t-field="l.segunda_placa"/>
-                                           </th>
+                                        <tr t-foreach="o.campos4" t-as="l">
+                                            <th style="border: 1px solid black;">
+                                                <span t-field="l.nombre"/>
+                                            </th>
+                                            <th style="border: 1px solid black;">
+                                                <p>N/A</p>
+                                            </th>
+                                            <th style="border: 1px solid black;">
+                                                <span t-field="l.placa"/>
+                                            </th>
+                                            <th style="border: 1px solid black;">
+                                                <span t-field="l.segunda_placa"/>
+                                            </th>
                                         </tr>
-                                         <tr t-foreach="o.campos2" t-as="l">
-                                           <th style="border: 1px solid black;">
-                                               <span t-field="l.lista_cliente"/>
-                                           </th>
-                                           <th style="border: 1px solid black;">
-                                               <span t-field="l.propiedad_material"/>
-                                           </th>
-                                           <th style="border: 1px solid black;">
-                                               <p>N/A</p>
-                                           </th>
-                                           <th style="border: 1px solid black;">
-                                               <p>N/A</p>
-                                           </th>
+                                        <tr t-foreach="o.campos2" t-as="l">
+                                            <th style="border: 1px solid black;">
+                                                <span t-field="l.lista_cliente"/>
+                                            </th>
+                                            <th style="border: 1px solid black;">
+                                                <span t-field="l.propiedad_material"/>
+                                            </th>
+                                            <th style="border: 1px solid black;">
+                                                <p>N/A</p>
+                                            </th>
+                                            <th style="border: 1px solid black;">
+                                                <p>N/A</p>
+                                            </th>
+                                        </tr>
+                                        <tr t-foreach="o.campos1_metalmecanico" t-as="l">
+                                            <th style="border: 1px solid black;">
+                                                <span t-field="l.nombre"/>
+                                            </th>
+                                            <th style="border: 1px solid black;">
+                                                <span t-field="l.comportamiento"/>
+                                            </th>
+                                            <th style="border: 1px solid black;">
+                                                <span t-field="l.placa"/>
+                                            </th>
+                                            <th style="border: 1px solid black;">
+                                                <span t-field="l.segunda_placa"/>
+                                            </th>
+                                        </tr>
+                                        <tr t-foreach="o.campos2_metalmecanico" t-as="l">
+                                            <th style="border: 1px solid black;">
+                                                <span t-field="l.nombre"/>
+                                            </th>
+                                            <th style="border: 1px solid black;">
+                                                <span t-field="l.comportamiento"/>
+                                            </th>
+                                            <th style="border: 1px solid black;">
+                                                <span t-field="l.placa"/>
+                                            </th>
+                                            <th style="border: 1px solid black;">
+                                                <span t-field="l.segunda_placa"/>
+                                            </th>
+                                        </tr>
+                                        <tr t-foreach="o.campos3_metalmecanico" t-as="l">
+                                            <th style="border: 1px solid black;">
+                                                <span t-field="l.lista_cliente"/>
+                                            </th>
+                                            <th style="border: 1px solid black;">
+                                                <span t-field="l.propiedad_material"/>
+                                            </th>
+                                            <th style="border: 1px solid black;">
+                                                <p>N/A</p>
+                                            </th>
+                                            <th style="border: 1px solid black;">
+                                                <p>N/A</p>
+                                            </th>
+                                        </tr>
+                                        <tr t-foreach="o.proyectomaterial" t-as="l">
+                                            <th style="border: 1px solid black;">
+                                                <span t-field="l.material_proyecto"/>
+                                            </th>
+                                            <th style="border: 1px solid black;">
+                                                <p>N/A</p>
+                                            </th>
+                                            <th style="border: 1px solid black;">
+                                                <span t-field="l.serial"/>
+                                            </th>
+                                            <th style="border: 1px solid black;">
+                                                <p>N/A</p>
+                                            </th>
                                         </tr>
                                     </table>
+                                    <div t-if="o.area_pt=='pt1'">
+                                        <h2 style="margin-top: 25px;">Actividades realizadas</h2>
+                                        <table style="width:100%; border: 1px solid black; margin-top: 25px;">
+                                            <tr>
+                                                <th style="border: 1px solid black;"><p>Actividad</p></th>
+                                                <th style="border: 1px solid black;"><p>Día</p></th>
+                                                <th style="border: 1px solid black;"><p>Observación</p></th>
+                                            </tr>
+                                            <tr t-foreach="o.actividadesproyecto1" t-as="l">
+                                                <th style="border: 1px solid black;">
+                                                    <span t-field="l.Listaactividades"/>
+                                                </th>
+                                                <th style="border: 1px solid black;">
+                                                    <span t-field="l.Diaactividad"/>
+                                                </th>
+                                                <th style="border: 1px solid black;">
+                                                    <span t-field="l.observacion"/>
+                                                </th>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <h2 style="margin-top: 25px;">Observaciones técnico</h2>
+                                    <t style="margin-top: 25px;" t-esc="o.observaciones_generales"/>
+                                    <div class="row">
+                                        <div class="col-md-12" align="center" >
+                                            <table style="border: 1px solid black; margin-top: 25px;">
+                                                <tr style="border: 1px solid black;">
+                                                    <td style="border: 1px solid black;">Calificación final de la encuesta</td>
+                                                    <td style="border: 1px solid black;"> <t t-esc="o.sumencuesta"/> </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
                                 </t>
                             </t>
-                            <h2 style="margin-top: 25px;">Observaciones técnico</h2>
-                            <t style="margin-top: 25px;" t-esc="o.observaciones_generales"/>
-                            <div class="row">
-                                <div class="col-md-12" align="center" >
-                                    <table style="border: 1px solid black; margin-top: 25px;">
-                                        <tr style="border: 1px solid black;">
-                                            <td style="border: 1px solid black;">Calificación final de la encuesta</td>
-                                            <td style="border: 1px solid black;"> <t t-esc="o.sumencuesta"/> </td>
-                                        </tr>
-                                    </table>
-                                </div>
+                        </div>
+                        <div class="row" t-if="o.SePuedeFirmar=='Si'">
+                            <div class="col-md-12" align="center" >
+                                <table style=" margin-top: 25px;">
+                                    <tr>
+                                        <td> <t t-esc="o.Firma" t-options="{'widget':'image'}"/> </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center"> <t  t-esc="o.quienfirma"/></td>
+                                    </tr>
+                                </table>
                             </div>
-                        </t>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12" align="center" >
-                            <table style=" margin-top: 25px;">
-                                <tr>
-                                    <td> <t t-esc="o.Firma" t-options="{'widget':'image'}"/> </td>
-                                </tr>
-                                <tr>
-                                    <td align="center"> <t  t-esc="o.quienfirma"/></td>
-                                </tr>
-                            </table>
                         </div>
                     </div>
-                </div>
+                </t>
             </t>
         </t>
     </template>
