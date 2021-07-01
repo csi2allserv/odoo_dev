@@ -701,6 +701,9 @@
                             <field name="Firma" widget="signature"/>
                         </div>
                     </div>
+                    <field name="codigo_proyecto" force_save="1" readonly="1" class="h3 p-2 mb-1" invisible="True"></field>
+                    <field name="locacion_proyectos" force_save="1" readonly="1" class="h3 p-2 mb-1" invisible="True"></field>
+
                 </div>
             </form>
         </field>
