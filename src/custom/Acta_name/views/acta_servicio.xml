@@ -661,6 +661,14 @@
                     <div><field name="entidadmantenimiento" invisible="True" /></div>
                     <div class="row">
                         <div class="col-md-6">
+                            <p class="p-3 mb-2 bg-primary text-white d-flex justify-content-center h3">Ingrese el nombre de la persona que firma</p>
+                        </div>
+                        <div class="d-flex justify-content-center col-md-6">
+                            <field name="quienfirma"/>
+                    </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
                             <p class="p-3 mb-2 bg-primary text-white d-flex justify-content-center h3">Ingrese la firma</p>
                         </div>
                         <div class="d-flex justify-content-center col-md-6">
@@ -691,6 +699,14 @@
                         </div>
                         <div class="col-md-6">
                             <field name="trabajo_fin" widget="radio"></field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="p-3 mb-2 bg-primary text-white d-flex justify-content-center h3">Ingrese el nombre de la persona que firma</p>
+                        </div>
+                        <div class="d-flex justify-content-center col-md-6">
+                            <field name="quienfirma"/>
                         </div>
                     </div>
                     <div class="row" attrs="{'invisible': ['|',('Servicio_inmediato', '!=', 'Si'),('Tipo_mantenimiento', '!=', 't2')]}">
