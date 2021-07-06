@@ -128,7 +128,7 @@
                         <p class="p-3 mb-2 bg-primary text-white h3">Hora de inicio</p>
                     </div>
                     <div class="col-md-2">
-                        <field name="hora_inicio_acta" class="h3 p-2 mb-1" readonly="True" ></field>
+                        <field name="hora_inicio_acta" class="h3 p-2 mb-1" ></field>
                     </div>
                     <div class="col-md-2">
                         <p class="p-3 mb-2 bg-primary text-white h3">Hora final</p>
@@ -392,13 +392,19 @@
 <!--                datos finales servicios electronicos alarma-->
                 <div attrs="{'invisible': [('area_pt', '!=', 'pt2')]}">
                     <div class="row" attrs="{'invisible': ['|',('Servicio_inmediato', '!=', 'Si'),('Tipo_mantenimiento', '!=', 't1')]}" >
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <p class="p-3 mb-2 bg-primary text-white d-flex justify-content-center h3" >En el siguiente recuadro, haga anotaciones concisas que no hayan sido mencionadas</p>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <field name="observaciones_generales"/>
                         </div>
-                    </div>
+                        <div class="col-md-3">
+                        <p class="p-3 mb-2 bg-primary text-white d-flex justify-content-center h3">¿Hay un funcionario que pueda firmar el acta?</p>
+                        </div>
+                        <div class="col-md-3">
+                           <field name="SePuedeFirmar" widget="radio"/>
+                        </div>
+                        </div>
                     <div class="row" attrs="{'invisible': ['|',('Servicio_inmediato', '!=', 'Si'),('Tipo_mantenimiento', '!=', 't1')]}">
                         <div  class="col-md-6">
                             <p class="p-3 mb-2 bg-primary text-white d-flex justify-content-center h3">¿El servicio se finalizó totalmente?</p>
@@ -409,10 +415,18 @@
                     </div>
                     <div class="row" attrs="{'invisible': ['|',('Servicio_inmediato', '!=', 'Si'),('Tipo_mantenimiento', '!=', 't1')]}">
                         <div class="col-md-6">
+                            <p class="p-3 mb-2 bg-primary text-white d-flex justify-content-center h3">Ingrese el nombre de la persona que firma</p>
+                        </div>
+                        <div class="d-flex justify-content-center col-md-6">
+                            <field name="quienfirma"/>
+                        </div>
+                    </div>
+                    <div class="row" attrs="{'invisible': ['|',('Servicio_inmediato', '!=', 'Si'),('Tipo_mantenimiento', '!=', 't1')]}">
+                        <div class="col-md-6">
                             <p class="p-3 mb-2 bg-primary text-white d-flex justify-content-center h3">Ingrese la firma</p>
                         </div>
                         <div class="d-flex justify-content-center col-md-6">
-                            <field name="Firma" widget="signature"/>
+                            <field name="Firma" widget="signature" width="100px" height="100px"/>
                         </div>
                     </div>
                     <!-- esta es la firma -->
@@ -422,7 +436,6 @@
                         </div>
                     </div>
                 </div>
-
 <!--                esta parte es todo el trabajo de metalmecanica-->
                 <div attrs="{'invisible': [('area_pt', '!=', 'pt2')]}">
                     <notebook attrs="{'invisible': ['|',('Servicio_inmediato', '!=', 'Si'),('Tipo_mantenimiento', '!=', 't2')]}">
@@ -638,8 +651,22 @@
                         <div class="col-md-6">
                             <field name="observaciones_generales"/>
                         </div>
+                        <div class="col-md-6">
+                        <p class="p-3 mb-2 bg-primary text-white d-flex justify-content-center h3">¿Hay un funcionario que pueda firmar el acta?</p>
+                        </div>
+                        <div class="col-md-6">
+                           <field name="SePuedeFirmar" widget="radio"/>
+                        </div>
                     </div>
                     <div><field name="entidadmantenimiento" invisible="True" /></div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="p-3 mb-2 bg-primary text-white d-flex justify-content-center h3">Ingrese el nombre de la persona que firma</p>
+                        </div>
+                        <div class="d-flex justify-content-center col-md-6">
+                            <field name="quienfirma"/>
+                    </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-6">
                             <p class="p-3 mb-2 bg-primary text-white d-flex justify-content-center h3">Ingrese la firma</p>
@@ -649,9 +676,7 @@
                         </div>
                     </div>
                 </div>
-
 <!--                fin de la seccion -->
-
 <!--                datos finales servicios electronicos alarma-->
                 <div attrs="{'invisible': [('area_pt', '!=', 'pt2')]}">
                     <div class="row" attrs="{'invisible': ['|',('Servicio_inmediato', '!=', 'Si'),('Tipo_mantenimiento', '!=', 't2')]}" >
@@ -660,6 +685,12 @@
                         </div>
                         <div class="col-md-6">
                             <field name="observaciones_generales"/>
+                        </div>
+                        <div class="col-md-6">
+                        <p class="p-3 mb-2 bg-primary text-white d-flex justify-content-center h3">¿Hay un funcionario que pueda firmar el acta?</p>
+                        </div>
+                        <div class="col-md-6">
+                           <field name="SePuedeFirmar" widget="radio"/>
                         </div>
                     </div>
                     <div class="row" attrs="{'invisible': ['|',('Servicio_inmediato', '!=', 'Si'),('Tipo_mantenimiento', '!=', 't2')]}">
@@ -672,12 +703,23 @@
                     </div>
                     <div class="row" attrs="{'invisible': ['|',('Servicio_inmediato', '!=', 'Si'),('Tipo_mantenimiento', '!=', 't2')]}">
                         <div class="col-md-6">
+                            <p class="p-3 mb-2 bg-primary text-white d-flex justify-content-center h3">Ingrese el nombre de la persona que firma</p>
+                        </div>
+                        <div class="d-flex justify-content-center col-md-6">
+                            <field name="quienfirma"/>
+                        </div>
+                    </div>
+                    <div class="row" attrs="{'invisible': ['|',('Servicio_inmediato', '!=', 'Si'),('Tipo_mantenimiento', '!=', 't2')]}">
+                        <div class="col-md-6">
                             <p class="p-3 mb-2 bg-primary text-white d-flex justify-content-center h3">Ingrese la firma</p>
                         </div>
                         <div class="d-flex justify-content-center col-md-6">
                             <field name="Firma" widget="signature"/>
                         </div>
                     </div>
+                    <field name="codigo_proyecto" force_save="1" readonly="1" class="h3 p-2 mb-1" invisible="True"></field>
+                    <field name="locacion_proyectos" force_save="1" readonly="1" class="h3 p-2 mb-1" invisible="True"></field>
+
                 </div>
             </form>
         </field>

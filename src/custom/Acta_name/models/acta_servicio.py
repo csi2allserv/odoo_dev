@@ -30,8 +30,10 @@ class ActaServicio(models.Model):
     codigo_acta = fields.Char('Codigo', required=False)
     codigo_acta_tipo = fields.Char('Codigo', required=False)
     codigo_acta_nombre = fields.Char('Codigo', required=False)
-    hora_inicio_acta = fields.Datetime('Date current action', required=False, readonly=False, select=True, default=lambda self: fields.datetime.now())
+    hora_inicio_acta = fields.Datetime('Date current action', required=True, readonly=False, select=True, default=lambda self: fields.datetime.now())
     hora_final_acta = fields.Datetime('Date current action', required=True, readonly=False, select=True)
+    codigo_proyecto=fields.Char()
+    locacion_proyectos=fields.Char()
     #paso 1
     Servicio_inmediato = fields.Selection([('Si', 'Si se puede realizar'), ('No', 'No se puede realizar')],
                                           string='¿El servicio se puede realizar inmediatamente?',
@@ -100,6 +102,7 @@ class ActaServicio(models.Model):
     proyectomaterial = fields.One2many('materiales_proyecto','opuesto')
     #Campo para la firma
     Firma = fields.Binary('')
+    quienfirma = fields.Char()
 
     # datos de finalización
     observaciones_generales = fields.Text(default=" ")
@@ -152,6 +155,8 @@ class ActaServicio(models.Model):
                     self.codigo_acta_tipo = ''
                     self.falla_reportada_proyecto = ''
                     self.entidadmantenimiento = ''
+                    self.codigo_proyecto=''
+                    self.locacion_proyectos=''
                 elif self.area_pt == 'pt2':
                     print('Limpiar')
                     self.tecnico_acta = ''
@@ -258,6 +263,10 @@ class ActaServicio(models.Model):
     def _onchange_proyecto(self):
         if self.datosproyecto:
             self.entidadproyecto = self.datosproyecto.enidadproyecto.name
+            self.codigo_proyecto = self.datosproyecto.codigodeproyectos
+            print(self.codigo_proyecto)
+            self.locacion_proyectos = self.datosproyecto.locacionNombre
+            print(self.locacion_proyectos)
             self.tecnico_acta = self.env.user.name
             self.falla_reportada_proyecto = self.datosproyecto.informacion
             self.xentero = self.datosproyecto.id

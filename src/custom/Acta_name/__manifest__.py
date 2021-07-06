@@ -11,6 +11,8 @@
         'views/acta_servicio.xml',
         'security/groups.xml',
         'security/ir.model.access.csv',
+        'report/pdfacta.xml',
+        'report/presentacionpdfacta.xml',
     ],
     #'demo': ['demo.xml'],
 }
