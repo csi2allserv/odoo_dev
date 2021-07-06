@@ -78,8 +78,8 @@ class ActaServicio(models.Model):
         'en el que trabajó')
     #campo relacionado con la clase de abajo
     Field_many2one = fields.Many2many('material.acta','materiales',required=False)
-    prueba2 =fields.Many2one('maintenance.request', 'Seleccione el número de servicio')
-    datosproyecto = fields.Many2one('project.project', string='Seleccione el número de servicio')
+    prueba2 =fields.Many2one('maintenance.request', 'Seleccione el número de mantenimientos')
+    datosproyecto = fields.Many2one('project.project', string='Seleccione el número de proyectos')
 
     #Alarma
     materiales_video = fields.Many2one('video.electronico')
