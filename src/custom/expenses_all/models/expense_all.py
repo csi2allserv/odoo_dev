@@ -108,7 +108,7 @@ class hrExpenseAll(models.Model):
         comodel_name="ir.sequence", string="Product Sequence",
         help="Este campo contiene la información relacionada con la numeración "
              "de los asientos de este diario.",
-        copy=False, readonly=True,
+        copy=False, readonly=False,
     )
     product_id = fields.Many2many('product.product', string='Product')
 

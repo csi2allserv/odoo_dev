@@ -79,8 +79,5 @@
                   action="product_multi_barcode_action"
                   sequence="9"/>
 
-
-
-
     </data>
 </odoo>
