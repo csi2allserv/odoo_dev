@@ -97,6 +97,7 @@
                             <!--field name="maintenance_team_id" options="{'no_create': True, 'no_open': True}" string="Proceso"/-->
                             <field name="user_id" string="Tecnico" attrs="{'readonly': [('location_id', '=', True)]}"/>
                             <field name="planificador" string="Planificador"/>
+                            <field name="maintenance_team_id" string="Asigando a:"/>
                             <field name="duration" invisible="1" />
                             <field name="priority" widget="priority"/>
                         </group>
