@@ -383,6 +383,7 @@ class MaintenanceRequest(models.Model):
     planificador = fields.Selection([('p1', 'personal 1'), ('p2', 'personal 2'), ('p3', 'personal 3'), ('p4', 'personal 4'), ('p5', 'personal 5')],)
     location = fields.Char()
     validador = fields.Boolean(default=False)
+
     @api.model
     def name_search(self, name='', args=None, operator='ilike', limit=100):
         if not args:

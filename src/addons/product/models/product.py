@@ -104,7 +104,6 @@ class ProductProduct(models.Model):
 
     default_code = fields.Char('Internal Reference', index=True)
     referencia_inte = fields.Char('Referencia All', index=True)
-    ubicacion= fields.Char('Ubicación', index=True)
     code = fields.Char('Reference', compute='_compute_product_code')
     partner_ref = fields.Char('Customer Ref', compute='_compute_partner_ref')
 

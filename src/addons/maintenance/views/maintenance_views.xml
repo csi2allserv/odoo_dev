@@ -55,7 +55,9 @@
         <field name="arch" type="xml">
             <form string="Maintenance Request">
                 <header>
-                    <button string="Cancel" name="archive_equipment_request" type="object" attrs="{'invisible': [('archive', '=', True)]}"/>
+<!--                    cambio hecho por william acosta-->
+                    <button string="Archivar" name="archive_equipment_request" type="object" attrs="{'invisible': [('archive', '=', True)]}"/>
+<!--                    fin del cambio-->
                     <button string="Reopen Request" name="reset_equipment_request" type="object" attrs="{'invisible': [('archive', '=', False)]}"/>
                     <field  name="stage_id" widget="statusbar" options="{'clickable': '1'}" attrs="{'invisible': [('archive', '=', True)]}"/>
                 </header>
@@ -95,6 +97,7 @@
                             <!--field name="maintenance_team_id" options="{'no_create': True, 'no_open': True}" string="Proceso"/-->
                             <field name="user_id" string="Tecnico" attrs="{'readonly': [('location_id', '=', True)]}"/>
                             <field name="planificador" string="Planificador"/>
+                            <field name="maintenance_team_id" string="Asigando a:"/>
                             <field name="duration" invisible="1" />
                             <field name="priority" widget="priority"/>
                         </group>

@@ -701,7 +701,7 @@
                             <field name="trabajo_fin" widget="radio"></field>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" attrs="{'invisible': ['|',('Servicio_inmediato', '!=', 'Si'),('Tipo_mantenimiento', '!=', 't2')]}">
                         <div class="col-md-6">
                             <p class="p-3 mb-2 bg-primary text-white d-flex justify-content-center h3">Ingrese el nombre de la persona que firma</p>
                         </div>
