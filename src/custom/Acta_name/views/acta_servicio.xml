@@ -154,6 +154,14 @@
                     </div>
                 </div>
                 <div class="row" attrs="{'invisible': [('area_pt', '!=', 'pt2')]}">
+                    <div class="col-md-6">
+                        <p class="p-3 mb-2 bg-primary text-white d-flex justify-content-center h3">Codigo de resivido</p>
+                    </div>
+                    <div class="col-md-6">
+                         <field name="notas_resivido" force_save="1" class="h2 form-control" ></field>
+                    </div>
+                </div>
+                <div class="row" attrs="{'invisible': [('area_pt', '!=', 'pt2')]}">
                     <div class="col-md-3">
                         <p class="p-3 mb-2 bg-primary text-white d-flex justify-content-center h3" >¿El servicio se puede realizar inmediatamente?</p>
                     </div>

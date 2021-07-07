@@ -103,7 +103,7 @@ class ActaServicio(models.Model):
     #Campo para la firma
     Firma = fields.Binary('')
     quienfirma = fields.Char()
-
+    notas_resivido = fields.Char(string="Codigo de resivido")
     # datos de finalización
     observaciones_generales = fields.Text(default=" ")
 
