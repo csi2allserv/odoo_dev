@@ -53,7 +53,6 @@ class StockQuant(models.Model):
         readonly=True, required=True)
     in_date = fields.Datetime('Incoming Date', readonly=True)
     ubicacion_interna = fields.Char('Ubicación interna')
-mrp update
     def action_view_stock_moves(self):
         self.ensure_one()
         action = self.env.ref('stock.stock_move_line_action').read()[0]
