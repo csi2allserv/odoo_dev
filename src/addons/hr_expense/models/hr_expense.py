@@ -49,8 +49,8 @@ class HrExpense(models.Model):
             employee = self.env.user.employee_ids[0]
             res = [('id', '=', employee.id)]
         return res
-
-    categ_id = fields.Many2one('expense.all', string='Tipo', readonly= True, states={'draft': [('readonly', False)], 'finalizado': [('readonly', False)]})
+    # modificacion realizada por william acosta, esto es una variable que no se sabe para que funciona y genera problemas con con expenseall
+    # categ_id = fields.Many2one('expense.all', string='Tipo', readonly= True, states={'draft': [('readonly', False)], 'finalizado': [('readonly', False)]})
     name = fields.Char('Description', readonly=True, required=True, states={'draft': [('readonly', False)], 'reported': [('readonly', False)], 'refused': [('readonly', False)]})
     date = fields.Date(readonly=True, states={'draft': [('readonly', False)], 'reported': [('readonly', False)], 'refused': [('readonly', False)]}, default=fields.Date.context_today, string="Date")
     employee_id = fields.Many2one('hr.employee', string="Employee", required=True, readonly=True, states={'draft': [('readonly', False)], 'reported': [('readonly', False)], 'refused': [('readonly', False)]}, default=_default_employee_id, domain=lambda self: self._get_employee_id_domain())
@@ -60,9 +60,11 @@ class HrExpense(models.Model):
     unit_amount = fields.Float("Unit Price", readonly=True, required=True, states={'draft': [('readonly', False)], 'reported': [('readonly', False)], 'refused': [('readonly', False)]}, digits=dp.get_precision('Product Price'))
     tax_ids = fields.Many2many('account.tax', 'expense_tax', 'expense_id', 'tax_id', string='Taxes', states={'done': [('readonly', True)], 'post': [('readonly', True)]})
     untaxed_amount = fields.Float("Subtotal", store=True, compute='_compute_amount', digits=dp.get_precision('Account'))
-    amount_legal = fields.Float("Valor", readonly=True, required=True, states={'draft': [('readonly', True)], 'done': [('readonly', False)]}, digits=dp.get_precision('Product Price'))
+    # modificaion realizada por william acosta, se modifico el required para que no se genere conflicto con la creacion de viaticos
+    amount_legal = fields.Float("Valor", readonly=True, required=False, states={'draft': [('readonly', True)], 'done': [('readonly', False)]}, digits=dp.get_precision('Product Price'))
     total_amount = fields.Monetary("Total", compute='_compute_amount', store=True, currency_field='currency_id', digits=dp.get_precision('Account'))
-    value_legal = fields.Float("Monto a legalizar", readonly=True, required=True, states={'draft': [('readonly', True)], 'done': [('readonly', False)]}, digits=dp.get_precision('Product Price'))
+    # este tambien fue modificado
+    value_legal = fields.Float("Monto a legalizar", readonly=True, required=False, states={'draft': [('readonly', True)], 'done': [('readonly', False)]}, digits=dp.get_precision('Product Price'))
     company_currency_id = fields.Many2one('res.currency', string="Report Company Currency", related='sheet_id.currency_id', store=True, readonly=False)
     total_amount_company = fields.Monetary("Total (Company Currency)", compute='_compute_total_amount_company', store=True, currency_field='company_currency_id', digits=dp.get_precision('Account'))
     company_id = fields.Many2one('res.company', string='Company', readonly=True, states={'draft': [('readonly', False)], 'refused': [('readonly', False)]}, default=lambda self: self.env.user.company_id)
@@ -89,7 +91,7 @@ class HrExpense(models.Model):
     reference = fields.Char("Bill Reference")
     is_refused = fields.Boolean("Explicitely Refused by manager or acccountant", readonly=True, copy=False)
     origin = fields.Many2one('maintenance.request', string='Documento origen', readonly= True, states={'draft': [('readonly', False)]})
-    
+    imagen_legal = fields.Binary(string="ingresar la factura") #creada por william acosta
   #-------------------------#
   #  MODIFICACIONES GASTOS  #  
   #-------------------------#
@@ -825,7 +827,10 @@ class HrExpenseSheet(models.Model):
     is_multiple_currency = fields.Boolean("Handle lines with different currencies", compute='_compute_is_multiple_currency')
     can_reset = fields.Boolean('Can Reset', compute='_compute_can_reset')
     maintenance_id = fields.Many2one('maintenance.request', string="maintenance request", readonly=True, copy=False)
-    
+    # modificaciones realizadas por william acosta mosquera
+    servicio_num = fields.Many2one('maintenance.request', string="Numero de servicio")
+
+    # fin de las modificaciones
     #------------------------------------#
     #        MODIFICACIONES              #
     #------------------------------------#

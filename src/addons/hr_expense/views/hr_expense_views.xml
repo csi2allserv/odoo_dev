@@ -68,7 +68,8 @@
                     </div>
                     <group>
                         <group>
-                            <field name="categ_id"/>
+<!--                            modificacion realizada por william acosta-->
+<!--                            <field name="categ_id"/>-->
                             <field name="complet" widget="radio" class="o_row" options="{'horizontal': true}"/>
                             <field name="product_id" context="{'default_can_be_expensed': 2, 'tree_view_ref': 'hr_expense.product_product_expense_tree_view'}" attrs="{'invisible': [('complet', '=', 'completo')], 'required' : [('complet', '=', 'unitario')]}"/>
                             <field name="quantity" placeholder="Cantidad" class="oe_inline" style="max-width: 48%%" attrs="{'invisible': [('complet', '=', 'completo')]}"/>
@@ -147,7 +148,7 @@
                         <group string="Legalización">
                             <field name="amount_legal" required="1" widget="monetary" options="{'currency_field': 'currency_id'}"/>
                             <field name="value_legal" required="1" widget="monetary" options="{'currency_field': 'currency_id'}"/>
-                            <button name="action_get_attachment_view" string="Adjuntar" type="object" icon="fa-paperclip"/>
+                            <field name="imagen_legal" widget="img" string="Adjuntar" />
                         </group>
 
                     </group>
@@ -532,11 +533,12 @@
                     <group name="name">
                         <group>
                             <field name="employee_id"/>
-                            <field name="payment_mode"/>
+                            <field name="servicio_num"/>
                             <field name="user_id"/>
                             <field name="address_id" invisible="1"/>
                             <field name="department_id" invisible="1"/>
                             <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="payment_mode"/>
                         </group>
                     </group>
                     <notebook>
