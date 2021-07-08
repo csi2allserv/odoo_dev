@@ -50,15 +50,15 @@
         </field>
     </record>
 
-    <record id="view_document_form" model="ir.ui.view">
-        <field name="name">mrp.document.form</field>
-        <field name="model">mrp.document</field>
-        <field name="inherit_id" ref="base.view_attachment_form"/>
-        <field name="mode">primary</field>
-        <field name="arch" type="xml">
-          <xpath expr="//field[@name='mimetype']" position="after">
-              <field name="priority" widget="priority"/>
-          </xpath>
-        </field>
-    </record>
+<!--    <record id="view_document_form" model="ir.ui.view">-->
+<!--        <field name="name">mrp.document.form</field>-->
+<!--        <field name="model">mrp.document</field>-->
+<!--        <field name="inherit_id" ref="base.view_attachment_form"/>-->
+<!--        <field name="mode">primary</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--          <xpath expr="//field[@name='mimetype']" position="after">-->
+<!--              <field name="priority" widget="priority"/>-->
+<!--          </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
 </odoo>
