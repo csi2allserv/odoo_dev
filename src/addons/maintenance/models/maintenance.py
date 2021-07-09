@@ -263,7 +263,7 @@ class MaintenanceEquipment(models.Model):
 #funcion creada por william acosta y efrain rojas
 #tener presente que una vez se cambie el año toca cambiar los dias festivos
 def day_habil():
-    dia = datetime.now()
+    dia = date.now()
     cont = 1
     for x in range(4):
         cont = cont + 1
@@ -350,10 +350,10 @@ class MaintenanceRequest(models.Model):
     company_id = fields.Many2one('res.company', string='Company',
         default=lambda self: self.env.user.company_id)
     description = fields.Text('Description')
-    request_date = fields.Datetime('Request Date', help="Fecha de inicio sodexo")
-    end_date = fields.Datetime('Fecha fin', track_visibility='onchange',
+    request_date = fields.Date('Request Date', help="Fecha de inicio sodexo")
+    end_date = fields.Date('Fecha fin', track_visibility='onchange',
                                help="Fecha fin sodexo")
-    date_of_assignment = fields.Datetime('Fecha de Asignacion', track_visibility='onchange',  help="Fecha fin sodexo" , default=lambda self: fields.datetime.now())
+    date_of_assignment = fields.Date('Fecha de Asignacion', track_visibility='onchange',  help="Fecha fin sodexo" , default=lambda self: fields.date.now())
     owner_user_id = fields.Many2one('res.users', string='Created by User', default=lambda s: s.env.uid)
     category_id = fields.Many2one('maintenance.equipment.category', related='equipment_id.category_id', string='Category', store=True, readonly=True)
     equipment_id = fields.Many2one('maintenance.equipment', string='Tipo de Sistema',
@@ -369,7 +369,7 @@ class MaintenanceRequest(models.Model):
     # active = fields.Boolean(default=True, help="Set active to false to hide the maintenance request without deleting it.")
     archive = fields.Boolean(default=False, help="Set archive to true to hide the maintenance request without deleting it.")
     maintenance_type = fields.Selection([('corrective', 'Corrective'), ('preventive', 'Preventive'),('proyecto', 'Proyectos')], string='Maintenance Type', default="corrective")
-    schedule_date = fields.Datetime('Scheduled Date', help="Date the maintenance team plans the maintenance.  It should not differ much from the Request Date. " , default=lambda self: day_habil())
+    schedule_date = fields.Date('Scheduled Date', help="Date the maintenance team plans the maintenance.  It should not differ much from the Request Date. " , default=lambda self: day_habil())
     maintenance_team_id = fields.Many2one('maintenance.team', string='Proceso', required=False, default=_get_default_team_id)
     duration = fields.Float(help="Duration in hours and minutes.", default='8')
     location_type_id = fields.Many2one('crm.customer.location.type', default=_default_location_type, \

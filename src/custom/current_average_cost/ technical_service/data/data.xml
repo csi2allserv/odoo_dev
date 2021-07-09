@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <data>
-        <record model="technical.maintenance" id="maintenance_task_services_picking_type">
-            <field name="name">maintenance Task services Operations</field>
-            <field name="code">outgoing</field>
-        </record>
-    </data>
-</odoo>
