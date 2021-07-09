@@ -10,7 +10,7 @@
                         <div class="row mt32 mb32">
                             <div class="col-2">
                                 <strong>Consecutivo:</strong>
-                                <p t-field="o.default_code"/>
+<!--                                <p t-field="o.default_code"/>-->
                             </div>
                             <div class="col-2">
                                 <strong>Employee:</strong>
@@ -98,8 +98,11 @@
                         <div>
                             <p>
                                 <strong>Firma:</strong>
-                                <span t-if="o.employee_id.digital_signature"></span>
-                                <img class="image" t-att-src="'data:image/png;base64,%s' % to_text(o.employee_id.digital_signature)" style="border:auto;"/>
+                                <div t-if="o.employee_id">
+                                    <img class="image" t-att-src="'data:image/png;base64,%s' % to_text(o.employee_id)" style="border:auto;"/>
+                                </div>
+<!--                                <span ></span>-->
+<!--                                -->
                             </p>
                         </div>
                     </div>
