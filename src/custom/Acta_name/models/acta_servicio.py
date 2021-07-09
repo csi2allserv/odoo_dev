@@ -34,6 +34,8 @@ class ActaServicio(models.Model):
     hora_final_acta = fields.Datetime('Date current action', required=True, readonly=False, select=True)
     codigo_proyecto=fields.Char()
     locacion_proyectos=fields.Char()
+    notas_resivido = fields.Char(string="numero de recibido ")
+    quienfirma =fields.Char(string="Firma funcionario")
     #paso 1
     Servicio_inmediato = fields.Selection([('Si', 'Si se puede realizar'), ('No', 'No se puede realizar')],
                                           string='¿El servicio se puede realizar inmediatamente?',
