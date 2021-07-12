@@ -416,8 +416,20 @@ class Lead(models.Model):
         x = int(x[0])
         x = x + 1
         print(str(x))
+        query = "SELECT id FROM public.mail_alias ORDER BY id DESC LIMIT 1;"
+        self._cr.execute(query)
+        self._cr.commit()
+        data = self._cr.dictfetchall()
+        txt = str(data)
+        z = txt.split(": ")
+        print(z[1])
+        z = z[1].split("}")
+        print(z[0])
+        z = int(z[0])
+        z = z + 1
+        print(str(z))
         self.fecha = datetime.now()
-        query = "INSERT INTO public.mail_alias(id,alias_model_id,alias_parent_model_id,alias_contact, create_uid, create_date, write_uid, write_date,alias_defaults) VALUES ('"+str(x)+"',148,148,'everyone',1,'2021-05-13 13:50',1,'2021-05-13 13:50','{}');"
+        query = "INSERT INTO public.mail_alias(id,alias_model_id,alias_parent_model_id,alias_contact, create_uid, create_date, write_uid, write_date,alias_defaults) VALUES ('"+str(z)+"',148,148,'everyone',1,'2021-05-13 13:50',1,'2021-05-13 13:50','{}');"
         self._cr.execute(query)
         self._cr.commit()
         query = "INSERT INTO public.project_project(name,active,sequence,company_id,alias_id,privacy_visibility,percentage_satisfaction_task,percentage_satisfaction_project,rating_request_deadline,rating_status,portal_show_rating,create_uid,create_date,write_uid,write_date,label_tasks) VALUES ('"+str(self.name)+"','TRUE',10,1,'"+str(x)+"','portal',-1,-1,'"+str(self.fecha)+"','no',FALSE,1,'"+str(self.fecha)+"',1,'"+str(self.fecha)+"','Tareas');"
@@ -436,13 +448,18 @@ class Lead(models.Model):
         data = self._cr.dictfetchall()
         txt = str(data)
         x = txt.split("-")
-        print(x[1])
-        x = x[1].split("'")
-        print(x[0])
-        x = int(x[0])
-        x = x + 1
         print(str(x))
-        query = "INSERT INTO public.maintenance_request(name,kanban_state,company_id,stage_id,archive,maintenance_type,maintenance_team_id,duration,location_type_id,create_uid,create_date,write_uid,write_date,employee_id,validador,code)VALUES ('"+str(self.name)+"','normal',1,1,'FALSE','corrective',1,8,2,2,'"+str(self.fecha)+"',2,'"+str(self.fecha)+"',1,'FALSE','MMS-"+str(x)+"');"
+        if x[0]=="['[]']":
+            print(x[1])
+            x = x[1].split("'")
+            print(x[0])
+            x = int(x[0])
+            x = x + 1
+            print(str(x))
+        else:
+            x=1
+            print(str(x))
+        query = "INSERT INTO public.maintenance_request(name,kanban_state,company_id,stage_id,archive,maintenance_type,maintenance_team_id,duration,create_uid,create_date,write_uid,write_date,employee_id,validador,code)VALUES ('"+str(self.name)+"','normal',1,1,'FALSE','corrective',1,8,2,'"+str(self.fecha)+"',2,'"+str(self.fecha)+"',1,'FALSE','MMS-"+str(x)+"');"
         self._cr.execute(query)
         self._cr.commit()
     # fin del codigo

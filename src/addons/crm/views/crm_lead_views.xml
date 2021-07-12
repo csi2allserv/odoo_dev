@@ -467,12 +467,12 @@
                         <button
                             name="action_create_proyect" string = "Enviar a proyectos"
                             class="oe_highlight"  type="object"
-                            attrs="{'invisible': [('stage_id', '!=', 6)]}"
+                            attrs="{'invisible': [('stage_id', '!=', 7)]}"
                         />
                         <button
                             name="action_create_mantenimiento" string = "Enviar a mantenimiento "
                             class="oe_highlight" type="object"
-                            attrs="{'invisible': [('stage_id', '!=', 6)]}"
+                            attrs="{'invisible': [('stage_id', '!=', 7)]}"
                         />
                         <field name="stage_id" widget="statusbar"
                             options="{'clickable': '1', 'fold_field': 'fold'}"
