@@ -2,13 +2,13 @@
     <data>
         <record id='materiales_video_action' model='ir.actions.act_window'>
             <field name="name">materiales</field>
-            <field name="res_model">suministro.metalmecanicos</field>
+            <field name="res_model">suministro.corregido</field>
             <field name="view_type">form</field>
             <field name="view_mode">form</field>
         </record>
         <record id="materiales_video_view_form" model="ir.ui.view">
             <field name="name">Acta digital</field>
-            <field name="model">suministro.metalmecanicos</field>
+            <field name="model">suministro.corregido</field>
             <field name="arch" type="xml">
                 <form>
                     <group>

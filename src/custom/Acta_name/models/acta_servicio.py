@@ -425,7 +425,7 @@ class materiales_alarma(models.Model):
 class suministros_alarma(models.Model):
     _name = 'suministros.alarma'
     _rec_name = 'lista_cliente'
-    lista_cliente = fields.Many2one('lista.clientes',
+    lista_cliente = fields.Many2one('suministro.corregido',
                                     string='Lista dada por el cliente, si requiere otro elemento comunicarse con el supervisor')
     cantidad = fields.Integer('cantidad')
     elementocambiado = fields.Selection([('r1', 'ENTREGADO'),
@@ -555,7 +555,7 @@ class compartimiento_equipo_pesado(models.Model):
 class suministros_metalmecanicos(models.Model):
     _name = 'suministros_metalmecanicos'
     _rec_name = 'lista_cliente'
-    lista_cliente = fields.Many2one('suministro.metalmecanicos',
+    lista_cliente = fields.Many2one('lista.clientes',
                                     string='Si suministró algo, favor seleccionarlo de la siguiente lista:')
     cantidad = fields.Integer('cantidad', size=2, default=1)
     elementocambiado = fields.Selection([('r1', 'ENTREGADO'),
@@ -572,7 +572,7 @@ class suministros_metalmecanicos(models.Model):
     serial = fields.Char(string='ingrese el serial si lo posee')
 
 class suministro_metalmecanicos(models.Model):
-    _name = 'suministro.metalmecanicos'
+    _name = 'suministro.corregido'
     _rec_name = 'nombre'
     nombre = fields.Char('Nombre del compartimiento', required=True)
 
