@@ -444,6 +444,7 @@ class lista_clientes(models.Model):
     _name = 'lista.clientes'
     _rec_name = 'producto_lista'
     producto_lista = fields.Char('Iten que desea agregar', required=True)
+    empresa_dueña = fields.Char('Empresa dueña', required=True)
 
 class mano_obra(models.Model):
     _name = 'mano.obra'

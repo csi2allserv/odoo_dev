@@ -15,6 +15,9 @@
                         <div class="d-flex justify-content-center">
                             <field name="producto_lista"/>
                         </div>
+                        <div class="d-flex justify-content-center">
+                            <field name="empresa_dueña"/>
+                        </div>
                     </group>
                 </form>
             </field>
