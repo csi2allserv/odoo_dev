@@ -647,14 +647,14 @@ class CrmCustomerLocation(models.Model):
             result.append((location.id, name))
         return result
 
-    @api.constrains('partner_id', 'code','location_type_id')
-    def _check_unicity(self):
-        if self.search_count([
-                ('partner_id', '=', self.partner_id.id),
-                ('code', '=', self.code),
-                ('location_type_id', '=', self.location_type_id.id)
-            ]) > 1:
-            raise ValidationError(_("Partner location duplicated!"))
+    # @api.constrains('partner_id', 'code','location_type_id')
+    # def _check_unicity(self):
+    #     if self.search_count([
+    #             ('partner_id', '=', self.partner_id.id),
+    #             ('code', '=', self.code),
+    #             ('location_type_id', '=', self.location_type_id.id)
+    #         ]) > 1:
+    #         raise ValidationError(_("Partner location duplicated!"))
 
 class CrmBranchOffice(models.Model):
     _name = 'crm.customer.location.type'
