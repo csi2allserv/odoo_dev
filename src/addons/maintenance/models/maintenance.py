@@ -353,7 +353,7 @@ class MaintenanceRequest(models.Model):
     request_date = fields.Date('Request Date', help="Fecha de inicio sodexo")
     end_date = fields.Date('Fecha fin', track_visibility='onchange',
                                help="Fecha fin sodexo")
-    date_of_assignment = fields.Date('Fecha de Asignacion', track_visibility='onchange',  help="Fecha fin sodexo" , default=lambda self: fields.date.today())
+    date_of_assignment = fields.Datetime('Fecha de Asignacion', track_visibility='onchange',  help="Fecha fin sodexo" , default=lambda self: fields.Datetime.now())
     owner_user_id = fields.Many2one('res.users', string='Created by User', default=lambda s: s.env.uid)
     category_id = fields.Many2one('maintenance.equipment.category', related='equipment_id.category_id', string='Category', store=True, readonly=True)
     equipment_id = fields.Many2one('maintenance.equipment', string='Tipo de Sistema',
