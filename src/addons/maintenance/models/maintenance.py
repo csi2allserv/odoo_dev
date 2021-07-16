@@ -368,7 +368,7 @@ class MaintenanceRequest(models.Model):
                                     string='Kanban State', required=True, default='normal', track_visibility='onchange')
     # active = fields.Boolean(default=True, help="Set active to false to hide the maintenance request without deleting it.")
     archive = fields.Boolean(default=False, help="Set archive to true to hide the maintenance request without deleting it.")
-    maintenance_type = fields.Selection([('corrective', 'Corrective'), ('preventive', 'Preventive'),('proyecto', 'Proyectos')], string='Maintenance Type', default="corrective")
+    maintenance_type = fields.Selection([('corrective', 'Corrective'), ('preventive', 'Preventive'),('proyecto', 'P.especial')], string='Maintenance Type', default="corrective")
     schedule_date = fields.Date('Scheduled Date', help="Date the maintenance team plans the maintenance.  It should not differ much from the Request Date. " , default=lambda self: day_habil())
     maintenance_team_id = fields.Many2one('maintenance.team', string='Proceso', required=False, default=_get_default_team_id)
     duration = fields.Float(help="Duration in hours and minutes.", default='8')
@@ -383,6 +383,11 @@ class MaintenanceRequest(models.Model):
     planificador = fields.Selection([('p1', 'personal 1'), ('p2', 'personal 2'), ('p3', 'personal 3'), ('p4', 'personal 4'), ('p5', 'personal 5')],)
     location = fields.Char()
     validador = fields.Boolean(default=False)
+    tecnicoApoyo1 = fields.Many2one('res.users', string='Tecnico de apoyo')
+    tecnicoApoyo2 = fields.Many2one('res.users', string='Tecnico de apoyo')
+    tecnicoApoyo3 = fields.Many2one('res.users', string='Tecnico de apoyo')
+    tecnicoApoyo4 = fields.Many2one('res.users', string='Tecnico de apoyo')
+    tecnicoApoyo5 = fields.Many2one('res.users', string='Tecnico de apoyo')
 
     @api.model
     def name_search(self, name='', args=None, operator='ilike', limit=100):
@@ -516,30 +521,30 @@ class MaintenanceRequest(models.Model):
                 value['request_date'] = time.strftime('%Y-%m-%d %H:%M:%S')
             request.write(value)
 
-    @api.multi
-    @api.onchange('location_type_id', 'partner_id', 'city_id')
-    def location_id_change(self):
-        if not self.location_type_id and not self.partner_id and \
-                not self.city_id:
-            return
-
-        domain = []
-        if self.partner_id:
-            domain.append(('partner_id', '=', self.partner_id.id))
-        if self.location_type_id:
-            domain.append(('location_type_id', '=', self.location_type_id.id))
-        if self.city_id:
-            domain.append(('city_id', '=', self.city_id.id))
-        if len(domain) > 1:
-                domain = ['&'] + domain
-        locations = self.env['crm.customer.location']. \
-            search(domain, limit=100)
-        location_ids = self.city_filter(locations)  # Retorna el Id de la Ciudad
-        ids = [location.id for location in locations]
-        return {'domain': {
-            'location_id': [('id', 'in', ids)],
-            'city_id': [('id', 'in', location_ids)]}
-        }
+    # @api.multi
+    # @api.onchange('location_type_id', 'partner_id', 'city_id')
+    # def location_id_change(self):
+    #     if not self.location_type_id and not self.partner_id and \
+    #             not self.city_id:
+    #         return
+    #
+    #     domain = []
+    #     if self.partner_id:
+    #         domain.append(('partner_id', '=', self.partner_id.id))
+    #     if self.location_type_id:
+    #         domain.append(('location_type_id', '=', self.location_type_id.id))
+    #     if self.city_id:
+    #         domain.append(('city_id', '=', self.city_id.id))
+    #     if len(domain) > 1:
+    #             domain = ['&'] + domain
+    #     locations = self.env['crm.customer.location']. \
+    #         search(domain, limit=100)
+    #     location_ids = self.city_filter(locations)  # Retorna el Id de la Ciudad
+    #     ids = [location.id for location in locations]
+    #     return {'domain': {
+    #         'location_id': [('id', 'in', ids)],
+    #         'city_id': [('id', 'in', location_ids)]}
+    #     }
 
     def city_filter(self, locations):
         city_ids = []
@@ -550,7 +555,7 @@ class MaintenanceRequest(models.Model):
 
     @api.onchange('location_id')
     def _onchange_partner_id(self):
-        self.location_type_id = self.location_id.location_type_id
+        # self.location_type_id = self.location_id.location_type_id
         self.city_id = self.location_id.city_id
 
 

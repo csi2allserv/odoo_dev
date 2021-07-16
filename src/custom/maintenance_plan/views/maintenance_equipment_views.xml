@@ -57,10 +57,10 @@
             </field>
             <field name="description" position="replace">
                 <notebook>
-                    <page string="Instructions">
+                    <page string="Notas personales">
                         <field name="note" placeholder="Describe the maintenance to do..."/>
                     </page>
-                    <page string="Notes">
+                    <page string="Instrucción para el técnico">
                         <field name="description" placeholder="Internal notes..."/>
                     </page>
                 </notebook>
