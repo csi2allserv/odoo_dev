@@ -316,6 +316,11 @@ def day_habil():
     return tomorrow
 
 
+def create_excel(codigo):
+    print(str(codigo))
+    pass
+
+
 class MaintenanceRequest(models.Model):
     _name = 'maintenance.request'
     _inherit = ['mail.thread', 'mail.activity.mixin']
@@ -374,7 +379,6 @@ class MaintenanceRequest(models.Model):
     duration = fields.Float(help="Duration in hours and minutes.", default='8')
     location_type_id = fields.Many2one('crm.customer.location.type', default=_default_location_type, \
                                        string='Tipo de Ubicacion')
-    location_id = fields.Many2one('crm.customer.location', string='Codigo', required=False, domain="[('location_type_id','=',location_type_id),('partner_id','=',partner_id)]")
     city_id = fields.Many2one('res.city', string='Ciudad', readonly=True)
     codigos = fields.Char(string="codigos")
     partner_id = fields.Many2one('res.partner', string='Customer', track_visibility='onchange', track_sequence=1, index=True,
@@ -388,6 +392,8 @@ class MaintenanceRequest(models.Model):
     tecnicoApoyo3 = fields.Many2one('res.users', string='Tecnico de apoyo')
     tecnicoApoyo4 = fields.Many2one('res.users', string='Tecnico de apoyo')
     tecnicoApoyo5 = fields.Many2one('res.users', string='Tecnico de apoyo')
+    location_id = fields.Many2one('crm.customer.location', string='Codigo', required=False,
+                                  domain="[('location_type_id','=',location_type_id),('partner_id','=',partner_id)]")
 
     @api.model
     def name_search(self, name='', args=None, operator='ilike', limit=100):
@@ -545,23 +551,31 @@ class MaintenanceRequest(models.Model):
     #         'city_id': [('id', 'in', location_ids)]}
     #     }
     #esta funcion esta diseñada para cuando ingresen un excel guarde los datos como son
-    @api.multi
-    # @api.constrains('codigos')
+    @api.one
+    @api.constrains('codigos')
     def codigos_excel(self):
         print("ingreso")
         enditidad = self.partner_id.id
         tipo = self.location_type_id.id
         codig = self.codigos
         if not self.location_id:
-            query = f"SELECT id FROM public.crm_customer_location WHERE code = '{codig}' AND location_type_id = '{tipo}' AND partner_id='{enditidad}';"
+            query = f"SELECT id, city_id FROM public.crm_customer_location WHERE code = '{codig}' AND location_type_id = '{tipo}' AND partner_id='{enditidad}';"
             self._cr.execute(query)
-            self._cr.commit()
             data = self._cr.dictfetchall()
             txt = str(data)
-            x = txt.split(": ")
+            print(str(txt))
+            z = txt.split(", ")
+            x = str(z[0])
+            y = str(z[1])
+            y = y.split(": ")
+            print('')
+            y = y[1].split("}")
+            x = x.split(": ")
+            print('')
             x = x[1].split("}")
-            print(x[0])
             self.location_id = x[0]
+            self.city_id = y[0]
+
     def city_filter(self, locations):
         city_ids = []
         if locations:
