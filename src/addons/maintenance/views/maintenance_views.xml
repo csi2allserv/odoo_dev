@@ -81,7 +81,8 @@
                                     string="Entidad" domain="[('customer', '=', True)]"
                             />
                             <field name="location_type_id" widget="selection"/>
-                            <field name="location_id" context="{'ciudad':city_id}" domain="[('location_type_id','=',location_type_id)]" />
+                            <field name="location_id" context="{'ciudad':city_id}"/>
+                            <field name="codigos" invisible="True"/>
                             <field name="city_id" string="Ciudad" attrs="{'invisible': [('location_id', '=', False)], 'readonly': [('location_id', '=', False)]}" options="{'no_create_edit': True}"/>                            
                             <field name="company_id" groups="base.group_multi_company" options="{'no_create': True, 'no_open': True}" readonly="True"/>
                             <field name="equipment_id"  context="{'default_category_id':category_id}" string="Tipo de Sistema" invisible="True"/>

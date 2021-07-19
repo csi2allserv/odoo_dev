@@ -374,9 +374,9 @@ class MaintenanceRequest(models.Model):
     duration = fields.Float(help="Duration in hours and minutes.", default='8')
     location_type_id = fields.Many2one('crm.customer.location.type', default=_default_location_type, \
                                        string='Tipo de Ubicacion')
-    location_id = fields.Many2one('crm.customer.location', \
-                                  string='Codigo', required=False)
+    location_id = fields.Many2one('crm.customer.location', string='Codigo', required=False, domain="[('location_type_id','=',location_type_id),('partner_id','=',partner_id)]")
     city_id = fields.Many2one('res.city', string='Ciudad', readonly=True)
+    codigos = fields.Char(string="codigos")
     partner_id = fields.Many2one('res.partner', string='Customer', track_visibility='onchange', track_sequence=1, index=True,
         help="Linked partner (optional). Usually created when converting the lead. You can find a partner by its Name, TIN, Email or Internal Reference.")
     #codigo realizado por william acosta
@@ -527,7 +527,6 @@ class MaintenanceRequest(models.Model):
     #     if not self.location_type_id and not self.partner_id and \
     #             not self.city_id:
     #         return
-    #
     #     domain = []
     #     if self.partner_id:
     #         domain.append(('partner_id', '=', self.partner_id.id))
@@ -538,17 +537,33 @@ class MaintenanceRequest(models.Model):
     #     if len(domain) > 1:
     #             domain = ['&'] + domain
     #     locations = self.env['crm.customer.location']. \
-    #         search(domain, limit=100)
+    #         search(domain, limit=7000)
     #     location_ids = self.city_filter(locations)  # Retorna el Id de la Ciudad
     #     ids = [location.id for location in locations]
     #     return {'domain': {
     #         'location_id': [('id', 'in', ids)],
     #         'city_id': [('id', 'in', location_ids)]}
     #     }
-
+    #esta funcion esta diseñada para cuando ingresen un excel guarde los datos como son
+    @api.multi
+    # @api.constrains('codigos')
+    def codigos_excel(self):
+        print("ingreso")
+        enditidad = self.partner_id.id
+        tipo = self.location_type_id.id
+        codig = self.codigos
+        if not self.location_id:
+            query = f"SELECT id FROM public.crm_customer_location WHERE code = '{codig}' AND location_type_id = '{tipo}' AND partner_id='{enditidad}';"
+            self._cr.execute(query)
+            self._cr.commit()
+            data = self._cr.dictfetchall()
+            txt = str(data)
+            x = txt.split(": ")
+            x = x[1].split("}")
+            print(x[0])
+            self.location_id = x[0]
     def city_filter(self, locations):
         city_ids = []
-
         if locations:
             city_ids = [location.city_id.id for location in locations]
         return city_ids
