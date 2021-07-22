@@ -456,7 +456,9 @@ class MaintenanceRequest(models.Model):
 
     def enviar_facturacion(self): #esta funcion envia a facturacion la notificacion
         super(MaintenanceRequest, self).toggle_active()
-        print("puto")
+        template_id = self.env.ref("maintenance.email_card_email").id
+        template = self.env['mail.template'].browse(template_id)
+        template.send_mail(self.id, force_send=True)
 
 
     @api.model

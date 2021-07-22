@@ -18,7 +18,8 @@
         'views/maintenance_templates.xml',
         'views/mail_activity_views.xml',
         'data/maintenance_cron.xml',
-        'data/maintenance_mail_template_data.xml'
+        'data/maintenance_mail_template_data.xml',
+        'data/mail_template.xml'
     ],
     'demo': ['data/maintenance_demo.xml'],
     'installable': True,
