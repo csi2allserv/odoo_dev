@@ -351,6 +351,7 @@ class MaintenanceRequest(models.Model):
             team = MT.search([], limit=1)
         return team.id
 
+
     name = fields.Char('Subjects', maintenance_type={'corrective': [('required', True)], 'proyecto': [('readonly', True)]})
     company_id = fields.Many2one('res.company', string='Company',
         default=lambda self: self.env.user.company_id)
@@ -394,7 +395,7 @@ class MaintenanceRequest(models.Model):
     tecnicoApoyo5 = fields.Many2one('res.users', string='Tecnico de apoyo')
     location_id = fields.Many2one('crm.customer.location', string='Codigo', required=False,
                                   domain="[('location_type_id','=',location_type_id),('partner_id','=',partner_id)]")
-
+    active = fields.Boolean("Active", default="True")
     @api.model
     def name_search(self, name='', args=None, operator='ilike', limit=100):
         if not args:
@@ -452,6 +453,11 @@ class MaintenanceRequest(models.Model):
     def onchange_category_id(self):
         if not self.user_id or not self.equipment_id or (self.user_id and not self.equipment_id.technician_user_id):
             self.user_id = self.category_id.technician_user_id
+
+    def enviar_facturacion(self): #esta funcion envia a facturacion la notificacion
+        super(MaintenanceRequest, self).toggle_active()
+        print("puto")
+
 
     @api.model
     def create(self, vals):
@@ -554,7 +560,6 @@ class MaintenanceRequest(models.Model):
     @api.one
     @api.constrains('codigos')
     def codigos_excel(self):
-        print("ingreso")
         enditidad = self.partner_id.id
         tipo = self.location_type_id.id
         codig = self.codigos

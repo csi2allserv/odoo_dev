@@ -62,6 +62,11 @@
                     <field  name="stage_id" widget="statusbar" options="{'clickable': '1'}" attrs="{'invisible': [('archive', '=', True)]}"/>
                 </header>
                 <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="enviar_facturacion" type="object" class="oe_stat_button" icon="fa-archive" excute="">
+                            <field name="active" widget="boolean_button" options="{&quot;terminology&quot;: &quot;archive&quot;}"/>
+                        </button>
+                    </div>
                     <div name="init" attrs="{'invisible': [('archive', '=', False)]}">
                         <span class="badge badge-warning float-right">Canceled</span>
                     </div>
