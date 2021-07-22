@@ -396,6 +396,7 @@ class MaintenanceRequest(models.Model):
     location_id = fields.Many2one('crm.customer.location', string='Codigo', required=False,
                                   domain="[('location_type_id','=',location_type_id),('partner_id','=',partner_id)]")
     active = fields.Boolean("Active", default="True")
+    cierre = fields.Boolean("Active", default="True")
     @api.model
     def name_search(self, name='', args=None, operator='ilike', limit=100):
         if not args:
@@ -455,10 +456,14 @@ class MaintenanceRequest(models.Model):
             self.user_id = self.category_id.technician_user_id
 
     def enviar_facturacion(self): #esta funcion envia a facturacion la notificacion
-        super(MaintenanceRequest, self).toggle_active()
-        template_id = self.env.ref("maintenance.email_card_email").id
-        template = self.env['mail.template'].browse(template_id)
-        template.send_mail(self.id, force_send=True)
+        if self.cierre == True:
+            super(MaintenanceRequest, self).toggle_active()
+            template_id = self.env.ref("maintenance.email_card_email").id
+            template = self.env['mail.template'].browse(template_id)
+            template.send_mail(self.id, force_send=True)
+            self.cierre = False
+        else:
+            raise ValidationError(_("El mantenimiento se ecnuetra cerrado"))
 
 
     @api.model
