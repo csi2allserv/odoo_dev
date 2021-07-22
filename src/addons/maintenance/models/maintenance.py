@@ -463,7 +463,7 @@ class MaintenanceRequest(models.Model):
             template.send_mail(self.id, force_send=True)
             self.cierre = False
         else:
-            raise ValidationError(_("El mantenimiento se ecnuetra cerrado"))
+            raise ValidationError(_("El mantenimiento se encuetra cerrado"))
 
 
     @api.model
