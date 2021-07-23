@@ -264,9 +264,22 @@ class Project(models.Model):
     locacionNombre = fields.Char()
     enidadproyecto = fields.Many2one('res.partner')
     tablamaterial = fields.One2many('materialesdelcrm_tabla', 'opuesto')
+    cierre = fields.Boolean('cierre', default=True)
+
+    def enviar_facturacion(self): #esta funcion envia a facturacion la notificacion
+        print("entro")
+        if self.cierre == True:
+            print("entro 2")
+            super(Project, self).toggle_active()
+            template_id = self.env.ref("project.email_project_email").id
+            template = self.env['mail.template'].browse(template_id)
+            template.send_mail(self.id, force_send=True)
+            print(template)
+            self.cierre = False
+        else:
+            raise ValidationError(_("El proyecto se encuetra cerrado"))
 
     # fin del codigo
-
     def _compute_access_url(self):
         super(Project, self)._compute_access_url()
         for project in self:
