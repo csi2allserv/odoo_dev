@@ -277,7 +277,7 @@ class Project(models.Model):
             print(template)
             self.cierre = False
         else:
-            raise ValidationError(_("El proyecto se encuetra cerrado"))
+            raise ValidationError(_(self.name))
 
     # fin del codigo
     def _compute_access_url(self):

@@ -4,16 +4,19 @@
         <record id="email_project_email" model="mail.template">
             <field name="name">project: prueba </field>
             <field name="model_id" ref="project.model_project_task"/>
-
+            <field name="email_from">${object.user_id.email_formatted |safe}</field>
+            <field name="email_to">csi1@grupogema.com.co</field>
             <field name="subject">Reception of ${object.name}</field>
             <field name="use_default_to" eval="False"/>
             <field name="body_html" type="html">
                 <div>
-                    Dear ${object.partner_id.name or 'customer'},<br/>
-                    Thank you for your enquiry.<br />
-                    If you have any questions, please let us know.
+                    Cordial saludo
                     <br/><br/>
-                    Thank you,
+                    El siguiente correo es para confirmarle que el servicio: ${object.name}
+                    <br/>
+                    ya se encuentra finalizado para su validación.
+                    <br/><br/>
+                    Muchas gracias,
                     <br/>
                 </div>
             </field>
