@@ -57,7 +57,7 @@
                 <header>
 <!--                    cambio hecho por william acosta-->
 <!--                    <button string="Archivar" name="archive_equipment_request" type="object" attrs="{'invisible': [('archive', '=', True)]}"/>-->
-                    <button string="Descargue" name="enviar_facturacion" type="object" attrs="{'invisible': [('stage_id', '!=', 6)]}"/>
+                    <button string="Facturación" name="enviar_facturacion" type="object" attrs="{'invisible': [('stage_id', '!=', 6)]}"/>
 <!--                    fin del cambio-->
                     <button string="Reopen Request" name="reset_equipment_request" type="object" attrs="{'invisible': [('archive', '=', False)]}"/>
                     <field  name="stage_id" widget="statusbar" options="{'clickable': '1'}" attrs="{'invisible': [('archive', '=', True)]}"/>
@@ -101,7 +101,7 @@
                             <field name="owner_user_id" string="Requested By"/>
                             
                             <!--field name="maintenance_team_id" options="{'no_create': True, 'no_open': True}" string="Proceso"/-->
-                            <field name="user_id" string="Tecnico" attrs="{'readonly': [('location_id', '=', True)]}"/>
+                            <field name="user_id" string="Tecnico" attrs="{'readonly': [('location_id', '=', True)], 'invisible': [('stage_id', '=', 1)]}"/>
                             <field name="tecnicoApoyo1" force_save="1" attrs="{'invisible': [('user_id', '=', False)]}" />
                             <field name="tecnicoApoyo2" force_save="1" attrs="{'invisible': [('tecnicoApoyo1', '=', False)]}" />
                             <field name="tecnicoApoyo3" force_save="1" attrs="{'invisible': [('tecnicoApoyo2', '=', False)]}" />
@@ -146,6 +146,9 @@
                                      <field name="end_date" string="Fecha Fin"/>
                                 </div>
                             </div>
+                        </page>
+                        <page string="Gastos" name="gastos">
+                            <field name="gastos_personal" widget="many2many"/>
                         </page>
                     </notebook>
                 </sheet>
