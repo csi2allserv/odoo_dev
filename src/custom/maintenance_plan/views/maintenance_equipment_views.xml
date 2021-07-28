@@ -56,14 +56,12 @@
 <!--                william acosta-->
             </field>
             <field name="description" position="replace">
-                <notebook>
-                    <page string="Notas personales">
-                        <field name="note" placeholder="Describe the maintenance to do..."/>
-                    </page>
-                    <page string="Instrucción para el técnico">
-                        <field name="description" placeholder="Internal notes..."/>
-                    </page>
-                </notebook>
+                <field string="Instrucción para el técnico" name="description" placeholder="Internal notes..."/>
+<!--                <notebook>-->
+<!--                    <page >-->
+<!--                        <field name="description/note" placeholder="Internal notes..."/>-->
+<!--                    </page>-->
+<!--                </notebook>-->
             </field>
         </field>
     </record>

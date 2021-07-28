@@ -564,29 +564,30 @@ class MaintenanceRequest(models.Model):
     #         'city_id': [('id', 'in', location_ids)]}
     #     }
     #esta funcion esta diseñada para cuando ingresen un excel guarde los datos como son
-    @api.one
-    @api.constrains('codigos')
-    def codigos_excel(self):
-        enditidad = self.partner_id.id
-        tipo = self.location_type_id.id
-        codig = self.codigos
-        if not self.location_id:
-            query = f"SELECT id, city_id FROM public.crm_customer_location WHERE code = '{codig}' AND location_type_id = '{tipo}' AND partner_id='{enditidad}';"
-            self._cr.execute(query)
-            data = self._cr.dictfetchall()
-            txt = str(data)
-            print(str(txt))
-            z = txt.split(", ")
-            x = str(z[0])
-            y = str(z[1])
-            y = y.split(": ")
-            print('')
-            y = y[1].split("}")
-            x = x.split(": ")
-            print('')
-            x = x[1].split("}")
-            self.location_id = x[0]
-            self.city_id = y[0]
+    # @api.one
+    # @api.constrains('codigos')
+    # def codigos_excel(self):
+    #     enditidad = self.partner_id.id
+    #     tipo = self.location_type_id.id
+    #     codig = self.codigos
+    #     print(f":{codig}")
+    #     if not self.location_id:
+    #         query = f"SELECT id, city_id FROM public.crm_customer_location WHERE code = '{codig}' AND location_type_id = '{tipo}' AND partner_id='{enditidad}';"
+    #         self._cr.execute(query)
+    #         data = self._cr.dictfetchall()
+    #         txt = str(data)
+    #         print(str(txt))
+    #         z = txt.split(", ")
+    #         x = str(z[0])
+    #         y = str(z[1])
+    #         y = y.split(": ")
+    #         print('')
+    #         y = y[1].split("}")
+    #         x = x.split(": ")
+    #         print('')
+    #         x = x[1].split("}")
+    #         self.location_id = x[0]
+    #         self.city_id = y[0]
 
     def city_filter(self, locations):
         city_ids = []
@@ -602,6 +603,7 @@ class MaintenanceRequest(models.Model):
 
     @api.constrains('name')
     def _check_unique_number(self):
+        print(self.env.user.id)
         if self.search_count([
             ('name', '=', self.name)
         ]) > 1:

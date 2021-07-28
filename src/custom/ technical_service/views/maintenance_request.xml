@@ -24,16 +24,16 @@
             <field name="inherit_id" ref="maintenance.hr_equipment_request_view_form" />
             <field name="priority" eval="31"/>
             <field name="arch" type="xml">
-                <xpath expr="//sheet//div[@name='init']" position="after">
-                    <div class="oe_button_box" name="button_box">
-                        <button name="%(request_action_from_equipment)d"
-                            type="action"
-                            class="oe_stat_button"
-                            icon="fa-ticket">
-                            <field string="Maintenance" name="line_count" widget="statinfo"/>
-                        </button>
-                    </div>
-                </xpath>
+<!--                <xpath expr="//sheet//div[@name='init']" position="after">-->
+<!--                    <div class="oe_button_box" name="button_box">-->
+<!--                        <button name="%(request_action_from_equipment)d"-->
+<!--                            type="action"-->
+<!--                            class="oe_stat_button"-->
+<!--                            icon="fa-ticket">-->
+<!--                            <field string="Maintenance" name="line_count" widget="statinfo"/>-->
+<!--                        </button>-->
+<!--                    </div>-->
+<!--                </xpath>-->
 <!--                <xpath expr="//notebook//page[@name='whiteboard']" position="after">-->
 <!--                        <page string="Asignar" >-->
 <!--                        <group>-->

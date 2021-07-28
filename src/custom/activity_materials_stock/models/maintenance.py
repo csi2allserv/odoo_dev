@@ -186,12 +186,15 @@ class ProjectTaskMaterial(models.Model):
     product_id = fields.Many2one(
         domain="[('type', 'in', ('consu', 'product'))]"
     )
+    product_p =fields.Many2one('stock.quant', required="True", domain="[('location_id', '=', '5')]")
 
-    @api.onchange('product_id')
+    @api.onchange('product_p')
     def _onchange_product_id(self):
         self.product_uom_id = self.product_id.uom_id.id
+        print(str(self.product_p.location_id.name))
         return {'domain': {'product_uom_id': [
             ('category_id', '=', self.product_id.uom_id.category_id.id)]}}
+
 
     def _prepare_stock_move(self):
         product = self.product_id

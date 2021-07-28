@@ -6,7 +6,7 @@ from odoo import api, fields, models, tools
 class MaintenanceEquipment(models.Model):
     _inherit = 'maintenance.equipment'
 
-    employee_id = fields.Many2one('hr.employee', string='Assigned to Employee', default=lambda self: self.env.user.id)
+    employee_id = fields.Many2one('res.users', string='Assigned to Employee', default=lambda self: self.env.user.id)
     department_id = fields.Many2one('hr.department', string='Assigned to Department', track_visibility='onchange')
     equipment_assign_to = fields.Selection(
         [('department', 'Department'), ('employee', 'Employee'), ('other', 'Other')],
@@ -76,7 +76,7 @@ class MaintenanceRequest(models.Model):
     def _default_employee_get(self):
         return self.env['hr.employee'].search([('user_id', '=', self.env.uid)], limit=1)
 
-    employee_id = fields.Many2one('hr.employee', string='Employee', default=_default_employee_get)
+    employee_id = fields.Many2one('res.users', string='Employee', default=lambda self: self.env.user.id)
     department_id = fields.Many2one('hr.department', string='Department')
     owner_user_id = fields.Many2one(compute='_compute_owner', store=True)
 
