@@ -398,11 +398,11 @@ class MaintenanceRequest(models.Model):
     active = fields.Boolean("Active", default="True")
     cierre = fields.Boolean("Active", default="True")
     # gastos_per = fields.Many2one('hr.expense')
-    gastos_personal = fields.One2many('hr.expense', 'id')
+    gastos_personal = fields.One2many('hr.expense', 'origin', copy=True)
 
     @api.onchange('user_id')
     def default_gastos(self):
-        print("ingresa al default")
+        self.gastos_personal = [(6, 0, [2, 3, 4])]
 
     @api.model
     def name_search(self, name='', args=None, operator='ilike', limit=100):
