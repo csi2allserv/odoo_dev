@@ -10,3 +10,4 @@ class Employee(models.Model):
         'res.users', string='Expense Responsible',
         domain=lambda self: [('groups_id', 'in', self.env.ref('hr_expense.group_hr_expense_user').id)],
         help="User responsible of expense approval. Should be Expense Officer or Manager.")
+    # bolsa = fields.Integer()
