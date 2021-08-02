@@ -973,9 +973,12 @@ class HrExpenseSheet(models.Model):
 
     @api.multi
     def action_legalize_sheet(self):
-        self.employee_id.bolsa_total = self.employee_id.bolsa_total - self.total_amount
-        self.write({'state': 'legalize'})
-        self.activity_update()
+        if (self.employee_id.bolsa_total - self.total_amount) < 0:
+            raise ValidationError('El tecnico no tiene suficiente dinero')
+        else:
+            self.employee_id.bolsa_total = self.employee_id.bolsa_total - self.total_amount
+            self.write({'state': 'legalize'})
+            self.activity_update()
 
     @api.multi
     def action_legalize_parcial_sheet(self):
