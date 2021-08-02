@@ -144,6 +144,11 @@
                                         <field name="user_id" string="Related User"/>
                                     </group>
                                 </group>
+                                <group>
+                                    <group string='Gatos tecnico' name="tecnic_expenses_group" attrs="{'invisible': [('job_id', '!=', 2)]}">
+                                        <field name="bolsa" string="Bolsa tecnico"/>
+                                    </group>
+                                </group>
                             </page>
                         </notebook>
                         </div></div>

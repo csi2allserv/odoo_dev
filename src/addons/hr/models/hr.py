@@ -199,6 +199,8 @@ class Employee(models.Model):
     notes = fields.Text('Notes')
     color = fields.Integer('Color Index', default=0)
     suma = fields.One2many('product.template', 'standard_price')
+    #william acosta
+    bolsa = fields.Integer(string='Ingreso dinero tecnico')
 
     @api.constrains('parent_id')
     def _check_parent_id(self):
