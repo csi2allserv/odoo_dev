@@ -398,7 +398,7 @@ class MaintenanceRequest(models.Model):
     active = fields.Boolean("Active", default="True")
     cierre = fields.Boolean("Active", default="True")
     # gastos_per = fields.Many2one('hr.expense')
-    gastos_personal = fields.One2many('hr.expense', 'origin')
+    gastos_personal = fields.One2many('hr.expense', 'id')
 
     @api.onchange('user_id')
     def default_gastos(self):
