@@ -973,6 +973,7 @@ class HrExpenseSheet(models.Model):
 
     @api.multi
     def action_legalize_sheet(self):
+        self.employee_id.bolsa_total = self.employee_id.bolsa_total - self.total_amount
         self.write({'state': 'legalize'})
         self.activity_update()
 
