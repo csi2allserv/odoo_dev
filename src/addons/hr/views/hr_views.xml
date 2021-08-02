@@ -147,6 +147,8 @@
                                 <group>
                                     <group string='Gatos tecnico' name="tecnic_expenses_group" attrs="{'invisible': [('job_id', '!=', 2)]}">
                                         <field name="bolsa" string="Bolsa tecnico"/>
+                                        <field name="bolsa_total" string="Valor total"/>
+                                        <button name="expenses_tecnical" string="Asignar dinero" class="oe_highlight" confirm="Esta seguro de la cantidad a registrar" type="object" />
                                     </group>
                                 </group>
                             </page>

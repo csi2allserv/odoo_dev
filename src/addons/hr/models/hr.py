@@ -201,7 +201,26 @@ class Employee(models.Model):
     suma = fields.One2many('product.template', 'standard_price')
     #william acosta
     bolsa = fields.Integer(string='Ingreso dinero tecnico')
+    bolsa_total = fields.Integer(string='Valor total', readonly=True)
 
+    def expenses_tecnical(self):
+        valor = self.bolsa
+        valor2 = self.bolsa_total
+        valor = valor2 + valor
+        if valor == 150000:
+            self.bolsa = 0
+            self.bolsa_total = valor
+        elif valor < 150000:
+            self.bolsa = 0
+            raise ValidationError(f'el valor de: {valor} es menor al maximo')
+        elif valor > 150000:
+            if valor <= 300000:
+                self.bolsa = 0
+                self.bolsa_total = valor
+            elif valor > 300000:
+                self.bolsa = 0
+                raise ValidationError(f'el valor de: {valor} excede el tope')
+    #fin william
     @api.constrains('parent_id')
     def _check_parent_id(self):
         for employee in self:
