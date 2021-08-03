@@ -91,7 +91,7 @@ class HrExpense(models.Model):
     reference = fields.Char("Bill Reference")
     is_refused = fields.Boolean("Explicitely Refused by manager or acccountant", readonly=True, copy=False)
     origin = fields.Many2one('maintenance.request', string='Documento origen', readonly= True, states={'draft': [('readonly', False)]})
-    imagen_legal = fields.Binary(string="ingresar la factura") #creada por william acosta
+    imagen_legal = fields.Binary(string="ingresar la factura", required=True) #creada por william acosta
   #-------------------------#
   #  MODIFICACIONES GASTOS  #  
   #-------------------------#
