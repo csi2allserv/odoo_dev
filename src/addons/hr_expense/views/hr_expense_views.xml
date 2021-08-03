@@ -30,7 +30,7 @@
                 <field name="analytic_account_id" groups="analytic.group_analytic_accounting"/>
                 <field name="analytic_tag_ids" widget="many2many_tags" groups="analytic.group_analytic_tags"/>
                 <field name="total_amount" sum="Total Amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>
-                <field name="imagen_legal" widget="image" class="w-25 mh-25" accept="image/.jpg" string="Adjuntar" />
+                <field name="imagen_legal" widget="image" class="w-25 mh-25" string="Adjuntar" />
 <!--                <button name="action_get_attachment_view" string="View Attached Documents" type="object" icon="fa-paperclip"/>-->
                 <field name="message_unread" invisible="1"/>
                 <field name="state"/>
@@ -52,15 +52,15 @@
                     <button name="action_view_sheet" type="object" string="View Report" class="oe_highlight" attrs="{'invisible': [('sheet_id', '=', False)]}"/>
                 </header>
                 <sheet>
-<!--                    <div class="oe_button_box">-->
-<!--                        <button name="action_get_attachment_view"-->
-<!--                                class="oe_stat_button"-->
-<!--                                icon="fa-book"-->
-<!--                                type="object"-->
-<!--                                attrs="{'invisible': [('attachment_number', '=', 0)]}">-->
-<!--                            <field name="attachment_number" widget="statinfo" string="Documents" options="{'reload_on_button': true}"/>-->
-<!--                        </button>-->
-<!--                    </div>-->
+                    <div class="oe_button_box">
+                        <button name="action_get_attachment_view"
+                                class="oe_stat_button"
+                                icon="fa-book"
+                                type="object"
+                                attrs="{'invisible': [('attachment_number', '=', 0)]}">
+                            <field name="attachment_number" widget="statinfo" string="Documents" options="{'reload_on_button': true}"/>
+                        </button>
+                    </div>
                     <div class="oe_title">
                         <label for="name"/>
                         <h1>
