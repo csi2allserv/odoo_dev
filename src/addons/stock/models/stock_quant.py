@@ -20,38 +20,38 @@ class StockQuant(models.Model):
 
     product_id = fields.Many2one(
         'product.product', 'Product',
-        ondelete='restrict', readonly=True, required=True, index=True)
+        ondelete='restrict', readonly=False, required=True, index=True)
     # so user can filter on template in webclient
     product_tmpl_id = fields.Many2one(
         'product.template', string='Product Template',
         related='product_id.product_tmpl_id', readonly=False)
     product_uom_id = fields.Many2one(
         'uom.uom', 'Unit of Measure',
-        readonly=True, related='product_id.uom_id')
+        readonly=False, related='product_id.uom_id')
     company_id = fields.Many2one(related='location_id.company_id',
-        string='Company', store=True, readonly=True)
+        string='Company', store=True, readonly=False)
     location_id = fields.Many2one(
         'stock.location', 'Location',
-        auto_join=True, ondelete='restrict', readonly=True, required=True, index=True)
+        auto_join=True, ondelete='restrict', readonly=False, required=True, index=True)
     lot_id = fields.Many2one(
         'stock.production.lot', 'Lot/Serial Number',
-        ondelete='restrict', readonly=True)
+        ondelete='restrict', readonly=False)
     package_id = fields.Many2one(
         'stock.quant.package', 'Package',
-        help='The package containing this quant', readonly=True, ondelete='restrict')
+        help='The package containing this quant', readonly=False, ondelete='restrict')
     owner_id = fields.Many2one(
         'res.partner', 'Owner',
-        help='This is the owner of the quant', readonly=True)
+        help='This is the owner of the quant', readonly=False)
     quantity = fields.Float(
         'Quantity',
         help='Quantity of products in this quant, in the default unit of measure of the product',
-        readonly=True, required=True, oldname='qty')
+        readonly=False, required=True, oldname='qty')
     reserved_quantity = fields.Float(
         'Reserved Quantity',
         default=0.0,
         help='Quantity of reserved products in this quant, in the default unit of measure of the product',
-        readonly=True, required=True)
-    in_date = fields.Datetime('Incoming Date', readonly=True)
+        readonly=False, required=True)
+    in_date = fields.Datetime('Incoming Date', readonly=False)
     ubicacion_interna = fields.Char('Ubicación interna')
     def action_view_stock_moves(self):
         self.ensure_one()
