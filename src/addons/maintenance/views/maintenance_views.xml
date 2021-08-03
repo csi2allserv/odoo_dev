@@ -150,9 +150,6 @@
                         <page string="Gastos" name="gastos">
                             <field name="gastos_personal" widget="many2many"/>
                         </page>
-                        <page string="Inventario" name="materials">
-                            <field name="inventario_personal" widget="many2many"/>
-                        </page>
                     </notebook>
                 </sheet>
                 <div class="oe_chatter">
