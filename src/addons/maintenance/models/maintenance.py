@@ -388,23 +388,52 @@ class MaintenanceRequest(models.Model):
     planificador = fields.Selection([('p1', 'personal 1'), ('p2', 'personal 2'), ('p3', 'personal 3'), ('p4', 'personal 4'), ('p5', 'personal 5')],)
     location = fields.Char()
     validador = fields.Boolean(default=False)
-    tecnicoApoyo1 = fields.Many2one('res.users', string='Tecnico de apoyo')
-    tecnicoApoyo2 = fields.Many2one('res.users', string='Tecnico de apoyo')
-    tecnicoApoyo3 = fields.Many2one('res.users', string='Tecnico de apoyo')
-    tecnicoApoyo4 = fields.Many2one('res.users', string='Tecnico de apoyo')
-    tecnicoApoyo5 = fields.Many2one('res.users', string='Tecnico de apoyo')
+    tecnicoacargo = fields.Many2one('hr.employee', string='Tecnico', track_visibility='onchange')
+    tecnicoApoyo1 = fields.Many2one('hr.employee', string='Tecnico de apoyo')
+    tecnicoApoyo2 = fields.Many2one('hr.employee', string='Tecnico de apoyo')
+    tecnicoApoyo3 = fields.Many2one('hr.employee', string='Tecnico de apoyo')
+    tecnicoApoyo4 = fields.Many2one('hr.employee', string='Tecnico de apoyo')
+    tecnicoApoyo5 = fields.Many2one('hr.employee', string='Tecnico de apoyo')
     location_id = fields.Many2one('crm.customer.location', string='Codigo', required=False,
                                   domain="[('location_type_id','=',location_type_id),('partner_id','=',partner_id)]")
     active = fields.Boolean("Active", default="True")
     cierre = fields.Boolean("Active", default="True")
     # gastos_per = fields.Many2one('hr.expense')
     gastos_personal = fields.One2many('hr.expense', 'id')
-    inventario_personal = fields.One2many('stock.quant', 'id', copy=True)
-    @api.onchange('user_id')
+    bolsa1 = fields.Integer(string="Bolsa")
+    bolsa2 = fields.Integer(string="Bolsa")
+    bolsa3 = fields.Integer(string="Bolsa")
+    bolsa4 = fields.Integer(string="Bolsa")
+    bolsa5 = fields.Integer(string="Bolsa")
+    bolsa6 = fields.Integer(string="Bolsa")
+    inventario_personal = fields.One2many('stock.quant', 'id')
+    @api.onchange('tecnicoacargo', 'tecnicoApoyo1', 'tecnicoApoyo2', 'tecnicoApoyo3', 'tecnicoApoyo4', 'tecnicoApoyo5')
     def default_gastos(self):
-        self.gastos_personal = [(4, 7)]
-    def default_inventario(self):
-            self.inventario_personal = [(6, 0, [2, 3, 4])]
+        if self.tecnicoacargo:
+            self.bolsa1 = self.tecnicoacargo.bolsa_total
+            query = f"SELECT id FROM public.hr_expense WHERE employee_id = {self.tecnicoacargo.id} AND state = 'done';"
+            self._cr.execute(query)
+            data = self._cr.dictfetchall()
+            if len(data)==1:
+                # data.split()
+                # data = data[1]
+                print(data)
+                # self.gastos_personal = [(4, data)]
+            else:
+                print(len(data))
+            #
+        elif self.tecnicoApoyo1:
+           self.bolsa2 = self.tecnicoApoyo1.bolsa_total
+        elif self.tecnicoApoyo2:
+            self.bolsa2 = self.tecnicoApoyo1.bolsa_total
+        elif self.tecnicoApoyo3:
+            self.bolsa2 = self.tecnicoApoyo1.bolsa_total
+        elif self.tecnicoApoyo4:
+            self.bolsa2 = self.tecnicoApoyo1.bolsa_total
+        elif self.tecnicoApoyo5:
+            self.bolsa2 = self.tecnicoApoyo1.bolsa_total
+
+        # self.inventario_personal = [(6, 0, [])]
 
     @api.model
     def name_search(self, name='', args=None, operator='ilike', limit=100):

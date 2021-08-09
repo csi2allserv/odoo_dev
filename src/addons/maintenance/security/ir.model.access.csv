@@ -9,4 +9,3 @@ access_maintenance_stage_admin_user,equipment.request.stage system user,model_ma
 access_maintenance_team_user,maintenance.team.user,model_maintenance_team,group_equipment_usuario_base,0,1,0,0
 access_maintenance_team_admin_user,maintenance.team.admin.user,model_maintenance_team,group_equipment_manager,1,1,1,1
 access_mail_activity_type_equipment_manager,mail.activity.type.equipment.manager,mail.model_mail_activity_type,maintenance.group_equipment_manager,1,1,1,1
-access_maintenance_user_base_01,equipment.user.base,maintenance_plan.model_maintenance_plan,group_equipment_usuario_base,0,0,0,0

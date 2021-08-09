@@ -101,12 +101,19 @@
                             <field name="owner_user_id" string="Requested By"/>
                             
                             <!--field name="maintenance_team_id" options="{'no_create': True, 'no_open': True}" string="Proceso"/-->
-                            <field name="user_id" string="Tecnico" attrs="{'readonly': [('location_id', '=', True)], 'invisible': [('stage_id', '=', 1)]}"/>
-                            <field name="tecnicoApoyo1" force_save="1" attrs="{'invisible': [('user_id', '=', False)]}" />
+                            <field name="user_id" string="Tecnico" attrs="{'readonly': [('location_id', '=', True)], 'invisible': True}"/>
+                            <field name="tecnicoacargo" string="Tecnico" attrs="{'readonly': [('location_id', '=', True)], 'invisible': [('stage_id', '=', 1)]}"/>
+                            <field name="bolsa1" force_save="1" attrs="{'invisible': [('tecnicoacargo', '=', False)]}" readonly="True" />
+                            <field name="tecnicoApoyo1" force_save="1" attrs="{'invisible': [('tecnicoacargo', '=', False)]}" />
+                            <field name="bolsa2" force_save="1" attrs="{'invisible': [('tecnicoApoyo1', '=', False)]}" readonly="True" />
                             <field name="tecnicoApoyo2" force_save="1" attrs="{'invisible': [('tecnicoApoyo1', '=', False)]}" />
+                            <field name="bolsa3" force_save="1" attrs="{'invisible': [('tecnicoApoyo2', '=', False)]}" readonly="True" />
                             <field name="tecnicoApoyo3" force_save="1" attrs="{'invisible': [('tecnicoApoyo2', '=', False)]}" />
+                            <field name="bolsa4" force_save="1" attrs="{'invisible': [('tecnicoApoyo3', '=', False)]}" readonly="True" />
                             <field name="tecnicoApoyo4" force_save="1" attrs="{'invisible': [('tecnicoApoyo3', '=', False)]}" />
+                            <field name="bolsa5" force_save="1" attrs="{'invisible': [('tecnicoApoyo4', '=', False)]}" readonly="True" />
                             <field name="tecnicoApoyo5" force_save="1" attrs="{'invisible': [('tecnicoApoyo4', '=', False)]}" />
+                            <field name="bolsa6" force_save="1" attrs="{'invisible': [('tecnicoApoyo5', '=', False)]}" readonly="True" />
                             <field name="planificador" string="Planificador"/>
                             <field name="maintenance_team_id" string="Asigando a:"/>
                             <field name="duration" invisible="1" />
